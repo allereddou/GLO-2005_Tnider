@@ -20,3 +20,6 @@ flask run --port={port}
 
 
 ### Linux
+
+export FLASK_APP={YOUR_PATH_TO_THE_APIServer.py}
+flask run --port={port}
