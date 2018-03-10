@@ -15,7 +15,7 @@ def about():
 
 @app.route('/signIn')
 def signIn():
-    return  render_template('signIn.html')
+    return render_template('signIn.html')
 
 
 @app.route('/signUp')

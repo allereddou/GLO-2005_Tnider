@@ -8,12 +8,18 @@ body {
  * Formatting the header area
  */
 header {
-  background-color: gray;
+  background-color: white;
   height: 50px;
   width: 100%;
   opacity: .9;
   margin-bottom: 10px;
 }
+
+hr {
+    width: 100%;
+}
+
+
 header h1.logo {
   margin: 0;
   font-size: 1.7em;

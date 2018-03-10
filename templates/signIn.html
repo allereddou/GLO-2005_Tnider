@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-{% extends "layout.html" %}
-{% block content %}
 <body>
+{% extends "connectedLayout.html" %}
+{% block content %}
 <form>
     First name:
     <input type="text" name="firstname">
@@ -19,7 +19,7 @@
     <input type="text" name="email">
     <br>
 </form>
+{% endblock %}
 
 </body>
-{% endblock %}
 </html>

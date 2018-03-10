@@ -5,10 +5,12 @@
     <title>Doggos</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
+
 <body>
 <header>
     <div class="container">
-        <img src="/ressources/tnider.png" height="50"/>
+        <img src="/static/ressources/tnider.png" height="50">
+        <hr>
         <strong>
             <nav>
                 <ul class="menu">
@@ -20,6 +22,7 @@
             </nav>
         </strong>
     </div>
+
 </header>
 <div class="container">
     {% block content %}
