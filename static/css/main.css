@@ -8,8 +8,8 @@ body {
  * Formatting the header area
  */
 header {
-  background-color: red;
-  height: 35px;
+  background-color: gray;
+  height: 50px;
   width: 100%;
   opacity: .9;
   margin-bottom: 10px;
@@ -73,4 +73,9 @@ h3 {
 .menu li a {
   color: white;
   text-decoration: none;
+}
+
+input[type="text"]
+{
+    width: 200px;
 }
