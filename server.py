@@ -13,5 +13,16 @@ def about():
     return render_template('about.html')
 
 
+@app.route('/signIn')
+def signIn():
+    return  render_template('signIn.html')
+
+
+@app.route('/signUp')
+def signUp():
+    return render_template('signUp.html')
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
