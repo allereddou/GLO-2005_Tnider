@@ -1,16 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Doggos</title>
-</head>
-{% extends "notConnectedLayout.html" %}
-{% block content %}
-<body>
-<div class="home">
-    <h1>Home</h1>
-    <p>woof woof bork</p>
-</div>
+{% extends "layout.html" %}
+{% block title %}Home{% endblock %}
+{% block head %}
+  {{ super() }}
+
 {% endblock %}
-</body>
-</html>
+{% block content %}
+  <h1>Home</h1>
+  <p>Welcome to the doggo page.</p>
+{% endblock %}
+
