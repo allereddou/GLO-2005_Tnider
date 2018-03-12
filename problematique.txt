@@ -1,0 +1,7 @@
+1. Énonciation du problème et des exigences.
+
+L'application, Tnider, est un réseau d'adoption d'animaux domestiques en ligne. Par le biais du site web, on peut consulter les différentes offres de vente, selon les préférences des usagers. L'application évolue donc dans un contexte ouvert et accessible à tous : c'est un application spécialisée disponible de tous. Pour le bien-être des usagers, l'application se devra d'être stable (aucune perte de données et toujours accessible), conviviale, sécuritaire (au niveau des données personnelles). Chaque animal présent dans la base de données aura donc une fiche avec ses informations personnalisés et chaque usager (acheteur ou vendeur) aura son compte pour naviguer et commercer avec les autres. 
+
+
+2. Spécifications du système et des responsabilités des trois niveaux
+
