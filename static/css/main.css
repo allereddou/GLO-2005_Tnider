@@ -11,7 +11,7 @@
     float: left;
     width: 30%;
     background: white;
-    height: 90%;
+    height: 80%;
 }
 
 
@@ -19,12 +19,13 @@
     float: right;
     width: 70%;
     background: white;
-    height:90%;
+    height:80%;
 }
 
 #page_footer_bottom{
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
-
 }
+
+
