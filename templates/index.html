@@ -1,11 +1,40 @@
-{% extends "layout.html" %}
-{% block title %}Home{% endblock %}
-{% block head %}
-  {{ super() }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+        <link rel="stylesheet" href="/static/css/materialize.css">
+        <link rel="stylesheet" href="/static/css/main.css">
+        <link rel="shortcut icon" href="/static/ressources/favicon.png">
+        <title>{% block title %}{% endblock %} - Tnider</title>
+    {% endblock %}
+    <meta charset="UTF-8">
+</head>
+<header>
+    <nav>
+        <div class="nav-wrapper" id="white_bar">
+            <!--  <a href="/" class="brand-logo"><i class="material-icons">Tnider</i></a> -->
+            <a href="/" class="brand-logo"><img src="/static/ressources/tnider.png" height="50"</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li ><a id="white_bar_writing" href="/about">About</a></li>
+                <li><a id="white_bar_writing" href="/contact_us">Contact us </a></li>
+                <li><a id="white_bar_writing" href="/sign_in">Sign in </a></li>
+                <li ><a id="white_bar_writing" href="/sign_up">Sign up </a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- <img src="/static/ressources/tnider.png" height="50" -->
+</header>
+<hr>
 
-{% endblock %}
-{% block content %}
-  <h1>Home</h1>
-  <p>Welcome to the doggo page.</p>
-{% endblock %}
-
+<body>
+<div id="content">{% block content %}{% endblock %}</div>
+<div id="footer">
+    {% block footer %}
+        &copy; Copyright 2010 by us
+        <a href="/about">About </a>.
+        <a href="/contact_us">Contact us </a>
+    {% endblock %}
+</div>
+</body>
+</html>
+</html>
