@@ -1,25 +1,12 @@
 #white_bar {
+    width: 100%;
     background-color: white;
     padding-left: 80px;
     padding-right: 80px;
+    opacity: 1;
 }
 #white_bar_writing{
     color: red;
-}
-
-.left_separate {
-    float: left;
-    width: 30%;
-    background: white;
-    height: 80%;
-}
-
-
-.right_separate {
-    float: right;
-    width: 70%;
-    background: white;
-    height:80%;
 }
 
 #page_footer_bottom{
@@ -29,3 +16,25 @@
 }
 
 
+.left-separate{
+    float: left;
+    width: 30%;
+}
+.right-separate{
+    float: right;
+    width: 70%
+}
+
+
+#no_button{
+    float: right;
+}
+
+#info_button{
+    margin: 0 auto;
+    margin-left: 20%;
+}
+
+#yes_button{
+    float: left;
+}
