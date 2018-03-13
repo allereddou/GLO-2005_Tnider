@@ -1,6 +1,30 @@
 #white_bar {
     background-color: white;
+    padding-left: 80px;
+    padding-right: 80px;
 }
 #white_bar_writing{
     color: red;
+}
+
+.left_separate {
+    float: left;
+    width: 30%;
+    background: white;
+    height: 90%;
+}
+
+
+.right_separate {
+    float: right;
+    width: 70%;
+    background: white;
+    height:90%;
+}
+
+#page_footer_bottom{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
 }

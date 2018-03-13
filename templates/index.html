@@ -12,23 +12,21 @@
 <header>
     <nav>
         <div class="nav-wrapper" id="white_bar">
-            <!--  <a href="/" class="brand-logo"><i class="material-icons">Tnider</i></a> -->
             <a href="/" class="brand-logo"><img src="/static/ressources/tnider.png" height="50"</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li ><a id="white_bar_writing" href="/about">About</a></li>
+                <li><a id="white_bar_writing" href="/about">About</a></li>
                 <li><a id="white_bar_writing" href="/contact_us">Contact us </a></li>
                 <li><a id="white_bar_writing" href="/sign_in">Sign in </a></li>
-                <li ><a id="white_bar_writing" href="/sign_up">Sign up </a></li>
+                <li><a id="white_bar_writing" href="/sign_up">Sign up </a></li>
             </ul>
         </div>
     </nav>
-    <!-- <img src="/static/ressources/tnider.png" height="50" -->
 </header>
 <hr>
 
 <body>
 <div id="content">{% block content %}{% endblock %}</div>
-<div id="footer">
+<div class="page-footer" id="page_footer_bottom">
     {% block footer %}
         &copy; Copyright 2010 by us
         <a href="/about">About </a>.
