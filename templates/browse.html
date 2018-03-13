@@ -5,14 +5,51 @@
 
 {% endblock %}
 {% block content %}
-    <div class="left-separate">Left content</div>
+    <div class="left-separate">
 
+    <!-- http://materializecss.com/collections.html -->
+        <ul class="collection">
+            <li class="collection-item avatar">
+                <img src="/static/ressources/doggo.jpg" alt="" class="circle">
+                <span class="title">Doge 1</span>
+                <p>Doggo in chief <br>
+                    Bork bork
+                </p>
+                <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+            </li>
+
+            <li class="collection-item avatar">
+                <i class="material-icons circle">folder</i>
+                <span class="title">Title</span>
+                <p>First Line <br>
+                    Second Line
+                </p>
+                <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+            </li>
+            <li class="collection-item avatar">
+                <i class="material-icons circle green">insert_chart</i>
+                <span class="title">Title</span>
+                <p>First Line <br>
+                    Second Line
+                </p>
+                <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+            </li>
+            <li class="collection-item avatar">
+                <i class="material-icons circle red">play_arrow</i>
+                <span class="title">Title</span>
+                <p>First Line <br>
+                    Second Line
+                </p>
+                <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+            </li>
+        </ul>
+    </div>
 
     <div class="right-separate">
-        <div class="row">
+        <div class="row" id="image-card">
             <div class="col s12 m7">
                 <div class="card">
-                    <div class="card-image" id="image_card">
+                    <div class="card-image">
                         <img src="/static/ressources/doggo.jpg">
                         <span class="card-title">Doggo Name</span>
                     </div>
@@ -20,14 +57,15 @@
                         <p> I'm a doggo, plz boop me</p>
                     </div>
                     <div class="card-action">
-                        <a class="fas fa-times-circle fa-5x" style="color: red" id="yes_button"></a>
-                        <a class="fab fa-gratipay fa-5x" style="color:#42c682" id="no_button"></a>
-                        <a class="fas fa-info-circle fa-5x" style="color:blue" id="info_button"></a>
-
+                        <a class="fas fa-times-circle fa-5x" style="color: red" id="yes-button"></a>
+                        <a class="fab fa-gratipay fa-5x" style="color:#42c682" id="no-button"></a>
+                        <a class="fas fa-star fa-5x" style="color:blue" id="super-like-button"></a>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
+
 
 {% endblock %}

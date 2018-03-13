@@ -1,12 +1,14 @@
 #white_bar {
     width: 100%;
+    top:0;
     background-color: white;
-    padding-left: 80px;
-    padding-right: 80px;
+    padding-left: 20px;
+    padding-right: 20px;
     opacity: 1;
 }
 #white_bar_writing{
     color: red;
+
 }
 
 #page_footer_bottom{
@@ -18,23 +20,30 @@
 
 .left-separate{
     float: left;
-    width: 30%;
+    width: 50%;
+    height: 700px;
 }
 .right-separate{
     float: right;
-    width: 70%
+    width: 50%;
+    height:700px;
 }
 
 
-#no_button{
+#no-button{
     float: right;
+    position:relative;
 }
 
-#info_button{
-    margin: 0 auto;
-    margin-left: 20%;
+#super-like-button{
+    p
 }
 
-#yes_button{
+#yes-button{
     float: left;
+    position: relative;
+}
+
+#image-card{
+    width: 100%;
 }
