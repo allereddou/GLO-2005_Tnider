@@ -1,11 +1,84 @@
 {% extends "index.html" %}
 {% block title %}Home{% endblock %}
 {% block head %}
-  {{ super() }}
-
+{{ super() }}
 {% endblock %}
 {% block content %}
-  <h1>Home</h1>
-  <p>Welcome to the doggo page.</p>
+<style>
+    body {
+        background-image: url("/static/ressources/kitteh.jpg");
+    }
+</style>
+
+<!-- https://codepen.io/mblarsen/pen/mVZRMM -->
+<div class="valign-wrapper row login-box">
+    <div class="col card hoverable s10 pull-s1 m6 pull-m3 l4 pull-l4">
+        <div class="card-tabs">
+            <ul class="tabs tabs-fixed-width">
+                <li class="tab"><a href="#signin">Sign In</a></li>
+                <li class="tab"><a class="active" href="#signup">Sign Up</a></li>
+            </ul>
+        </div>
+
+        <div class="card-content">
+
+            <div id="signin">
+                <form>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label for="email">Email address</label>
+                            <input type="email" class="validate" name="email" id="email"/>
+                        </div>
+                        <div class="input-field col s12">
+                            <label for="password">Password </label>
+                            <input type="password" class="validate" name="password" id="password"/>
+                        </div>
+                    </div>
+
+                    <div class="card-action right-align">
+                        <input type="reset" id="reset" class="btn-flat grey-text waves-effect">
+                        <input type="submit" class="btn red waves-effect waves-light" value="Login">
+                    </div>
+                </form>
+            </div>
+
+            <div id="signup">
+
+                <div class="input-field col s12">
+                    <label for="username">Username</label>
+                    <input type="text" class="validate" name="username" id="username"/>
+                </div>
+                <div class="input-field col s6">
+                    <label for="name">First Name</label>
+                    <input type="text" class="validate" name="name" id="name"/>
+                </div>
+                <div class="input-field col s6">
+                    <label for="last name">Last Name</label>
+                    <input type="text" class="validate" name="last name" id="last name"/>
+                </div>
+                <div class="input-field col s6">
+                    <label for="password">Password </label>
+                    <input type="password" class="validate" name="password" id="password"/>
+                </div>
+                <div class="input-field col s6">
+                    <label for="confirm password">Confirm Password</label>
+                    <input type="password" class="validate" name="confirm password" id="confirm password"/>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="email">Email address</label>
+                        <input type="email" class="validate" name="email" id="email"/>
+                    </div>
+                </div>
+                <div class="card-action right-align">
+                    <input type="reset" id="reset" class="btn-flat grey-text waves-effect">
+                    <input type="submit" class="btn red waves-effect waves-light" value="Create">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 {% endblock %}
 
