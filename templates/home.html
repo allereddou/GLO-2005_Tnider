@@ -2,13 +2,19 @@
 {% block title %}Home{% endblock %}
 {% block head %}
 {{ super() }}
-{% endblock %}
-{% block content %}
+<script>
+    $(document).ready(function() {
+        $('select').material_select();
+    });
+</script>
 <style>
     body {
         background-image: url("/static/ressources/kitteh.jpg");
     }
 </style>
+
+{% endblock %}
+{% block content %}
 
 <!-- https://codepen.io/mblarsen/pen/mVZRMM -->
 <div class="valign-wrapper row login-box">
@@ -34,16 +40,26 @@
                             <input type="password" class="validate" name="password" id="password"/>
                         </div>
                     </div>
-
                     <div class="card-action right-align">
-                        <input type="reset" id="reset sign in" class="btn-flat grey-text waves-effect">
-                        <input type="submit" class="btn red waves-effect waves-light" value="Login">
+                        <button value="Reset" type="reset" id="reset sign up" class="btn-flat grey-text waves-effect">
+                            Reset
+                        </button>
+                        <button type="submit" class="btn red waves-effect waves-light" value="Login">Login</button>
                     </div>
                 </form>
             </div>
 
             <div id="signup">
                 <form>
+                    <div class=".input-field col s12">
+                        <label for="mode">Account Mode</label>
+                        <select name="account mode" id="mode">
+                            <option value="" disabled selected>Choose your account mode</option>
+                            <option value="1">Buyer</option>
+                            <option value="2">Seller</option>
+                        </select>
+                    </div>
+
                     <div class="input-field col s12">
                         <label for="username">Username</label>
                         <input type="text" class="validate" name="username" id="username"/>
@@ -72,8 +88,10 @@
                         </div>
                     </div>
                     <div class="card-action right-align">
-                        <input type="reset" id="reset sign up" class="btn-flat grey-text waves-effect">
-                        <input type="submit" class="btn red waves-effect waves-light" value="Create">
+                        <button value="Reset" type="reset" id="reset sign up" class="btn-flat grey-text waves-effect">
+                            Reset
+                        </button>
+                        <button type="submit" class="btn red waves-effect waves-light" value="Create">Create</button>
                     </div>
                 </form>
             </div>
