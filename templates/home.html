@@ -8,6 +8,12 @@
     });
 </script>
 <style>
+    /* https://github.com/Dogfalo/materialize/issues/2584
+        Needed to remove awkward scrollbar
+    */
+    .tabs {
+        overflow-x: hidden;
+    }
     body {
         background-image: url("/static/ressources/kitteh.jpg");
     }
