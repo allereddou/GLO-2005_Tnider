@@ -18,7 +18,6 @@
 }
 
 
-
 .left-separate{
     float: left;
     width: 50%;
@@ -28,21 +27,6 @@
     float: right;
     width: 50%;
     height:700px;
-}
-
-
-#no-button{
-    float: right;
-    position:relative;
-}
-
-#super-like-button{
-    p
-}
-
-#yes-button{
-    float: left;
-    position: relative;
 }
 
 #image-card{
