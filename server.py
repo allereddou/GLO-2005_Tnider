@@ -18,15 +18,9 @@ def browse():
     return render_template('browse.html')
 
 
-@app.route('/sign_in')
+@app.route('/account')
 def sign_in():
-    return render_template('sign_in.html')
-
-
-@app.route('/sign_up')
-def sign_up():
-    return render_template('sign_up.html')
-
+    return render_template('account.html')
 
 @app.route('/contact_us')
 def contact_us():
