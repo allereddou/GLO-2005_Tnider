@@ -9,6 +9,17 @@
     <link rel="shortcut icon" href="/static/ressources/favicon.png">
     <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
     <title>{% block title %}{% endblock %} - Tnider</title>
+    <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1 0 auto;
+        }
+    </style>
     {% endblock %}
     <meta charset="UTF-8">
 </head>
@@ -27,12 +38,18 @@
 </header>
 
 <body>
-<div id="content">{% block content %}{% endblock %}</div>
-<div class="page-footer" id="page_footer_bottom">
+<main>{% block content %}{% endblock %}</main>
+<div class="page-footer">
     {% block footer %}
-    &copy; Copyright 2018 by us
-    <a href="/about">About </a>.
-    <a href="/contact_us">Contact us </a>
+    <div class="center">
+        <div class="row">
+            Tnider &copy; 2018
+        </div>
+        <div class="row">
+            <a href="/about">About </a>.
+            <a href="/contact_us">Contact us </a>
+        </div>
+    </div>
     {% endblock %}
 </div>
 </body>
