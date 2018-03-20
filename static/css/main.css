@@ -1,4 +1,4 @@
-#white_bar {
+#white-bar {
     width: 100%;
     top:0;
     background-color: white;
@@ -17,18 +17,10 @@
     width: 100%;
 }
 
-
-.left-separate{
-    float: left;
-    width: 50%;
-    height: 700px;
-}
-.right-separate{
-    float: right;
-    width: 50%;
-    height:700px;
-}
-
-#image-card{
+.card-image > img{
     width: 100%;
+}
+
+#card-button{
+ margin-bottom: 0;
 }

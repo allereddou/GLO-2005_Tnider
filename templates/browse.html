@@ -1,53 +1,52 @@
 {% extends "index.html" %}
 {% block title %}Browse{% endblock %}
 {% block head %}
-{{ super() }}
+    {{ super() }}
 
 {% endblock %}
 {% block content %}
-<div class="left-separate">
+    <div class="row">
+        <!-- http://materializecss.com/collections.html -->
+        <div class="col s6">
+            <ul class="collection">
+                <li class="collection-item avatar">
+                    <img src="/static/ressources/doggo.jpg" alt="" class="circle">
+                    <span class="title">Doge 1</span>
+                    <p>Doggo in chief <br>
+                        Bork bork
+                    </p>
+                    <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                </li>
 
-    <!-- http://materializecss.com/collections.html -->
-    <ul class="collection">
-        <li class="collection-item avatar">
-            <img src="/static/ressources/doggo.jpg" alt="" class="circle">
-            <span class="title">Doge 1</span>
-            <p>Doggo in chief <br>
-                Bork bork
-            </p>
-            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-        </li>
+                <li class="collection-item avatar">
+                    <i class="material-icons circle">folder</i>
+                    <span class="title">Title</span>
+                    <p>First Line <br>
+                        Second Line
+                    </p>
+                    <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                </li>
+                <li class="collection-item avatar">
+                    <i class="material-icons circle green">insert_chart</i>
+                    <span class="title">Title</span>
+                    <p>First Line <br>
+                        Second Line
+                    </p>
+                    <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                </li>
+                <li class="collection-item avatar">
+                    <i class="material-icons circle red">play_arrow</i>
+                    <span class="title">Title</span>
+                    <p>First Line <br>
+                        Second Line
+                    </p>
+                    <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                </li>
+            </ul>
+        </div>
 
-        <li class="collection-item avatar">
-            <i class="material-icons circle">folder</i>
-            <span class="title">Title</span>
-            <p>First Line <br>
-                Second Line
-            </p>
-            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-        </li>
-        <li class="collection-item avatar">
-            <i class="material-icons circle green">insert_chart</i>
-            <span class="title">Title</span>
-            <p>First Line <br>
-                Second Line
-            </p>
-            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-        </li>
-        <li class="collection-item avatar">
-            <i class="material-icons circle red">play_arrow</i>
-            <span class="title">Title</span>
-            <p>First Line <br>
-                Second Line
-            </p>
-            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-        </li>
-    </ul>
-</div>
 
-<div class="right-separate">
-    <div class="row" id="image-card">
-        <div class="col s12 m7">
+        <div class="col s6">
             <div class="card">
                 <div class="card-image">
                     <img src="/static/ressources/doggo.jpg">
@@ -57,20 +56,16 @@
                     <p> I'm a doggo, plz boop me</p>
                 </div>
                 <div class="card-action">
-                    <div class="row s12">
-                        <div class="col s4 center-align"><a class="fas fa-times-circle fa-5x" style="color: red"
-                                                            id="yes-button"></a>
+                    <div class="row s12 valign-wrapper" id="card-button">
+                        <div class="col s4 center-align"><a class="fas fa-times-circle fa-5x"
+                                                            style="color: red"></a></div>
+                        <div class="col s4 center-align"><a class="fab fa-gratipay fa-5x" style="color:#42c682"></a>
                         </div>
-                        <div class="col s4 center-align"><a class="fab fa-gratipay fa-5x" style="color:#42c682"
-                                                            id="no-button"></a></div>
-                        <div class="col s4 center-align"><a class="fas fa-star fa-5x" style="color:blue"
-                                                            id="super-like-button"></a></div>
+                        <div class="col s4 center-align"><a class="fas fa-star fa-5x" style="color:blue"></a></div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
-</div>
 
 {% endblock %}
