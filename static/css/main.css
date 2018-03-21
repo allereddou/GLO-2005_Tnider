@@ -11,12 +11,9 @@
 
 }
 
-#page_footer_bottom{
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+#bottom-footer{
+    height: 80px;
 }
-
 .card-image > img{
     width: 100%;
 }
@@ -25,9 +22,6 @@
  margin-bottom: 0;
 }
 
-#mister-flip-yo-card{
-    height: inherit;
-}
 
 #mister-flip-yo-card .back{
     overflow: hidden;
