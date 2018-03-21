@@ -46,26 +46,43 @@
         </div>
 
 
-        <div class="col s6">
-            <div class="card">
-                <div class="card-image">
-                    <img src="/static/ressources/doggo.jpg">
-                    <span class="card-title">Doggo Name</span>
-                </div>
-                <div class="card-content">
-                    <p> I'm a doggo, plz boop me</p>
-                </div>
-                <div class="card-action">
-                    <div class="row s12 valign-wrapper" id="card-button">
-                        <div class="col s4 center-align"><a class="fas fa-times-circle fa-5x"
-                                                            style="color: red"></a></div>
-                        <div class="col s4 center-align"><a class="fab fa-gratipay fa-5x" style="color:#42c682"></a>
+        <div class="col s6" id="mister-flip-yo-card">
+            <div class="front">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="/static/ressources/doggo.jpg">
+                        <span class="card-title">Doggo Name</span>
+                    </div>
+                    <div class="card-content">
+                        <p> I'm a doggo, plz boop me</p>
+                    </div>
+                    <div class="card-action">
+                        <div class="row s12 valign-wrapper" id="card-button">
+                            <div class="col s4 center-align"><a class="fas fa-times-circle fa-5x"
+                                                                style="color: red"></a></div>
+                            <div class="col s4 center-align"><a class="fab fa-gratipay fa-5x"
+                                                                style="color:#42c682"></a>
+                            </div>
+                            <div class="col s4 center-align"><a class="fas fa-star fa-5x" style="color:blue"></a>
+                            </div>
                         </div>
-                        <div class="col s4 center-align"><a class="fas fa-star fa-5x" style="color:blue"></a></div>
                     </div>
                 </div>
             </div>
+            <div class="back">poashfosf</div>
         </div>
     </div>
 
+    <script>$(document).ready(function () {
+        $("#mister-flip-yo-card").flip();
+
+    })</script>
+
+
+
+
+
 {% endblock %}
+
+
+

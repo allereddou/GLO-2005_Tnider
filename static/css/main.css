@@ -24,3 +24,12 @@
 #card-button{
  margin-bottom: 0;
 }
+
+#mister-flip-yo-card{
+    height: inherit;
+}
+
+#mister-flip-yo-card .back{
+    overflow: hidden;
+}
+

@@ -2,24 +2,26 @@
 <html lang="en">
 <head>
     {% block head %}
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="/static/js/materialize.min.js"></script>
-    <link rel="stylesheet" href="/static/css/materialize.css">
-    <link rel="stylesheet" href="/static/css/main.css">
-    <link rel="shortcut icon" href="/static/ressources/favicon.png">
-    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
-    <title>{% block title %}{% endblock %} - Tnider</title>
-    <style>
-        body {
-            display: flex;
-            min-height: 100vh;
-            flex-direction: column;
-        }
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="/static/js/materialize.min.js"></script>
+        <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
 
-        main {
-            flex: 1 0 auto;
-        }
-    </style>
+        <link rel="stylesheet" href="/static/css/materialize.css">
+        <link rel="stylesheet" href="/static/css/main.css">
+        <link rel="shortcut icon" href="/static/ressources/favicon.png">
+        <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+        <title>{% block title %}{% endblock %} - Tnider</title>
+        <style>
+            body {
+                display: flex;
+                min-height: 100vh;
+                flex-direction: column;
+            }
+
+            main {
+                flex: 1 0 auto;
+            }
+        </style>
     {% endblock %}
     <meta charset="UTF-8">
 </head>
@@ -42,17 +44,16 @@
 <main>{% block content %}{% endblock %}</main>
 <div class="page-footer">
     {% block footer %}
-    <div class="center">
-        <div class="row">
-            <a href="/about">About </a>.
-            <a href="/contact_us">Contact us </a>
+        <div class="center">
+            <div class="row">
+                <a href="/about">About </a>.
+                <a href="/contact_us">Contact us </a>
+            </div>
+            <div class="row">
+                Tnider &copy; 2018
+            </div>
         </div>
-        <div class="row">
-            Tnider &copy; 2018
-        </div>
-    </div>
     {% endblock %}
 </div>
 </body>
-</html>
 </html>
