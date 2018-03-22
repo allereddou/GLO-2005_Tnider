@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 
+
 app = Flask(__name__)
 
 
@@ -21,6 +22,7 @@ def browse():
 @app.route('/account')
 def sign_in():
     return render_template('account.html')
+
 
 @app.route('/contact_us')
 def contact_us():
