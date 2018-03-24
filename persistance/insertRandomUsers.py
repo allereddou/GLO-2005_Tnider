@@ -4,7 +4,6 @@ import random
 
 genders = 'mf'
 
-
 def insertUsers(cursor, number):
     for i in range(0, number + 1):
         password = random.choice(genders)

@@ -21,6 +21,7 @@ def insertAnimal(cursor, number):
         sql = "INSERT INTO animal(id, nom, sexe, age, poids, location, race, description) VALUES ({}, '{}', '{}', {}, {}, '{}', '{}', '{}')"
         cursor.execute(sql.format(j, prenom, sexe, age, poids, location, race, description))
 
+        #insert in the good animal isa database
         if race == 'Birb':
             plumage = random.choice(plumages)
             sql = "INSERT INTO bird(id, plumage) VALUES ({},'{}')"
