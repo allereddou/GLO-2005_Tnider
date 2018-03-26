@@ -4,10 +4,11 @@ import random
 
 genders = 'mf'
 
+
 def insertUsers(cursor, number):
     for i in range(0, number + 1):
         password = random.choice(genders)
-        hash = hash_password(password)
+        hashed = hash_password(password)
         gender = random.choice(genders)
         prenom = names.get_first_name(gender)
         nom = names.get_last_name()
@@ -17,4 +18,8 @@ def insertUsers(cursor, number):
         solde = random.randint(0.00, 999.00)
 
         sql = "INSERT INTO user(username, pass, nom, prenom, email, telephone, solde) VALUES ('{}', '{}', '{}', '{}', '{}', {}, {})"
-        cursor.execute(sql.format(username, hash, nom, prenom, email, telephone, solde))
+        cursor.execute(sql.format(username, hashed, nom, prenom, email, telephone, solde))
+
+
+
+

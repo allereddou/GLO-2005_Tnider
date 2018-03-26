@@ -1,7 +1,4 @@
 def deleteAllTables(cursor):
-    sql = "DROP TABLE user"
-    cursor.execute(sql)
-
     sql = "DROP TABLE dog"
     cursor.execute(sql)
 
@@ -11,7 +8,13 @@ def deleteAllTables(cursor):
     sql = "DROP TABLE cat"
     cursor.execute(sql)
 
+    sql = "DROP TABLE vend"
+    cursor.execute(sql)
+
     sql = "DROP TABLE animal"
+    cursor.execute(sql)
+
+    sql = "DROP TABLE user"
     cursor.execute(sql)
 
 
@@ -29,4 +32,7 @@ def createTables(cursor):
     cursor.execute(sql)
 
     sql = "CREATE TABLE IF NOT EXISTS cat(id INT, PRIMARY KEY (id), pelage VARCHAR(20), castre BOOLEAN, degriffe BOOLEAN, FOREIGN KEY (id) REFERENCES animal(id) ON DELETE CASCADE);"
+    cursor.execute(sql)
+
+    sql = "CREATE TABLE IF NOT EXISTS vend(username VARCHAR(20), id_animal INT, id_vente INT AUTO_INCREMENT, PRIMARY KEY(id_vente), FOREIGN KEY (username) REFERENCES user(username), FOREIGN KEY (id_animal) REFERENCES animal(id) ON DELETE CASCADE )"
     cursor.execute(sql)
