@@ -11,8 +11,7 @@ from persistance.insertRandomAnimals import insertAnimal
 # Ouverture de la connexion
 db = pymysql.connect(host='localhost',
                      port=3306,
-                     user='root',
-                     db='PROJET_BD')
+                     user='root')
 
 cursor = db.cursor(pymysql.cursors.DictCursor)
 

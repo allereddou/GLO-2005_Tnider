@@ -1,4 +1,8 @@
 def deleteAllTables(cursor):
+
+    sql = "USE PROJET_BD"
+    cursor.execute(sql)
+
     sql = "DROP TABLE  IF EXISTS dog"
     cursor.execute(sql)
 
@@ -26,6 +30,9 @@ def deleteAllTables(cursor):
 
 def createTables(cursor):
     sql = "CREATE DATABASE IF NOT EXISTS PROJET_BD"
+    cursor.execute(sql)
+
+    sql = "USE PROJET_BD"
     cursor.execute(sql)
 
     sql = "CREATE TABLE IF NOT EXISTS user (username VARCHAR(20), pass VARCHAR(100), nom VARCHAR(20), prenom VARCHAR(20), email VARCHAR(40), telephone BIGINT, solde DECIMAL(5,2), PRIMARY KEY (username) );"
