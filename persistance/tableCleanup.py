@@ -1,23 +1,23 @@
 def deleteAllTables(cursor):
-    sql = "DROP TABLE dog"
+    sql = "DROP TABLE  IF EXISTS dog"
     cursor.execute(sql)
 
-    sql = "DROP TABLE bird"
+    sql = "DROP TABLE IF EXISTS bird"
     cursor.execute(sql)
 
-    sql = "DROP TABLE cat"
+    sql = "DROP TABLE  IF EXISTS cat"
     cursor.execute(sql)
 
-    sql = "DROP TABLE vend"
+    sql = "DROP TABLE IF EXISTS vend"
     cursor.execute(sql)
 
-    sql = "DROP TABLE animal"
+    sql = "DROP TABLE IF EXISTS animal"
     cursor.execute(sql)
 
-    sql = "DROP TABLE user"
+    sql = "DROP TABLE IF EXISTS user"
     cursor.execute(sql)
 
-    sql = "DROP TABLE pic"
+    sql = "DROP TABLE IF EXISTS pic"
     cursor.execute(sql)
 
 
