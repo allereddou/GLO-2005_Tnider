@@ -1,31 +1,34 @@
 def deleteAllTables(cursor):
+    sql = "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'PROJET_BD';"
+    tableExists = cursor.execute(sql)
 
-    sql = "USE PROJET_BD"
-    cursor.execute(sql)
+    if (tableExists == 1):
+        sql = "USE IF EXISTS PROJET_BD"
+        cursor.execute(sql)
 
-    sql = "DROP TABLE  IF EXISTS dog"
-    cursor.execute(sql)
+        sql = "DROP TABLE  IF EXISTS dog"
+        cursor.execute(sql)
 
-    sql = "DROP TABLE IF EXISTS bird"
-    cursor.execute(sql)
+        sql = "DROP TABLE IF EXISTS bird"
+        cursor.execute(sql)
 
-    sql = "DROP TABLE  IF EXISTS cat"
-    cursor.execute(sql)
+        sql = "DROP TABLE  IF EXISTS cat"
+        cursor.execute(sql)
 
-    sql = "DROP TABLE IF EXISTS vend"
-    cursor.execute(sql)
+        sql = "DROP TABLE IF EXISTS vend"
+        cursor.execute(sql)
 
-    sql = "DROP TABLE IF EXISTS animal"
-    cursor.execute(sql)
+        sql = "DROP TABLE IF EXISTS animal"
+        cursor.execute(sql)
 
-    sql = "DROP TABLE IF EXISTS user"
-    cursor.execute(sql)
+        sql = "DROP TABLE IF EXISTS user"
+        cursor.execute(sql)
 
-    sql = "DROP TABLE IF EXISTS pic"
-    cursor.execute(sql)
+        sql = "DROP TABLE IF EXISTS pic"
+        cursor.execute(sql)
 
-    sql = "DROP DATABASE IF EXISTS PROJET_BD"
-    cursor.execute(sql)
+        sql = "DROP DATABASE IF EXISTS PROJET_BD"
+        cursor.execute(sql)
 
 
 def createTables(cursor):
