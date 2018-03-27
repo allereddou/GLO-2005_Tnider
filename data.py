@@ -3,11 +3,15 @@ from persistance.tableCleanup import createTables, deleteAllTables
 from persistance.insertRandomUsers import insertUsers
 from persistance.insertRandomAnimals import insertAnimal
 
+
+
+
+
+
 # Ouverture de la connexion
 db = pymysql.connect(host='localhost',
                      port=3306,
-                     user='root',
-                     db='PROJET_BD')
+                     user='root')
 
 cursor = db.cursor(pymysql.cursors.DictCursor)
 
@@ -56,3 +60,10 @@ cursor.execute(sql)
 for row in cursor:
     print(row)
 print(2 * "\n")
+
+
+#image_open = open('/Users/Edouard/Desktop/TP_BD/static/ressources/birb.jpg', 'rb').read()
+#caption = "henlo"
+#sql = "INSERT INTO pic(caption, image) VALUES ({}, '{}', '{}')"
+#cursor.execute(sql.format(1, caption, image_open))
+
