@@ -3,5 +3,34 @@
 L'application, Tnider, est un réseau d'adoption d'animaux domestiques en ligne. Par le biais du site web, on peut consulter les différentes offres de vente, selon les préférences des usagers. L'application évolue donc dans un contexte ouvert et accessible à tous : c'est un application spécialisée disponible de tous. Pour le bien-être des usagers, l'application se devra d'être stable (aucune perte de données et toujours accessible), conviviale, sécuritaire (au niveau des données personnelles). Chaque animal présent dans la base de données aura donc une fiche avec ses informations personnalisés et chaque usager (acheteur ou vendeur) aura son compte pour naviguer et commercer avec les autres. 
 
 
+
+
 2. Spécifications du système et des responsabilités des trois niveaux
+
+Création d'un compte utilisateur
+Lorsque l'usager arrive sur le site, il est prié de s'authentifier avant de pouvoir faire quoi que ce soit. S'il ne possède pas de compte, il sera prié d'en créer un. Il devra donc entrer des informations (username, nom, prénom, email et mot de passe) s'il désire en créer un. Finalement, l'usager devra choisir s'il veut créer un compte d'acheteur ou bien un compte d'utilisateur. Du code JavaScript se chargera de récupérer le formulaire d'inscription. Ces informations seront passés au backend python qui se chargera de faire les ajouts dans les bonnes tables de la base de données.
+
+
+Authentification d'un compte utilisateur
+Si l'usager possède un compte, il peut entrer son email (ou username) et son mot de passe pour se connecter. Si la combinaison des deux est bonne, l'usager sera amené sur sa page personnelle. Sinon, il devra réessayer. Du code JavaScript se chargera de récupérer le formulaire d'inscription. Ces informations seront passés au backend python qui se chargera de faire les vérifications dans les bonnes tables de la base de données. Chaque connexion se verra attribuer un "jeton" de connexion (géré avec Flash-login) pour conserver la connexion durant la navigation entre les différentes pages.
+
+
+"Swipe"
+Une fois connecté en tant qu'acheteur, l'usager se voit offrir un animal disponible sur le site qu'il peut soit : ajouter à sa wishlist, contacter le vendeur ou refuser. Après avoir fait son choix, le site en propose automatiquement un autre, peu importe le choix qu'il a fait. Le choix de l'usager (clic sur un des trois boutons) sera récupéré avec du code JavaScript. Si on ajoute l'animal à sa wishlist, du code Python se chargera de faire les bons appels à la base de données pour faire l'insertion de l'animal dans la wishlist. Si on décide de contacter le vendeur, l'animal sera également ajouté dans la wishlist, avec la même procédure que celle décrite, en plus de diriger l'acheteur vers une procédure d'envoi de courriel. Si l'usager décide d'ignorer l'animal qu'on lui présente, du code JavaScript permettra de récupérer ce choix et on enverra ce choix au backend Python pour finalement insérer cette information dans la base de données. 
+
+
+Modifier ses paramètres
+L'usager acheteur peut modifier ses préférences de swipe. Ceci permet donc de définir certain critères qui pourront influencer le type d'animal qu'il verra lorsqu'il swipe. Il aura la possibilité de modifier l'apparence physique ou les caractéristiques sociales de l'animal de ses rêves. Ainsi, il verra des animaux correspondant à ses goûts lorsqu'il utilisera la fonctionnalité swipe. Permet également de modifier les informations de connexion (mot de passe et email associé au compte)
+
+Consultation de la wishlist
+L'usager peut à tout moment consulter les animaux qu'il aura marqué comme aimé. Sous forme de liste, il pourra également trier les animaux selon certains critères physiques/sociaux. Il aura ainsi la possibilité d'accéder à leurs informations et l'option de contacter les vendeurs par email. Il peut également choisir de supprimer des animaux de sa wishlist.
+
+Ajouter un animal
+Un usager vendeur peut, une fois connecté, mettre un animal de son choix en vente. Il devra donc fournir les différents informations (race, âge, poids, couleur, photo, etc) pour pouvoir le mettre en vente. 
+
+
+
+
+
+
 

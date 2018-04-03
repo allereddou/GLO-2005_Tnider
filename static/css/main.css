@@ -5,6 +5,7 @@
     padding-left: 20px;
     padding-right: 20px;
     opacity: 1;
+
 }
 #white_bar_writing{
     color: red;
@@ -12,7 +13,7 @@
 }
 
 #bottom-footer{
-    height: 80px;
+    /* height: 80px; */
 }
 .card-image > img{
     width: 100%;
