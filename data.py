@@ -62,8 +62,4 @@ for row in cursor:
 print(2 * "\n")
 
 
-#image_open = open('/Users/Edouard/Desktop/TP_BD/static/ressources/birb.jpg', 'rb').read()
-#caption = "henlo"
-#sql = "INSERT INTO pic(caption, image) VALUES ({}, '{}', '{}')"
-#cursor.execute(sql.format(1, caption, image_open))
 

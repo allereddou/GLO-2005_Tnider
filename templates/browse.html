@@ -73,36 +73,7 @@
         </div>
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
-    <script type="text/javascript">
-
-        var keyword = "bird";
-        var unique = $.now();
-
-        $(document).ready(function () {
-
-            $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
-                {
-                    tags: keyword,
-                    tagmode: "any",
-                    format: "json"
-                },
-                function (data) {
-                    var rnd = Math.floor(Math.random() * data.items.length);
-                    var image_src = data.items[rnd]['media']['m'].replace("_m", "_b");
-
-
-                    image_src = image_src.concat("?");
-                    $("#card-image-random").attr("src", image_src.concat(unique).src);
-                    
-                    console.log(image_src.concat(unique));
-                });
-        });
-    </script>
-
-
-
     <script type="text/javascript">
         $(document).ready(function () {
             $("#mister-flip-yo-card").flip();
