@@ -31,11 +31,13 @@ def insertBirbPics(cursor):
 
     for i in range(len(results)):
         link = random.choice(birbs)
-        print(results[i]['id'])
-        print(link)
-        print(caption)
         sql = "INSERT INTO pic(id, caption, link) VALUES ({}, '{}', '{}')"
         cursor.execute(sql.format(results[i]['id'], caption, link))
 
+    sql = "SELECT * FROM pic"
+    cursor.execute(sql)
+
+   # for row in cursor:
+   #     print(row)
 
 
