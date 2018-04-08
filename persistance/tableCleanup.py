@@ -2,8 +2,8 @@ def deleteAllTables(cursor):
     sql = "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'PROJET_BD';"
     tableExists = cursor.execute(sql)
 
-    if (tableExists == 1):
-        sql = "USE IF EXISTS PROJET_BD"
+    if (tableExists):
+        sql = "USE PROJET_BD"
         cursor.execute(sql)
 
         sql = "DROP TABLE  IF EXISTS dog"
@@ -53,8 +53,8 @@ def createTables(cursor):
     sql = "CREATE TABLE IF NOT EXISTS cat(id INT, PRIMARY KEY (id), pelage VARCHAR(20), castre BOOLEAN, degriffe BOOLEAN, FOREIGN KEY (id) REFERENCES animal(id) ON DELETE CASCADE);"
     cursor.execute(sql)
 
-    sql = "CREATE TABLE IF NOT EXISTS vend(username VARCHAR(20), id_animal INT, id_vente INT AUTO_INCREMENT, PRIMARY KEY(id_vente), FOREIGN KEY (username) REFERENCES user(username), FOREIGN KEY (id_animal) REFERENCES animal(id) ON DELETE CASCADE);"
+    sql = "CREATE TABLE IF NOT EXISTS vend(username VARCHAR(20), id_animal INT, id_vente INT AUTO_INCREMENT, prix DECIMAL(5,2), PRIMARY KEY(id_vente), FOREIGN KEY (username) REFERENCES user(username), FOREIGN KEY (id_animal) REFERENCES animal(id) ON DELETE CASCADE);"
     cursor.execute(sql)
 
-    sql = "CREATE TABLE IF NOT EXISTS pic (idpic INTEGER UNSIGNED NOT NULL , caption VARCHAR(45) NOT NULL, img LONGBLOB NOT NULL, PRIMARY KEY(idpic));"
+    sql = "CREATE TABLE IF NOT EXISTS pic (id INT NOT NULL , caption VARCHAR(45) NOT NULL, link VARCHAR(200) NOT NULL, PRIMARY KEY(id));"
     cursor.execute(sql)

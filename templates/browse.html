@@ -49,8 +49,8 @@
         <div class="col s6" id="mister-flip-yo-card">
             <div class="front" id="front-card">
                 <div class="card">
-                    <div class="card-image">
-                        <img src="/static/ressources/doggo.jpg" height="450">
+                    <div class="card-image" id="card-image-random">
+                        <img src="/static/ressources/kitteh.jpg" height="450">
                         <span class="card-title">Doggo Name</span>
                     </div>
                     <div class="card-content">
@@ -73,15 +73,11 @@
         </div>
     </div>
 
-    <script>$(document).ready(function () {
-        var hideIcon = function() { $("#card-button").hide()  };
-        $("#mister-flip-yo-card").flip(hideIcon());
-
-    })</script>
-
-
-
-
+    <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#mister-flip-yo-card").flip();
+        })</script>
 
 
 {% endblock %}
