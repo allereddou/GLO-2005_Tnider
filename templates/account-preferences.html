@@ -1,0 +1,63 @@
+{% extends "account.html" %}
+{% block title %}Account - Preferences{% endblock %}
+{% block head %}
+{{ super() }}
+<script>
+    //https://stackoverflow.com/questions/386281/how-to-implement-select-all-check-box-in-html
+    function toggleKitteh(source) {
+        let checkboxes = document.getElementsByName('kitteh');
+        for (let i = 0, n = checkboxes.length; i < n; i++) {
+            checkboxes[i].checked = source.checked;
+        }
+    }
+    function toggleDoggo(source) {
+        let checkboxes = document.getElementsByName('doggo');
+        for (let i = 0, n = checkboxes.length; i < n; i++) {
+            checkboxes[i].checked = source.checked;
+        }
+    }
+    function toggleBirb(source) {
+        let checkboxes = document.getElementsByName('birb');
+        for (let i = 0, n = checkboxes.length; i < n; i++) {
+            checkboxes[i].checked = source.checked;
+        }
+    }
+</script>
+{% endblock %}
+{% block prefaction %}active{% endblock %}
+{% block account %}
+<div class="col s12 m9">
+    <form id="preferences">
+        <ul class="collection with-header col s12 m4">
+            <li class="collection-header"><input type="checkbox" id="kitteh" onclick="toggleKitteh(this)" /><label style="color: black" for="kitteh">Kitteh</label>
+            </li>
+            <li class="collection-item"><input type="checkbox" name="kitteh" id="kitteh1"><label
+                    for="kitteh1">Lorem</label></li>
+            <li class="collection-item"><input type="checkbox" name="kitteh" id="kitteh2"><label
+                    for="kitteh2">Lorem</label></li>
+            <li class="collection-item"><input type="checkbox" name="kitteh" id="kitteh3"><label
+                    for="kitteh3">Lorem</label></li>
+            <li class="collection-item"><input type="checkbox" name="kitteh" id="kitteh4"><label
+                    for="kitteh4">Lorem</label></li>
+        </ul>
+        <ul class="collection with-header col s12 m4">
+            <li class="collection-header"><input type="checkbox" id="doggo" onclick="toggleDoggo(this)" /><label style="color: black" for="doggo">Doggo</label>
+            </li>
+            <li class="collection-item"><input type="checkbox" name="doggo" id="doggo1"><label for="doggo1">Lorem</label></li>
+            <li class="collection-item"><input type="checkbox" name="doggo" id="doggo2"><label for="doggo2">Lorem</label></li>
+            <li class="collection-item"><input type="checkbox" name="doggo" id="doggo3"><label for="doggo3">Lorem</label></li>
+            <li class="collection-item"><input type="checkbox" name="doggo" id="doggo4"><label for="doggo4">Lorem</label></li>
+        </ul>
+        <ul class="collection with-header col s12 m4">
+            <li class="collection-header"><input type="checkbox" id="birb" onclick="toggleBirb(this)" /><label style="color: black" for="birb">Birb</label>
+            </li>
+            <li class="collection-item"><input type="checkbox" name="birb" id="birb1"><label for="birb1">Lorem</label></li>
+            <li class="collection-item"><input type="checkbox" name="birb" id="birb2"><label for="birb2">Lorem</label></li>
+            <li class="collection-item"><input type="checkbox" name="birb" id="birb3"><label for="birb3">Lorem</label></li>
+            <li class="collection-item"><input type="checkbox" name="birb" id="birb4"><label for="birb4">Lorem</label></li>
+        </ul>
+        <button type="submit" class="btn red waves-effect waves-light" value="Preferences">Save</button>
+    </form>
+</div>
+{% endblock %}
+

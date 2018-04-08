@@ -1,0 +1,22 @@
+{% extends "account.html" %}
+{% block title %}Account - Preferences{% endblock %}
+{% block head %}
+{{ super() }}
+
+{% endblock %}
+{% block infoaction %}active{% endblock %}
+{% block account %}
+<div class="col s12 m9">
+    <form id="preferences">
+        <div class="collection col s12 m4">
+            <p>Kitteh</p>
+        </div>
+        <div class="collection col s12 m4">
+            <p>Birbs</p>
+        </div>
+        <div class="collection col s12 m4">
+            <p>Doggos</p>
+        </div>
+    </form>
+</div>
+{% endblock %}
