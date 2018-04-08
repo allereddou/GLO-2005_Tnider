@@ -21,6 +21,7 @@ birbs = ["https://i.ytimg.com/vi/R_8bwhiHGHc/hqdefault.jpg", "https://i.ytimg.co
          "https://mymodernmet.com/wp/wp-content/uploads/archive/YI24PaMFeQVPANEjuHIu_1082023271.jpeg"
          ]
 
+
 def insertBirbPics(cursor):
     sql = "SELECT * FROM bird"
     cursor.execute(sql)
