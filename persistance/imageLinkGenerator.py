@@ -1,6 +1,7 @@
 import urllib.parse
 from bs4 import BeautifulSoup
 import requests
+import re
 
 text = 'birb'
 text = urllib.parse.quote_plus(text)
@@ -15,7 +16,10 @@ response = requests.get(url)
 links = []
 
 soup = BeautifulSoup(response.text, 'lxml')
-print(soup)
-for link in soup.find_all('img'):
+
+m = str(soup)
+m1 = re.findall("l", m)
+print(m1)
+for link in range(0,1):
     links.append(link)
     print(str(link).partition('src="')[2].partition('"')[0])
