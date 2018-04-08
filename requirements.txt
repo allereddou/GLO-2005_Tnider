@@ -3,4 +3,5 @@ pymysql
 names
 requests
 flask_login
+Flask-WTF
 WTForms

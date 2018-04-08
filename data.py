@@ -3,17 +3,11 @@ from persistance.tableCleanup import createTables, deleteAllTables
 from persistance.insertRandomUsers import insertUsers
 from persistance.insertRandomAnimals import insertAnimal
 from persistance.imageLinks import insertBirbPics
-
-
-
+from server import get_db
 
 
 # Ouverture de la connexion
-db = pymysql.connect(host='localhost',
-                     port=3306,
-                     user='root')
-
-cursor = db.cursor(pymysql.cursors.DictCursor)
+cursor = get_db()
 
 #########################################
 # Réinitialisation des bases de données #
@@ -61,8 +55,4 @@ for row in cursor:
     print(row)
 print(2 * "\n")
 
-
 insertBirbPics(cursor)
-
-
-
