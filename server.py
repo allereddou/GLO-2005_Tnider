@@ -3,6 +3,10 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
+login_manager = LoginManager()
+
+
+
 
 @app.route('/')
 def index():
