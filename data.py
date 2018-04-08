@@ -1,58 +1,36 @@
-import pymysql
+from server import *
 from persistance.tableCleanup import createTables, deleteAllTables
 from persistance.insertRandomUsers import insertUsers
 from persistance.insertRandomAnimals import insertAnimal
 from persistance.imageLinks import insertBirbPics
-from server import get_db
 
 
-# Ouverture de la connexion
-cursor = get_db()
+with app.app_context():
 
-#########################################
-# Réinitialisation des bases de données #
-#########################################
-deleteAllTables(cursor)
-createTables(cursor)
+    def setupDatabase():
+        # ouverture connexion
+        cursor = get_db()
 
-# Insérer des users
-insertUsers(cursor, 100)
+        # supprimer les tables
+        deleteAllTables(cursor)
+        createTables(cursor)
 
-sql = "SELECT * FROM user"
-cursor.execute(sql)
+        # insérer des users
+        insertUsers(cursor, 100)
 
-for row in cursor:
-    print(row)
+        # insérer des animaux
+        insertAnimal(cursor, 100)
 
-# Insérer des animaux
-insertAnimal(cursor, 100)
+        # insérer des photos d'oiseaux
+        insertBirbPics(cursor)
 
-sql = "SELECT * FROM animal"
-cursor.execute(sql)
 
-for row in cursor:
-    print(row)
-print(2 * "\n")
+    setupDatabase()
 
-sql = "SELECT * FROM bird"
-cursor.execute(sql)
+    sql = "SELECT * FROM user"
+    cursor = get_db()
 
-for row in cursor:
-    print(row)
-print(2 * "\n")
-
-sql = "SELECT * FROM dog"
-cursor.execute(sql)
-
-for row in cursor:
-    print(row)
-print(2 * "\n")
-
-sql = "SELECT * FROM cat"
-cursor.execute(sql)
-
-for row in cursor:
-    print(row)
-print(2 * "\n")
-
-insertBirbPics(cursor)
+    cursor.execute(sql)
+    for row in cursor:
+        if row['email'] == 'admin@hotmail.com':
+            print(row)

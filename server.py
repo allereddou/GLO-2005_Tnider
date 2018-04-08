@@ -1,26 +1,22 @@
-from flask import Flask, render_template, flash, request, redirect, g
+from flask import Flask, render_template, flash, request, g
 from flask_login import LoginManager
 from LoginForm import LoginForm
-from User import User
+from Users import *
 import pymysql
 
 app = Flask(__name__)
 app.config.from_object(__name__)
 
+app.config.update(dict(
+    SECRET_KEY='allo key'
+))
+
 login_manager = LoginManager()
 
 
-@login_manager.user_loader
-def load_user(id):
-    # 1. Fetch against the database a user by `id`
-    # 2. Create a new object of `User` class and return it.
-    u = DBUsers.query.get(id)
-    return User(u.name, u.id, u.active)
-
-
-@app.route('/')
-def index():
-    return render_template('home.html')
+#@app.route('/')
+#def index():
+ #   return render_template('home.html')
 
 
 @app.route('/about')
@@ -43,25 +39,30 @@ def contact_us():
     return render_template('contact_us.html')
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def login():
-    form = LoginForm()
-    if request.method == 'POST' and form.validate():
-        user = User(form.username.data, form.email.data,
-                    form.password.data)
-        db_session.add(user)
-        flash('Thanks for registering')
-        return redirect(url_for('login'))
-    return render_template('register.html', form=form)
+    form = LoginForm(request.form)
+    print(form.email)
+    print(form.password)
+    print(form.validate())
+    if request.method == 'POST':
+        user = User(form.email.data, form.password.data)
+        if user.validateLogin():
+            flash('Thanks for logging in')
+            return render_template('browse.html', form=form)
+    return render_template('home.html', form=form)
 
 
 def get_db():
     if not hasattr(g, 'cursor'):
         db = pymysql.connect(host='localhost',
                              port=3306,
-                             user='root')
+                             user='root',
+                             autocommit=True)
 
         g.cursor = db.cursor(pymysql.cursors.DictCursor)
+        g.cursor.execute("USE PROJET_BD")
+        print("Cursor generated \n")
     return g.cursor
 
 
