@@ -56,5 +56,5 @@ def createTables(cursor):
     sql = "CREATE TABLE IF NOT EXISTS vend(username VARCHAR(20), id_animal INT, id_vente INT AUTO_INCREMENT, prix DECIMAL(5,2), PRIMARY KEY(id_vente), FOREIGN KEY (username) REFERENCES user(username), FOREIGN KEY (id_animal) REFERENCES animal(id) ON DELETE CASCADE);"
     cursor.execute(sql)
 
-    sql = "CREATE TABLE IF NOT EXISTS pic (idpic INTEGER UNSIGNED NOT NULL , caption VARCHAR(45) NOT NULL, imglnk VARCHAR(200) NOT NULL, PRIMARY KEY(idpic));"
+    sql = "CREATE TABLE IF NOT EXISTS pic (id INT NOT NULL , caption VARCHAR(45) NOT NULL, link VARCHAR(200) NOT NULL, PRIMARY KEY(id));"
     cursor.execute(sql)

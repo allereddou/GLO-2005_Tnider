@@ -2,7 +2,7 @@ import pymysql
 from persistance.tableCleanup import createTables, deleteAllTables
 from persistance.insertRandomUsers import insertUsers
 from persistance.insertRandomAnimals import insertAnimal
-
+from persistance.imageLinks import insertBirbPics
 
 
 
@@ -60,6 +60,9 @@ cursor.execute(sql)
 for row in cursor:
     print(row)
 print(2 * "\n")
+
+
+insertBirbPics(cursor)
 
 
 

@@ -1,0 +1,56 @@
+Modèle entité relation 
+
+Base de données : PROJET_BD
+
+Utilisateur
+username : VARCHAR(20)
+ PRIMARY KEY(username)
+nom : VARCHAR(20)
+prenom: VARCHAR(20)
+password : CHAR(97)
+solde : Decimal(5,2)
+email : VARCHAR(20)
+telephone : INTEGER
+
+
+Vend
+id : INTEGER AUTO INCREMENT PRIMARY KEY
+date_vente : 
+date_mise_en_vente : 
+prix : Decimal(5,2)
+FOREIGN KEY(user.username)
+
+
+Animaux
+id : INTEGER AUTO INCREMENT PRIMARY KEY
+nom : VARCHAR(20)
+race : VARCHAR(20)
+couleur : VARCHAR(20)
+poids : Decimal (5,2)
+age : INTEGER
+sexe : TINYINT
+
+Oiseau
+plumage : VARCHAR(20)
+FOREIGN KEY(animaux.id)
+
+Chat
+FOREIGN KEY(animaux.id)
+pelage : VARCHAR(20)
+castre : TINYINT
+degriffe : TINYINT
+
+Chien
+OREIGN KEY(animaux.id)
+pelage : VARCHAR(20)
+castre : TINYINT
+degriffe : TINYINT
+
+Photo
+id : INT PRIMARY KEY AUTO INCREMENT
+link : VARCHAR(100)
+caption : VARCHAR(1000)
+
+
+
+

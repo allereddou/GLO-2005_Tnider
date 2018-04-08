@@ -2,5 +2,4 @@ flask
 pymysql
 names
 requests
-bs4
-lxml
+
