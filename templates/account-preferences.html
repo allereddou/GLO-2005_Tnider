@@ -8,15 +8,28 @@
 {% block account %}
 <div class="col s12 m9">
     <form id="preferences">
-        <div class="collection col s12 m4">
-            <p>Kitteh</p>
-        </div>
-        <div class="collection col s12 m4">
-            <p>Birbs</p>
-        </div>
-        <div class="collection col s12 m4">
-            <p>Doggos</p>
-        </div>
+        <ul class="collection with-header col s12 m4">
+            <li class="collection-header"><h5><i class="far fa-heart"></i> Kitteh</h5></li>
+            <li class="collection-item">Lorem</li>
+            <li class="collection-item">Epsilum</li>
+            <li class="collection-item">Lucy</li>
+            <li class="collection-item">Hale</li>
+        </ul>
+        <ul class="collection with-header col s12 m4">
+            <li class="collection-header"><h5><i class="far fa-heart"></i> Doggo</h5></li>
+            <li class="collection-item">Ipsem</li>
+            <li class="collection-item">Alum</li>
+            <li class="collection-item">Lorem</li>
+            <li class="collection-item">Olean</li>
+        </ul>
+        <ul class="collection with-header col s12 m4">
+            <li class="collection-header"><h5><i class="far fa-heart"></i> Birb</h5></li>
+            <li class="collection-item">Lrsem</li>
+            <li class="collection-item">Alone</li>
+            <li class="collection-item">Morul</li>
+            <li class="collection-item">Aleg</li>
+        </ul>
+        <button type="submit" class="btn red waves-effect waves-light" value="Preferences">Save</button>
     </form>
 </div>
 {% endblock %}
