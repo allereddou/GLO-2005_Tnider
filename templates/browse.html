@@ -5,6 +5,17 @@
 
 {% endblock %}
 {% block content %}
+
+<!-- Modal Trigger -->
+
+<!-- Modal Structure -->
+<div id="animal_modal" class="modal">
+    <div class="modal-content">
+        <h4>Doggo</h4>
+        <p>LOREM CALICE</p>
+    </div>
+</div>
+
     <div class="row">
         <!-- http://materializecss.com/collections.html -->
         <div class="col s6">
@@ -15,7 +26,7 @@
                     <p>Doggo in chief <br>
                         Bork bork
                     </p>
-                    <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                    <a class="waves-effect waves-light btn modal-trigger secondary-content" href="#animal_modal">Open</a>
                 </li>
 
                 <li class="collection-item avatar">
