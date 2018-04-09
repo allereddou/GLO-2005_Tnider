@@ -41,3 +41,15 @@ class User(UserMixin):
                 password = (result[0]['pass'])
                 print("password: " + password)
             return User(email, password)
+
+    def is_authenticated(self):
+        return True
+
+    def is_active(self):
+        return True
+
+    def is_anonymous(self):
+        return False
+
+    def get_id(self):
+        return self.email

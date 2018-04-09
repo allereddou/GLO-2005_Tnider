@@ -75,7 +75,7 @@ def get_db():
 
         g.cursor = db.cursor(pymysql.cursors.DictCursor)
         g.cursor.execute("USE PROJET_BD")
-        print("Cursor generated \n")
+       # print("Cursor generated \n")
     return g.cursor
 
 
@@ -88,21 +88,6 @@ def close_db(error):
 @login_manager.user_loader
 def load_user(email):
     return User.get(email)
-
-
-@login_manager.request_loader
-def load_token(token):
-    print("test 1")
-    max_age = app.config["REMEMBER_COOKIE_DURATION"].total_seconds()
-    print("test 2")
-    data = login_serializer.loads(token, max_age)
-    user = User.get(data[0])
-    print("test 4 ")
-
-    # Check Password and return user or None
-    if user and data[1] == user.password:
-        return user
-    return None
 
 
 @app.route("/restricted/")
