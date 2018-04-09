@@ -17,7 +17,7 @@ python3 data.py
 ### Mac
 
 ```
-export FLASK_APP={YOUR_PATH_TO_THE_APIServer.py}  
+export FLASK_APP={YOUR_PATH_TO_THE_server.py}  
 flask run --port={port}  
 ```
 
@@ -27,5 +27,5 @@ flask run --port={port}  
 ### Linux
 
 ```
-export FLASK_APP={YOUR_PATH_TO_THE_APIServer.py}  
+export FLASK_APP={YOUR_PATH_TO_THE_server.py}  
 flask run --port={port}
