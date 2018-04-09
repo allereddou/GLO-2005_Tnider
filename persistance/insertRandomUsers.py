@@ -22,6 +22,7 @@ def insertUsers(cursor, number):
 
         username = "admin"
         password = "admin"
+        hashed = hash_password(password)
         nom = "admin"
         prenom = "admin"
         email = "admin@hotmail.com"
@@ -30,7 +31,7 @@ def insertUsers(cursor, number):
 
         if i == 0:
             sql = "INSERT INTO user(username, pass, nom, prenom, email, telephone, solde) VALUES ('{}', '{}', '{}', '{}', '{}', {}, {})"
-            cursor.execute(sql.format(username, "admin", nom, prenom, email, telephone, solde))
+            cursor.execute(sql.format(username, hashed, nom, prenom, email, telephone, solde))
 
 
 

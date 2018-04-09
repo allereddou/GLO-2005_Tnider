@@ -1,22 +1,23 @@
-from flask import Flask, render_template, flash, request, g
-from flask_login import LoginManager
-from LoginForm import LoginForm
+from flask import Flask, render_template, flash, request, g, redirect
+from flask_login import LoginManager, login_required, login_user, current_user, logout_user
+from persistance.passwordUtil import hash_password, check_password
 from Users import *
 import pymysql
+from itsdangerous import URLSafeTimedSerializer
+from LoginForm import LoginForm
+from datetime import timedelta
 
 app = Flask(__name__)
 app.config.from_object(__name__)
 
 app.config.update(dict(
-    SECRET_KEY='allo key'
+    SECRET_KEY="allo key",
+    REMEMBER_COOKIE_DURATION=timedelta(days=7)
 ))
 
 login_manager = LoginManager()
+login_serializer = URLSafeTimedSerializer(app.secret_key)
 
-
-#@app.route('/')
-#def index():
- #   return render_template('home.html')
 
 
 @app.route('/about')
@@ -39,18 +40,30 @@ def contact_us():
     return render_template('contact_us.html')
 
 
-@app.route('/', methods=['GET', 'POST'])
-def login():
+@app.route("/", methods=["GET", "POST"])
+def login_page():
     form = LoginForm(request.form)
-    print(form.email)
-    print(form.password)
-    print(form.validate())
-    if request.method == 'POST':
-        user = User(form.email.data, form.password.data)
-        if user.validateLogin():
-            flash('Thanks for logging in')
-            return render_template('browse.html', form=form)
-    return render_template('home.html', form=form)
+    if request.method == "POST":
+        user = User.get(form.email.data)
+        # If we found a user based on username then compare that the submitted
+        # password matches the password in the database.  The password is stored
+        # is a slated hash format, so you must hash the password before comparing
+        # it.
+
+        print("test sandy")
+        if user and check_password(user.password, form.password.data):
+            print("henlo this is birb")
+            login_user(user, remember=True)
+
+            return redirect(request.args.get("next") or "/")
+
+    return render_template("home.html")
+
+
+@app.route("/logout/")
+def logout_page():
+    logout_user()
+    return redirect("/")
 
 
 def get_db():
@@ -72,6 +85,33 @@ def close_db(error):
         g.cursor.close()
 
 
+@login_manager.user_loader
+def load_user(email):
+    return User.get(email)
+
+
+@login_manager.request_loader
+def load_token(token):
+    print("test 1")
+    max_age = app.config["REMEMBER_COOKIE_DURATION"].total_seconds()
+    print("test 2")
+    data = login_serializer.loads(token, max_age)
+    user = User.get(data[0])
+    print("test 4 ")
+
+    # Check Password and return user or None
+    if user and data[1] == user.password:
+        return user
+    return None
+
+
+@app.route("/restricted/")
+@login_required
+def restricted_page():
+    user_id = (current_user.get_id() or "No User Logged In")
+    return render_template("restricted.html", user_id=user_id)
+
+
 if __name__ == '__main__':
-    app.run(debug=True)
     login_manager.init_app(app)
+    app.run(debug=True)
