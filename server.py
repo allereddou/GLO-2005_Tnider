@@ -1,4 +1,4 @@
-from flask import Flask, render_template, flash, request, g, redirect
+from flask import Flask, render_template, flash, request, g, redirect, url_for
 from flask_login import LoginManager, login_required, login_user, current_user, logout_user
 from persistance.passwordUtil import hash_password, check_password
 from Users import *
@@ -24,10 +24,15 @@ def about():
     return render_template('about.html')
 
 
-@app.route('/browse')
+@app.route('/browse', methods=['GET', 'POST'])
 @login_required
-def browse():
-    return render_template('browse.html')
+def browse(data=None):
+    if request.method == 'GET':
+        print("GET")
+        return render_template('browse.html', data=data)
+    if request.method == 'POST':
+        print("POST")
+        return redirect(url_for('browse', data=data))
 
 
 @app.route('/account')
@@ -39,7 +44,6 @@ def sign_in():
 @app.route('/contact_us')
 def contact_us():
     return render_template('contact_us.html')
-
 
 
 @app.route('/account-preferences')
@@ -70,12 +74,15 @@ def login_page():
         # is a slated hash format, so you must hash the password before comparing
         # it.
 
-        print("test sandy")
         if user and check_password(user.password, form.password.data):
-            print("henlo this is birb")
             login_user(user, remember=True)
 
-            return redirect(request.args.get("next") or "/")
+            cursor = get_db()
+            sql = "SELECT * FROM user WHERE email='{}';"
+            cursor.execute(sql.format(form.email.data))
+            data = cursor.fetchall()
+
+            return redirect(request.args.get("next") or url_for("browse", data=data))
 
     return render_template("home.html")
 
@@ -95,7 +102,7 @@ def get_db():
 
         g.cursor = db.cursor(pymysql.cursors.DictCursor)
         g.cursor.execute("USE PROJET_BD")
-       # print("Cursor generated \n")
+        # print("Cursor generated \n")
     return g.cursor
 
 
