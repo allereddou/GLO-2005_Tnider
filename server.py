@@ -19,18 +19,19 @@ login_manager = LoginManager()
 login_serializer = URLSafeTimedSerializer(app.secret_key)
 
 
-
 @app.route('/about')
 def about():
     return render_template('about.html')
 
 
 @app.route('/browse')
+@login_required
 def browse():
     return render_template('browse.html')
 
 
 @app.route('/account')
+@login_required
 def sign_in():
     return render_template('account.html')
 
@@ -39,15 +40,22 @@ def sign_in():
 def contact_us():
     return render_template('contact_us.html')
 
+
+
 @app.route('/account-preferences')
+@login_required
 def account_preferences():
     return render_template('account-preferences.html')
 
+
 @app.route('/account-transactions')
+@login_required
 def account_transactions():
     return render_template('account-transactions.html')
 
+
 @app.route('/account-info')
+@login_required
 def account_info():
     return render_template('account-info.html')
 
