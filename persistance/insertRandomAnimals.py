@@ -38,3 +38,5 @@ def insertAnimal(cursor, number):
             degriffe = random.choice(binaryChoice)
             sql = "INSERT INTO cat(id, pelage, castre, degriffe) VALUES({}, '{}', {}, {})"
             cursor.execute(sql.format(j, pelage, castre, degriffe))
+
+

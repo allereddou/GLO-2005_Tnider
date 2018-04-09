@@ -20,6 +20,19 @@ def insertUsers(cursor, number):
         sql = "INSERT INTO user(username, pass, nom, prenom, email, telephone, solde) VALUES ('{}', '{}', '{}', '{}', '{}', {}, {})"
         cursor.execute(sql.format(username, hashed, nom, prenom, email, telephone, solde))
 
+        username = "admin"
+        password = "admin"
+        hashed = hash_password(password)
+        nom = "admin"
+        prenom = "admin"
+        email = "admin@hotmail.com"
+        telephone = random.randint(1000000000, 10000000000)
+        solde = 0.0
+
+        if i == 0:
+            sql = "INSERT INTO user(username, pass, nom, prenom, email, telephone, solde) VALUES ('{}', '{}', '{}', '{}', '{}', {}, {})"
+            cursor.execute(sql.format(username, hashed, nom, prenom, email, telephone, solde))
+
 
 
 
