@@ -4,7 +4,7 @@
     {% block head %}
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="/static/js/materialize.min.js"></script>
-
+        <script>$(".dropdown-trigger").dropdown();</script>
         <link rel="stylesheet" href="/static/css/materialize.css">
         <link rel="stylesheet" href="/static/css/main.css">
         <link rel="shortcut icon" href="/static/ressources/favicon.png">
@@ -28,12 +28,17 @@
 <header>
     <nav>
         <div class="nav-wrapper" id="white-bar">
-            <a href="/" class="brand-logo"><img src="/static/ressources/tnider.png" height="50"</a>
+            <a href="{% if current_user.is_authenticated %}/browse{% else %}/{% endif %}" class="brand-logo"><img
+                    src="/static/ressources/tnider.png" height="50"</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a id="white_bar_writing" href="/about">About</a></li>
                 <li><a id="white_bar_writing" href="/contact_us">Contact us </a></li>
-                <li><a id="white_bar_writing" href="/">Account</a></li>
-                <li><a id="white_bar_writing" href="/account"><i class="fas fa-user-circle"></i></a></li>
+                {% if current_user.is_authenticated %}
+                    <li><a id="white_bar_writing" href="account.html"><i class="fas fa-user-circle"></i></a></li>
+                {% endif %}
+                <li><a id="white_bar_writing"
+                       href="{% if current_user.is_authenticated %}/logout{% else %}/#signin{% endif %}">{% if
+                    current_user.is_authenticated %}Logout{% else %}Login{% endif %}</a></li>
             </ul>
         </div>
     </nav>
@@ -55,4 +60,5 @@
     {% endblock %}
 </div>
 </body>
+
 </html>

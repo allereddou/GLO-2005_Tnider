@@ -22,6 +22,10 @@
 {% endblock %}
 {% block content %}
 
+{% if session['logged_in'] %}
+<p>Already logged in</p>
+{% else %}
+
 <!-- https://codepen.io/mblarsen/pen/mVZRMM -->
 <div class="valign-wrapper row login-box">
     <div class="col card hoverable s10 pull-s1 m6 pull-m3 l4 pull-l4">
@@ -61,8 +65,8 @@
                         <label for="mode">Account Mode</label>
                         <select name="account mode" id="mode">
                             <option value="" disabled selected>Choose your account mode</option>
-                            <option value="1">Buyer</option>
-                            <option value="2">Seller</option>
+                            <option value="buyer">Buyer</option>
+                            <option value="seller">Seller</option>
                         </select>
                     </div>
 
@@ -105,5 +109,6 @@
     </div>
 </div>
 </div>
+{% endif %}
 {% endblock %}
 

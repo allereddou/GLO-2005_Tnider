@@ -74,8 +74,7 @@ def login_page():
         if user and check_password(user.password, form.password.data):
             print("henlo this is birb")
             login_user(user, remember=True)
-
-            return redirect(request.args.get("next") or "/")
+            return redirect(request.args.get("next") or "/browse")
 
     return render_template("home.html")
 
