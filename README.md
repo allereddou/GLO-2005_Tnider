@@ -2,7 +2,10 @@
 
 ## Installation
 
-pip install -r requirements.txt  
+```
+pip install -r requirements.txt
+python3 data.py
+```
 
 ## Prérequis
 
@@ -13,13 +16,16 @@ pip install -r requirements.txt
 
 ### Mac
 
-export FLASK_APP={YOUR_PATH_TO_THE_APIServer.py}  
-flask run --port={port}  
+```
+export FLASK_APP={YOUR_PATH_TO_THE_APIServer.py}  
+flask run --port={port}  
+```
 
 ### Windows
 
 
 ### Linux
 
-export FLASK_APP={YOUR_PATH_TO_THE_APIServer.py}  
+```
+export FLASK_APP={YOUR_PATH_TO_THE_APIServer.py}  
 flask run --port={port}
