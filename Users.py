@@ -39,7 +39,6 @@ class User(UserMixin):
                 return None
             else:
                 password = (result[0]['pass'])
-                print("password: " + password)
             return User(email, password)
 
     def is_authenticated(self):
