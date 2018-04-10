@@ -1,0 +1,58 @@
+ul {
+    padding: 0;
+}
+ul li {
+    list-style: none;
+}
+
+.final-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.stack {
+    position: relative;
+    height: 250px;
+    width: 400px;
+    max-width: calc(100vw - 60px);
+    margin: 50px auto;
+}
+
+.card {
+    height: 250px;
+    width: 400px;
+    max-width: 100%;
+    padding: 30px;
+    background: white;
+    border: 1px solid grey;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.card .card-illustration {
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: 50% 50%;
+    transform: scale(1);
+    transition: transform 0.5s;
+}
+.card:hover .card-illustration, .card:focus .card-illustration {
+    transform: scale(1.1);
+}
+
+.js-swiping-card {
+    transition: transform 0.5s;
+}
+.js-swiping-card.done {
+    display: none;
+}
+
+/*
+@TODO :
+- add text animation on cards ?
+- add proper behaviour depending on media queries (faster on mobile than on desktop, different size, ...)
+*/
