@@ -59,6 +59,9 @@ def account_preferences():
 def account_transactions():
     return render_template('account-transactions.html')
 
+@app.route('/test')
+def test():
+    return render_template('test.html')
 
 @app.route('/account-info')
 @login_required

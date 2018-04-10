@@ -2,6 +2,7 @@
 {% block title %}Browse{% endblock %}
 {% block head %}
     {{ super() }}
+    <link rel="stylesheet" href="/static/css/tinder.css">
     <script>
         $(document).ready(function () {
             $('.modal').modal();
@@ -40,10 +41,10 @@
             </ul>
         </div>
 
-
         <div class="col m9 s12" id="mister-flip-yo-card">
+
             {% for animal in dispo %}
-                <div class="front" id="front-card">
+                <div class="front" id="front-card" style="display: none;">
                     <div class="card">
                         <div class="card-image" id="card-image-random">
                             <img src="/static/ressources/kitteh.jpg" height="450">
