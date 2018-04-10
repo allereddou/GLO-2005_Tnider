@@ -8,18 +8,6 @@ class User(UserMixin):
         self.email = email
         self.password = password
 
-      #  self.validateLogin()
-
-    # def validateLogin(self):
-    #     from server import app, get_db
-    #     with app.app_context():
-    #         cursor = get_db()
-    #
-    #         sql = "SELECT * FROM user WHERE email='{}';"
-    #         cursor.execute(sql.format(self.email))
-    #         result = cursor.fetchall()
-    #         return len(result) != 0 and result[0]['pass'] == self.password
-
     def get_auth_token(self):
         login_serializer = URLSafeTimedSerializer(app.secret_key)
         data = [str(self.email), self.password]

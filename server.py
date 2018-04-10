@@ -2,7 +2,6 @@ from datetime import timedelta
 import pymysql
 from flask import Flask, render_template, request, g, redirect, url_for, flash
 from flask_login import LoginManager, login_required, login_user, current_user, logout_user
-from itsdangerous import URLSafeTimedSerializer
 
 from Forms.LoginForm import LoginForm, RegisterForm
 from Users import *
@@ -12,7 +11,7 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 
 app.config.update(dict(
-    SECRET_KEY="allo key",
+    SECRET_KEY="plz giv boop and nuggers",
     REMEMBER_COOKIE_DURATION=timedelta(days=7)
 ))
 
@@ -29,10 +28,8 @@ def about():
 @login_required
 def browse(data=None):
     if request.method == 'GET':
-        print("GET")
         return render_template('browse.html', data=data)
     if request.method == 'POST':
-        print("POST")
         return redirect(url_for('browse', data=data))
 
 
@@ -71,15 +68,8 @@ def login_page():
     register_form = RegisterForm(request.form)
 
     if request.method == "POST":
-        # print(login_form.login.data)
-        # print(register_form.register.data)
-        print(request.form)
         if login_form.validate_on_submit() and request.form['btn'] == "Login":
             user = User.get(login_form.email.data)
-            # If we found a user based on username then compare that the submitted
-            # password matches the password in the database.  The password is stored
-            # is a slated hash format, so you must hash the password before comparing
-            # it.
 
             if user and check_password(user.password, login_form.password.data):
                 login_user(user, remember=True)
@@ -113,7 +103,6 @@ def get_db():
 
         g.cursor = db.cursor(pymysql.cursors.DictCursor)
         g.cursor.execute("USE PROJET_BD")
-        # print("Cursor generated \n")
     return g.cursor
 
 
