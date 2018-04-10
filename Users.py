@@ -1,5 +1,6 @@
 from flask_login import UserMixin
 from itsdangerous import URLSafeTimedSerializer
+from persistance.bdUtils import getUserFromEmail
 
 
 class User(UserMixin):
@@ -14,18 +15,16 @@ class User(UserMixin):
 
     @staticmethod
     def get(email):
-        from server import app, get_db
+        from server import app
         with app.app_context():
-            cursor = get_db()
-
-            sql = "SELECT * FROM user WHERE email='{}';"
-            cursor.execute(sql.format(email))
-            result = cursor.fetchall()
+            result = getUserFromEmail(email)
 
             if len(result) == 0:
+                print("not result")
                 return None
             else:
-                password = (result[0]['pass'])
+                password = (result['pass'])
+                print("password : " + password)
             return User(email, password)
 
     def is_authenticated(self):
