@@ -1,7 +1,6 @@
 from datetime import timedelta
-
 import pymysql
-from flask import Flask, render_template, request, g, redirect, url_for
+from flask import Flask, render_template, request, g, redirect, url_for, flash
 from flask_login import LoginManager, login_required, login_user, current_user, logout_user
 from itsdangerous import URLSafeTimedSerializer
 
@@ -72,10 +71,10 @@ def login_page():
     register_form = RegisterForm(request.form)
 
     if request.method == "POST":
-        print(login_form.login.data)
-        print(register_form.register.data)
-        if login_form.login.data:
-            print("we want to loginnnn")
+        # print(login_form.login.data)
+        # print(register_form.register.data)
+        print(request.form)
+        if login_form.validate_on_submit() and request.form['btn'] == "Login":
             user = User.get(login_form.email.data)
             # If we found a user based on username then compare that the submitted
             # password matches the password in the database.  The password is stored
@@ -92,7 +91,7 @@ def login_page():
                 return redirect(request.args.get("next") or url_for("browse", data=data))
 
             return render_template("home.html")
-        if register_form.register.data:
+        if register_form.validate_on_submit() and request.form['btn'] == "Create":
             print("we wanna create an account")
             return render_template("about.html")
 

@@ -5,8 +5,12 @@ from wtforms.validators import DataRequired, Email, equal_to
 
 class LoginForm(FlaskForm):
     email = StringField('email', validators=[Email()])
-    password = StringField('password', validators=[DataRequired()])
-    login = SubmitField("submit")
+    password = PasswordField('password', validators=[DataRequired()])
+    login = SubmitField('submit')
+
+    def __init__(self, *args, **kwargs):
+        kwargs['csrf_enabled'] = False
+        super(LoginForm, self).__init__(*args, **kwargs)
 
 
 class RegisterForm(FlaskForm):
@@ -16,8 +20,11 @@ class RegisterForm(FlaskForm):
     username = StringField('username', validators=[DataRequired()])
     first_name = StringField('lastName', validators=[DataRequired()])
     last_name = StringField('lastName', validators=[DataRequired()])
-    register = SubmitField("submit")
+    register = SubmitField('submit')
 
+    def __init__(self, *args, **kwargs):
+        kwargs['csrf_enabled'] = False
+        super(RegisterForm, self).__init__(*args, **kwargs)
 
 
 
