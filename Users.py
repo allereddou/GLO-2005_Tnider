@@ -19,7 +19,7 @@ class User(UserMixin):
         with app.app_context():
             result = getUserFromEmail(email)
 
-            if result:
+            if len(result) == 0:
                 print("not result")
                 return None
             else:

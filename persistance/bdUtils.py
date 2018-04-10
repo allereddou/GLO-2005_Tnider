@@ -7,8 +7,6 @@ def getUserFromEmail(email):
         cursor.execute(sql.format(email))
         result = cursor.fetchall()
 
-        print(result[0])
-
-        if len(result) != 0:
+        if len(result) != 1:
             return False
         return result[0]
