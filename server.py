@@ -1,17 +1,17 @@
-from flask import Flask, render_template, flash, request, g, redirect, url_for
-from flask_login import LoginManager, login_required, login_user, current_user, logout_user
-from persistance.passwordUtil import hash_password, check_password
-from Users import *
-import pymysql
-from itsdangerous import URLSafeTimedSerializer
-from LoginForm import LoginForm
 from datetime import timedelta
+import pymysql
+from flask import Flask, render_template, request, g, redirect, url_for
+from flask_login import LoginManager, login_required, login_user, current_user, logout_user
+
+from Forms.LoginForm import LoginForm, RegisterForm
+from Users import *
+from persistance.passwordUtil import check_password
 
 app = Flask(__name__)
 app.config.from_object(__name__)
 
 app.config.update(dict(
-    SECRET_KEY="allo key",
+    SECRET_KEY="plz giv boop and nuggers",
     REMEMBER_COOKIE_DURATION=timedelta(days=7)
 ))
 
@@ -34,7 +34,6 @@ def browse():
         print("GET")
         return render_template('browse.html', wishlist=wishlist, dispo=wishlist, data=data)
     if request.method == 'POST':
-        print("POST")
         return redirect(url_for('browse', data=data))
 
 
@@ -72,19 +71,19 @@ def account_info():
 
 @app.route("/", methods=["GET", "POST"])
 def login_page():
-    form = LoginForm(request.form)
+    login_form = LoginForm(request.form)
+    register_form = RegisterForm(request.form)
+
     if request.method == "POST":
-        user = User.get(form.email.data)
-        # If we found a user based on username then compare that the submitted
-        # password matches the password in the database.  The password is stored
-        # is a slated hash format, so you must hash the password before comparing
-        # it.
+        if login_form.validate_on_submit() and request.form['btn'] == "Login":
+            user = User.get(login_form.email.data)
+
 
         if user and check_password(user.password, form.password.data):
             login_user(user, remember=True)
 
             return redirect(request.args.get("next") or url_for("browse"))
-
+      
     return render_template("home.html")
 
 
@@ -103,7 +102,6 @@ def get_db():
 
         g.cursor = db.cursor(pymysql.cursors.DictCursor)
         g.cursor.execute("USE PROJET_BD")
-        # print("Cursor generated \n")
     return g.cursor
 
 
