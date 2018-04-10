@@ -26,8 +26,9 @@ def about():
 
 @app.route('/browse', methods=['GET', 'POST'])
 @login_required
-def browse(data=None):
+def browse():
     wishlist = get_animals()
+    data = get_profile(current_user.email)
 
     if request.method == 'GET':
         print("GET")
@@ -81,12 +82,8 @@ def login_page():
 
         if user and check_password(user.password, form.password.data):
             login_user(user, remember=True)
-            cursor = get_db()
-            sql = "SELECT * FROM user WHERE email='{}';"
-            cursor.execute(sql.format(form.email.data))
-            data = cursor.fetchall()
 
-            return redirect(request.args.get("next") or url_for("browse", data=data))
+            return redirect(request.args.get("next") or url_for("browse"))
 
     return render_template("home.html")
 
@@ -133,6 +130,18 @@ def get_animals():
     cursor.execute(
         "SELECT B.id, P.link, A.nom, A.race, A.location FROM bird B, pic P, animal A WHERE B.id = P.id and B.id=A.id;")
     return cursor.fetchall()
+
+
+def get_profile(email):
+    cursor = get_db()
+    sql = "SELECT * FROM user WHERE email='{}';"
+    cursor.execute(sql.format(email))
+    result = cursor.fetchall()
+
+    if len(result) != 1:
+        return False
+    else:
+        return result[0]
 
 
 if __name__ == '__main__':
