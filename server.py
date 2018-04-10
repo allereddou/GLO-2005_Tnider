@@ -1,6 +1,6 @@
 from datetime import timedelta
 import pymysql
-from flask import Flask, render_template, request, g, redirect, url_for, flash
+from flask import Flask, render_template, request, g, redirect, url_for
 from flask_login import LoginManager, login_required, login_user, current_user, logout_user
 
 from Forms.LoginForm import LoginForm, RegisterForm

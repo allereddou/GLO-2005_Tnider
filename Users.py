@@ -1,6 +1,5 @@
 from flask_login import UserMixin
 from itsdangerous import URLSafeTimedSerializer
-from persistance.passwordUtil import hash_password
 
 
 class User(UserMixin):
