@@ -1,11 +1,13 @@
-from flask import Flask, render_template, flash, request, g, redirect, url_for
-from flask_login import LoginManager, login_required, login_user, current_user, logout_user
-from persistance.passwordUtil import hash_password, check_password
-from Users import *
-import pymysql
-from itsdangerous import URLSafeTimedSerializer
-from LoginForm import LoginForm
 from datetime import timedelta
+
+import pymysql
+from flask import Flask, render_template, request, g, redirect, url_for
+from flask_login import LoginManager, login_required, login_user, current_user, logout_user
+from itsdangerous import URLSafeTimedSerializer
+
+from Forms.LoginForm import LoginForm, RegisterForm
+from Users import *
+from persistance.passwordUtil import check_password
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -66,23 +68,33 @@ def account_info():
 
 @app.route("/", methods=["GET", "POST"])
 def login_page():
-    form = LoginForm(request.form)
+    login_form = LoginForm(request.form)
+    register_form = RegisterForm(request.form)
+
     if request.method == "POST":
-        user = User.get(form.email.data)
-        # If we found a user based on username then compare that the submitted
-        # password matches the password in the database.  The password is stored
-        # is a slated hash format, so you must hash the password before comparing
-        # it.
+        print(login_form.login.data)
+        print(register_form.register.data)
+        if login_form.login.data:
+            print("we want to loginnnn")
+            user = User.get(login_form.email.data)
+            # If we found a user based on username then compare that the submitted
+            # password matches the password in the database.  The password is stored
+            # is a slated hash format, so you must hash the password before comparing
+            # it.
 
-        if user and check_password(user.password, form.password.data):
-            login_user(user, remember=True)
-            cursor = get_db()
-            sql = "SELECT * FROM user WHERE email='{}';"
-            cursor.execute(sql.format(form.email.data))
-            data = cursor.fetchall()
+            if user and check_password(user.password, login_form.password.data):
+                login_user(user, remember=True)
+                cursor = get_db()
+                sql = "SELECT * FROM user WHERE email='{}';"
+                cursor.execute(sql.format(login_form.email.data))
+                data = cursor.fetchall()
 
-            return redirect(request.args.get("next") or url_for("browse", data=data))
+                return redirect(request.args.get("next") or url_for("browse", data=data))
 
+            return render_template("home.html")
+        if register_form.register.data:
+            print("we wanna create an account")
+            return render_template("about.html")
 
     return render_template("home.html")
 
