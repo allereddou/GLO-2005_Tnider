@@ -27,9 +27,11 @@ def about():
 @app.route('/browse', methods=['GET', 'POST'])
 @login_required
 def browse(data=None):
+    wishlist = get_animals()
+
     if request.method == 'GET':
         print("GET")
-        return render_template('browse.html', data=data)
+        return render_template('browse.html', wishlist=wishlist, dispo=wishlist, data=data)
     if request.method == 'POST':
         print("POST")
         return redirect(url_for('browse', data=data))
@@ -83,7 +85,6 @@ def login_page():
 
             return redirect(request.args.get("next") or url_for("browse", data=data))
 
-
     return render_template("home.html")
 
 
@@ -122,6 +123,13 @@ def load_user(email):
 def restricted_page():
     user_id = (current_user.get_id() or "No User Logged In")
     return render_template("restricted.html", user_id=user_id)
+
+
+def get_animals():
+    cursor = get_db()
+    cursor.execute(
+        "SELECT B.id, P.link, A.nom, A.race, A.location FROM bird B, pic P, animal A WHERE B.id = P.id and B.id=A.id;")
+    return cursor.fetchall()
 
 
 if __name__ == '__main__':

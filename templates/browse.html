@@ -2,85 +2,71 @@
 {% block title %}Browse{% endblock %}
 {% block head %}
     {{ super() }}
-
+    <script>
+        $(document).ready(function () {
+            $('.modal').modal();
+        });
+    </script>
 {% endblock %}
 {% block content %}
 
-<!-- Modal Trigger -->
-
-<!-- Modal Structure -->
-<div id="animal_modal" class="modal">
-    <div class="modal-content">
-        <h4>Doggo</h4>
-        <p>LOREM CALICE</p>
-    </div>
-</div>
 
     <div class="row">
         <!-- http://materializecss.com/collections.html -->
-        <div class="col s6">
+        <div class="col s12 m3" style="overflow-y: scroll; max-height: 70vh;">
             <ul class="collection">
-                <li class="collection-item avatar">
-                    <img src="/static/ressources/doggo.jpg" alt="" class="circle">
-                    <span class="title">Doge 1</span>
-                    <p>Doggo in chief <br>
-                        Bork bork
-                    </p>
-                    <a class="waves-effect waves-light btn modal-trigger secondary-content" href="#animal_modal">Open</a>
-                </li>
 
-                <li class="collection-item avatar">
-                    <i class="material-icons circle">folder</i>
-                    <span class="title">Title</span>
-                    <p>First Line <br>
-                        Second Line
-                    </p>
-                    <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                </li>
-                <li class="collection-item avatar">
-                    <i class="material-icons circle green">insert_chart</i>
-                    <span class="title">Title</span>
-                    <p>First Line <br>
-                        Second Line
-                    </p>
-                    <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                </li>
-                <li class="collection-item avatar">
-                    <i class="material-icons circle red">play_arrow</i>
-                    <span class="title">Title</span>
-                    <p>First Line <br>
-                        Second Line
-                    </p>
-                    <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                </li>
+                {% for animal in wishlist %}
+                    <li class="collection-item avatar">
+                        <img src="{{ animal['link'] }}" alt="" class="circle">
+                        <span class="title">{{ animal['nom'] }}</span>
+                        <p><i class="fa fa-exclamation"></i> {{ animal['race'] }} <br>
+                            <i class="fa fa-map-marker"></i> {{ animal['location'] }}
+                        </p>
+                        <a class="waves-effect waves-light btn modal-trigger secondary-content"
+                           href="#animal_modal{{ animal['id'] }}">Open</a>
+                    </li>
+                    <div id="animal_modal{{ animal['id'] }}" class="modal">
+                        <div class="modal-content">
+                            <img src="{{ animal['link'] }}"><br>
+                            <span class="title">{{ animal['nom'] }}</span>
+                            <p><i class="fa fa-exclamation"></i> {{ animal['race'] }} <br>
+                                <i class="fa fa-map-marker"></i> {{ animal['location'] }}
+                            </p>
+                        </div>
+                    </div>
+
+                {% endfor %}
             </ul>
         </div>
 
 
-        <div class="col s6" id="mister-flip-yo-card">
-            <div class="front" id="front-card">
-                <div class="card">
-                    <div class="card-image" id="card-image-random">
-                        <img src="/static/ressources/kitteh.jpg" height="450">
-                        <span class="card-title">Doggo Name</span>
-                    </div>
-                    <div class="card-content">
-                        <p> I'm a doggo, plz boop me</p>
-                    </div>
-                    <div class="card-action">
-                        <div class="row s12 valign-wrapper" id="card-button">
-                            <div class="col s4 center-align"><a class="fas fa-times-circle fa-5x"
-                                                                style="color: red"></a></div>
-                            <div class="col s4 center-align"><a class="fab fa-gratipay fa-5x"
-                                                                style="color:#42c682"></a>
-                            </div>
-                            <div class="col s4 center-align"><a class="fas fa-star fa-5x" style="color:blue"></a>
+        <div class="col m9 s12" id="mister-flip-yo-card">
+            {% for animal in dispo %}
+                <div class="front" id="front-card">
+                    <div class="card">
+                        <div class="card-image" id="card-image-random">
+                            <img src="/static/ressources/kitteh.jpg" height="450">
+                            <span class="card-title">Doggo Name</span>
+                        </div>
+                        <div class="card-content">
+                            <p> I'm a doggo, plz boop me</p>
+                        </div>
+                        <div class="card-action">
+                            <div class="row s12 valign-wrapper" id="card-button">
+                                <div class="col s4 center-align"><a class="fas fa-times-circle fa-5x"
+                                                                    style="color: red"></a></div>
+                                <div class="col s4 center-align"><a class="fab fa-gratipay fa-5x"
+                                                                    style="color:#42c682"></a>
+                                </div>
+                                <div class="col s4 center-align"><a class="fas fa-star fa-5x" style="color:blue"></a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="back">poashfosf</div>
+                <div class="back">poashfosf</div>
+            {% endfor %}
         </div>
     </div>
 
