@@ -77,12 +77,10 @@ def login_page():
     if request.method == "POST":
         if login_form.validate_on_submit() and request.form['btn'] == "Login":
             user = User.get(login_form.email.data)
+            if user and check_password(user.password, login_form.password.data):
+                login_user(user, remember=True)
 
-
-        if user and check_password(user.password, form.password.data):
-            login_user(user, remember=True)
-
-            return redirect(request.args.get("next") or url_for("browse"))
+                return redirect(request.args.get("next") or url_for("browse"))
       
     return render_template("home.html")
 
