@@ -1,6 +1,5 @@
 import random
 
-
 birbs = ["https://i.ytimg.com/vi/R_8bwhiHGHc/hqdefault.jpg", "https://i.ytimg.com/vi/0fLvvYO_C5U/hqdefault.jpg",
          "https://i.ytimg.com/vi/TWw4l347KDI/maxresdefault.jpg", "https://i.ytimg.com/vi/CXROU_gbEMg/maxresdefault.jpg",
          "https://i1.wp.com/www.cutesypooh.com/wp-content/uploads/2017/10/1-NAudFQB-650x650.jpg?resize=600%2C600",
@@ -61,3 +60,35 @@ def insertBirbPics(cursor):
     cursor.execute(sql)
 
 
+def insertDoggoPics(cursor):
+    sql = "SELECT * FROM dog"
+    cursor.execute(sql)
+
+    caption = "This is a test caption"
+
+    results = cursor.fetchall()
+
+    for i in range(len(results)):
+        link = random.choice(birbs)
+        sql = "INSERT INTO pic(id, caption, link) VALUES ({}, '{}', '{}')"
+        cursor.execute(sql.format(results[i]['id'], caption, link))
+
+    sql = "SELECT * FROM pic"
+    cursor.execute(sql)
+
+
+def insertKittehPics(cursor):
+    sql = "SELECT * FROM cat"
+    cursor.execute(sql)
+
+    caption = "This is a test caption"
+
+    results = cursor.fetchall()
+
+    for i in range(len(results)):
+        link = random.choice(birbs)
+        sql = "INSERT INTO pic(id, caption, link) VALUES ({}, '{}', '{}')"
+        cursor.execute(sql.format(results[i]['id'], caption, link))
+
+    sql = "SELECT * FROM pic"
+    cursor.execute(sql)
