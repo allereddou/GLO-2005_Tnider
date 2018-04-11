@@ -59,9 +59,11 @@ def account_preferences():
 def account_transactions():
     return render_template('account-transactions.html')
 
+
 @app.route('/test')
 def test():
     return render_template('test.html')
+
 
 @app.route('/account-info')
 @login_required
@@ -81,7 +83,9 @@ def login_page():
                 login_user(user, remember=True)
 
                 return redirect(request.args.get("next") or url_for("browse"))
-      
+
+        if register_form.validate_on_submit() and request.form['btn'] == "Create":
+            print("bork")
     return render_template("home.html")
 
 
@@ -124,7 +128,7 @@ def restricted_page():
 def get_animals():
     cursor = get_db()
     cursor.execute(
-        "SELECT B.id, P.link, A.nom, A.race, A.location FROM bird B, pic P, animal A WHERE B.id = P.id and B.id=A.id;")
+        "SELECT B.id, P.link, A.nom, A.race, A.location FROM bird B, pic P, animal A WHERE B.id = P.id AND B.id=A.id;")
     return cursor.fetchall()
 
 
