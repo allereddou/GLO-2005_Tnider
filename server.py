@@ -2,6 +2,7 @@ from datetime import timedelta
 import pymysql
 from flask import Flask, render_template, request, g, redirect, url_for
 from flask_login import LoginManager, login_required, login_user, current_user, logout_user
+import math, random
 
 from Forms.LoginForm import LoginForm, RegisterForm
 from Users import *
@@ -19,6 +20,11 @@ login_manager = LoginManager()
 login_serializer = URLSafeTimedSerializer(app.secret_key)
 
 
+@app.route('/home')
+def home():
+    return render_template('home.html')
+
+
 @app.route('/about')
 def about():
     return render_template('about.html')
@@ -27,12 +33,15 @@ def about():
 @app.route('/browse', methods=['GET', 'POST'])
 @login_required
 def browse():
-    wishlist = get_animals()
+    wishlist = get_animals_desired()
     data = get_profile(current_user.email)
-
+    ids = []
+    for animal in wishlist:
+        ids.append(animal['id'])
+    first = random.choice(ids)
     if request.method == 'GET':
         print("GET")
-        return render_template('browse.html', wishlist=wishlist, dispo=wishlist, data=data)
+        return render_template('browse.html', wishlist=wishlist, dispo=wishlist, data=data, first=first)
     if request.method == 'POST':
         return redirect(url_for('browse', data=data))
 
@@ -73,6 +82,8 @@ def account_info():
 
 @app.route("/", methods=["GET", "POST"])
 def login_page():
+    if current_user.is_authenticated:
+        return redirect(url_for("browse"))
     login_form = LoginForm(request.form)
     register_form = RegisterForm(request.form)
 
@@ -143,11 +154,25 @@ def restricted_page():
     return render_template("restricted.html", user_id=user_id)
 
 
-def get_animals():
+@login_manager.unauthorized_handler
+def unauthorized():
+    return redirect("home")
+
+
+def get_animals_desired():
     cursor = get_db()
-    cursor.execute(
-        "SELECT B.id, P.link, A.nom, A.race, A.location FROM bird B, pic P, animal A WHERE B.id = P.id AND B.id=A.id;")
-    return cursor.fetchall()
+    cursor.execute("SELECT D.id FROM desire D WHERE D.username = '{}'".format(current_user.username))
+    id_wishlist = cursor.fetchall()
+    wishlist = []
+    for current_id in id_wishlist:
+        cursor.execute(
+            "SELECT DISTINCT A.id, P.link, A.nom, A.race, A.location FROM pic P, animal A WHERE A.id = P.id and A.id = {};".format(
+                current_id['id']))
+        animal = cursor.fetchall()
+        wishlist.append(animal[0])
+    for animal in wishlist:
+        print(animal)
+    return wishlist
 
 
 def get_profile(email):

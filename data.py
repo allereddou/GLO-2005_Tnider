@@ -2,7 +2,8 @@ from server import app, get_db
 from persistance.tableCleanup import createTables, deleteAllTables
 from persistance.insertRandomUsers import insertUsers
 from persistance.insertRandomAnimals import insertAnimal
-from persistance.imageLinks import insertBirbPics
+from persistance.imageLinks import insertBirbPics, insertDoggoPics, insertKittehPics
+from persistance.insertRandomDesired import insertRandomDesired
 
 
 def setupDatabase():
@@ -23,6 +24,15 @@ def setupDatabase():
         # insérer des photos d'oiseaux
         insertBirbPics(cursor)
 
+        #insérer des photos de doggo
+        insertDoggoPics(cursor)
+
+        #insérer des photos de chats
+        insertKittehPics(cursor)
+
+        # insérer des wishlits
+        insertRandomDesired(cursor)
+
 
 with app.app_context():
 
@@ -32,6 +42,3 @@ with app.app_context():
     cursor = get_db()
 
     cursor.execute(sql)
-    for row in cursor:
-        if row['email'] == 'admin@hotmail.com':
-            print(row)
