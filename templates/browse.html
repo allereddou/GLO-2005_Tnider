@@ -39,7 +39,7 @@
         <div class="col s12 m6 l9">
             <div class="card" id="animalCard{{ animal['id'] }}" style="display: none">
                 <div class="card-image" id="card-image-random">
-                    <img src="{{ animal['link'] }}" style="max-height: 50vh; min-height: 10vh">
+                    <img src="{{ animal['link'] }}" style="max-height: 50vh;">
                     <span class="card-title">{{ animal['nom'] }}</span>
                 </div>
                 <div class="card-content">
@@ -47,14 +47,17 @@
                 </div>
                 <div class="card-action">
                     <div class="row valign-wrapper" id="card-button">
-                        <div class="s4">
-                            <a href="/browse/like">Like</a>
-                        </div>
-                        <div class="s4">
-                            <a href="/browse/dislike">Dislike</a>
-                        </div>
-                        <div class="s4">
-                            <a href="/browse/superlike">Superlike</a>
+                        <div class="row s12 valign-wrapper" id="card-button">
+                            <div class="col s4 center-align"><a href="/browse/dislike"
+                                                                class="fas fa-times-circle fa-5x"
+                                                                style="color: red"></a></div>
+                            <div class="col s4 center-align"><a href="/browse/like"
+                                                                class="fab fa-gratipay fa-5x"
+                                                                style="color:#42c682"></a>
+                            </div>
+                            <div class="col s4 center-align"><a href="browse/superlike" class="fas fa-star fa-5x" style="color:blue"></a>
+                            </div>
+
                         </div>
                     </div>
                 </div>
