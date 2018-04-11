@@ -24,7 +24,7 @@ class User(UserMixin):
         with app.app_context():
             result = getUserFromEmail(email)
 
-            if len(result) == 0:
+            if not result:
                 return None
             else:
                 password = (result['pass'])
