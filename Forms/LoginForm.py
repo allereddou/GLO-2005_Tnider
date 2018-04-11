@@ -15,11 +15,11 @@ class LoginForm(FlaskForm):
 
 class RegisterForm(FlaskForm):
     email = StringField('email', validators=[Email()])
-    password = PasswordField('password', validators=[DataRequired(), Length(max=100), equal_to('confirmPassword', message='Passwords must match')])
-    confirmPassword = PasswordField('confirmPassword', validators=[DataRequired()])
+    password2 = PasswordField('Password', validators=[DataRequired(), Length(max=100), equal_to('confirm_password', message='Passwords must match')])
+    confirm_password = PasswordField('confirm password', validators=[DataRequired()])
     username = StringField('username', validators=[DataRequired(), Length(max=20)])
-    first_name = StringField('lastName', validators=[DataRequired(), Length(max=20)])
-    last_name = StringField('lastName', validators=[DataRequired(), Length(max=20)])
+    first_name = StringField('First Name', validators=[DataRequired(), Length(max=20)])
+    last_name = StringField('Last Name', validators=[DataRequired(), Length(max=20)])
     register = SubmitField('submit')
 
     def __init__(self, *args, **kwargs):
