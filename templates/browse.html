@@ -38,30 +38,34 @@
             </ul>
         </div>
         {% for animal in dispo %}
-        <div class="col s12 m6 l9">
-            <div class="card" id="animalCard{{ animal['id'] }}" style="display: none">
-                <div class="card-image" id="card-image-random">
-                    <img src="{{ animal['link'] }}" height="100vh">
-                    <span class="card-title">{{ animal['nom'] }}</span>
-                </div>
-                <div class="card-content">
-                    <p> I'm a doggo, plz boop me</p>
-                </div>
-                <div class="card-action">
-                    <div class="row s12 valign-wrapper" id="card-button">
-                        <div class="col s4 center-align"><a onclick="dislike({{ animal['id'] }})" class="fas fa-times-circle fa-5x"
-                                                            style="color: red"></a></div>
-                        <div class="col s4 center-align"><a onclick="like({{ animal['id'] }})" class="fab fa-gratipay fa-5x"
-                                                            style="color:#42c682"></a>
+            <div class="col s12 m6 l9">
+                <form method="post">
+                    <div class="card" id="animalCard{{ animal['id'] }}" style="display: none">
+                        <div class="card-image" id="card-image-random">
+                            <img src="{{ animal['link'] }}" height="100vh">
+                            <span class="card-title">{{ animal['nom'] }}</span>
                         </div>
-                        <div class="col s4 center-align"><a class="fas fa-star fa-5x" style="color:blue"></a>
+                        <div class="card-content">
+                            <p> I'm a doggo, plz boop me</p>
+                        </div>
+                        <div class="card-action">
+                            <div class="row s12 valign-wrapper" id="card-button">
+                                <div class="col s4 center-align"><a onclick="dislike({{ animal['id'] }})"
+                                                                    class="fas fa-times-circle fa-5x"
+                                                                    style="color: red"></a></div>
+                                <div class="col s4 center-align"><a onclick="like({{ animal['id'] }})"
+                                                                    class="fab fa-gratipay fa-5x"
+                                                                    style="color:#42c682"></a>
+                                </div>
+                                <div class="col s4 center-align"><a class="fas fa-star fa-5x" style="color:blue"></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
-        </div>
-    {% endfor %}
-    <script>document.getElementById('animalCard{{ first }}').style.display = 'block';</script>
+        {% endfor %}
+        <script>document.getElementById('animalCard{{ first }}').style.display = 'block';</script>
     </div>
 {% endblock %}
 

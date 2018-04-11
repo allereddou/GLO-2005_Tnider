@@ -38,19 +38,13 @@ def browse():
     ids = []
     for animal in wishlist:
         ids.append(animal['id'])
-    current_animal = None
     try:
         first = random.choice(ids)
-        animals = wishlist
-        for animal in animals:
-            if animal['id'] == first:
-                current_animal = animal
     except IndexError:
         first = None
     if request.method == 'GET':
         print("GET")
-        return render_template('browse.html', wishlist=wishlist, dispo=wishlist, data=data, first=first,
-                               current_animal=current_animal)
+        return render_template('browse.html', wishlist=wishlist, dispo=wishlist, data=data, first=first)
     if request.method == 'POST':
         return redirect(url_for('browse', data=data))
 
