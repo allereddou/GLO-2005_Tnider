@@ -2,7 +2,7 @@
 {% block title %}Browse{% endblock %}
 {% block head %}
     {{ super() }}
-    <link rel="stylesheet" href="/static/css/tinder.css">
+    <script type="text/javascript" src="/static/js/card.js"></script>
     <script>
         $(document).ready(function () {
             $('.modal').modal();
@@ -10,11 +10,9 @@
     </script>
 {% endblock %}
 {% block content %}
-
-
     <div class="row">
         <!-- http://materializecss.com/collections.html -->
-        <div class="col s12 m3" style="overflow-y: scroll; max-height: 70vh;">
+        <div class="col s12 m6 l3" style="overflow-y: scroll; max-height: 70vh;">
             <ul class="collection">
 
                 {% for animal in wishlist %}
@@ -36,45 +34,35 @@
                             </p>
                         </div>
                     </div>
-
                 {% endfor %}
             </ul>
         </div>
-
-        <div class="col m9 s12" id="mister-flip-yo-card">
-                <div class="front" id="front-card" style="display: block;">
-                    <div class="card">
-                        <div class="card-image" id="card-image-random">
-                            <img src="/static/ressources/kitteh.jpg" height="450">
-                            <span class="card-title">Doggo Name</span>
+        {% for animal in dispo %}
+        <div class="col s12 m6 l9">
+            <div class="card" id="animalCard{{ animal['id'] }}" style="display: none">
+                <div class="card-image" id="card-image-random">
+                    <img src="{{ animal['link'] }}" height="100vh">
+                    <span class="card-title">{{ animal['nom'] }}</span>
+                </div>
+                <div class="card-content">
+                    <p> I'm a doggo, plz boop me</p>
+                </div>
+                <div class="card-action">
+                    <div class="row s12 valign-wrapper" id="card-button">
+                        <div class="col s4 center-align"><a onclick="dislike({{ animal['id'] }})" class="fas fa-times-circle fa-5x"
+                                                            style="color: red"></a></div>
+                        <div class="col s4 center-align"><a onclick="like({{ animal['id'] }})" class="fab fa-gratipay fa-5x"
+                                                            style="color:#42c682"></a>
                         </div>
-                        <div class="card-content">
-                            <p> I'm a doggo, plz boop me</p>
-                        </div>
-                        <div class="card-action">
-                            <div class="row s12 valign-wrapper" id="card-button">
-                                <div class="col s4 center-align"><a class="fas fa-times-circle fa-5x"
-                                                                    style="color: red"></a></div>
-                                <div class="col s4 center-align"><a class="fab fa-gratipay fa-5x"
-                                                                    style="color:#42c682"></a>
-                                </div>
-                                <div class="col s4 center-align"><a class="fas fa-star fa-5x" style="color:blue"></a>
-                                </div>
-                            </div>
+                        <div class="col s4 center-align"><a class="fas fa-star fa-5x" style="color:blue"></a>
                         </div>
                     </div>
                 </div>
-                <div class="back">poashfosf</div>
+            </div>
         </div>
+    {% endfor %}
+    <script>document.getElementById('animalCard{{ first }}').style.display = 'block';</script>
     </div>
-
-    <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#mister-flip-yo-card").flip();
-        })</script>
-
-
 {% endblock %}
 
 

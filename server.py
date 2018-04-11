@@ -2,6 +2,7 @@ from datetime import timedelta
 import pymysql
 from flask import Flask, render_template, request, g, redirect, url_for
 from flask_login import LoginManager, login_required, login_user, current_user, logout_user
+import math, random
 
 from Forms.LoginForm import LoginForm, RegisterForm
 from Users import *
@@ -32,12 +33,15 @@ def about():
 @app.route('/browse', methods=['GET', 'POST'])
 @login_required
 def browse():
-    wishlist = get_animals()
+    wishlist = get_animals_desired()
     data = get_profile(current_user.email)
-
+    ids = []
+    for animal in wishlist:
+        ids.append(animal['id'])
+    first = random.choice(ids)
     if request.method == 'GET':
         print("GET")
-        return render_template('browse.html', wishlist=wishlist, dispo=wishlist, data=data)
+        return render_template('browse.html', wishlist=wishlist, dispo=wishlist, data=data, first=first)
     if request.method == 'POST':
         return redirect(url_for('browse', data=data))
 
@@ -132,10 +136,11 @@ def restricted_page():
 def unauthorized():
     return redirect("home")
 
-def get_animals():
+
+def get_animals_desired():
     cursor = get_db()
     cursor.execute(
-        "SELECT B.id, P.link, A.nom, A.race, A.location FROM bird B, pic P, animal A WHERE B.id = P.id and B.id=A.id;")
+        "SELECT B.id, P.link, A.nom, A.race, A.location FROM bird B, pic P, animal A, desire D WHERE B.id = P.id and B.id=A.id and D.username = {};".format(current_user.username))
     return cursor.fetchall()
 
 
