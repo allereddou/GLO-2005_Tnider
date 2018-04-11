@@ -19,6 +19,11 @@ login_manager = LoginManager()
 login_serializer = URLSafeTimedSerializer(app.secret_key)
 
 
+@app.route('/home')
+def home():
+    return render_template('home.html')
+
+
 @app.route('/about')
 def about():
     return render_template('about.html')
@@ -122,6 +127,10 @@ def restricted_page():
     user_id = (current_user.get_id() or "No User Logged In")
     return render_template("restricted.html", user_id=user_id)
 
+
+@login_manager.unauthorized_handler
+def unauthorized():
+    return redirect("home")
 
 def get_animals():
     cursor = get_db()
