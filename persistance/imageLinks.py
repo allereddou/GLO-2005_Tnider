@@ -38,7 +38,36 @@ def insertBirbPics(cursor):
     sql = "SELECT * FROM pic"
     cursor.execute(sql)
 
-   # for row in cursor:
-   #     print(row)
+def insertDoggoPics(cursor):
+    sql = "SELECT * FROM dog"
+    cursor.execute(sql)
+
+    caption = "This is a test caption"
+
+    results = cursor.fetchall()
+
+    for i in range(len(results)):
+        link = random.choice(birbs)
+        sql = "INSERT INTO pic(id, caption, link) VALUES ({}, '{}', '{}')"
+        cursor.execute(sql.format(results[i]['id'], caption, link))
+
+    sql = "SELECT * FROM pic"
+    cursor.execute(sql)
+
+def insertKittehPics(cursor):
+    sql = "SELECT * FROM cat"
+    cursor.execute(sql)
+
+    caption = "This is a test caption"
+
+    results = cursor.fetchall()
+
+    for i in range(len(results)):
+        link = random.choice(birbs)
+        sql = "INSERT INTO pic(id, caption, link) VALUES ({}, '{}', '{}')"
+        cursor.execute(sql.format(results[i]['id'], caption, link))
+
+    sql = "SELECT * FROM pic"
+    cursor.execute(sql)
 
 

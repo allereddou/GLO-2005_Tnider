@@ -143,9 +143,18 @@ def unauthorized():
 
 def get_animals_desired():
     cursor = get_db()
-    cursor.execute(
-        "SELECT B.id, P.link, A.nom, A.race, A.location FROM bird B, pic P, animal A, desire D WHERE B.id = P.id and B.id=A.id and D.username = {};".format(current_user.username))
-    return cursor.fetchall()
+    cursor.execute("SELECT D.id FROM desire D WHERE D.username = '{}'".format(current_user.username))
+    id_wishlist = cursor.fetchall()
+    wishlist = []
+    for current_id in id_wishlist:
+        cursor.execute(
+            "SELECT DISTINCT A.id, P.link, A.nom, A.race, A.location FROM pic P, animal A WHERE A.id = P.id and A.id = {};".format(
+                current_id['id']))
+        animal = cursor.fetchall()
+        wishlist.append(animal[0])
+    for animal in wishlist:
+        print(animal)
+    return wishlist
 
 
 def get_profile(email):
