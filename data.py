@@ -1,13 +1,12 @@
-from server import *
+from server import app, get_db
 from persistance.tableCleanup import createTables, deleteAllTables
 from persistance.insertRandomUsers import insertUsers
 from persistance.insertRandomAnimals import insertAnimal
 from persistance.imageLinks import insertBirbPics
 
 
-with app.app_context():
-
-    def setupDatabase():
+def setupDatabase():
+    with app.app_context():
         # ouverture connexion
         cursor = get_db()
 
@@ -24,6 +23,8 @@ with app.app_context():
         # insérer des photos d'oiseaux
         insertBirbPics(cursor)
 
+
+with app.app_context():
 
     setupDatabase()
 

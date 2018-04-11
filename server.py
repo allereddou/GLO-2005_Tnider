@@ -68,9 +68,11 @@ def account_preferences():
 def account_transactions():
     return render_template('account-transactions.html')
 
+
 @app.route('/test')
 def test():
     return render_template('test.html')
+
 
 @app.route('/account-info')
 @login_required
@@ -92,7 +94,9 @@ def login_page():
                 login_user(user, remember=True)
 
                 return redirect(request.args.get("next") or url_for("browse"))
-      
+
+        if register_form.validate_on_submit() and request.form['btn'] == "Create":
+            print("bork")
     return render_template("home.html")
 
 
