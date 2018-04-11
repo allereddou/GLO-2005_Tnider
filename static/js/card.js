@@ -1,6 +1,7 @@
 function like(id) {
     swipe();
     console.log("LIKE");
+    
 
 }
 
