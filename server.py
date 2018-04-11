@@ -6,7 +6,7 @@ import math, random
 
 from Forms.LoginForm import LoginForm, RegisterForm
 from Users import *
-from persistance.passwordUtil import check_password
+from persistance.bdUtils import createUser, checkIfUsernameAlreadyUsed, checkIfEmailAlreadyUsed, validatePassword
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -90,13 +90,31 @@ def login_page():
     if request.method == "POST":
         if login_form.validate_on_submit() and request.form['btn'] == "Login":
             user = User.get(login_form.email.data)
-            if user and check_password(user.password, login_form.password.data):
+
+            print(login_form.email.data)
+            print(login_form.password.data)
+
+            if user and validatePassword(login_form.email.data, login_form.password.data):
                 login_user(user, remember=True)
 
                 return redirect(request.args.get("next") or url_for("browse"))
 
         if register_form.validate_on_submit() and request.form['btn'] == "Create":
-            print("bork")
+            if not checkIfUsernameAlreadyUsed(register_form.username.data):
+                print("username not valid !")
+                return render_template("home.html")
+
+            if not checkIfEmailAlreadyUsed(register_form.email.data):
+                print("email not valid !")
+                return render_template("home.html")
+
+            user = User(register_form.email.data, register_form.password2.data, register_form.username.data,
+                        register_form.last_name.data, register_form.first_name.data, register_form.phone_number.data, 0)
+
+            createUser(user)
+            login_user(user, remember=True)
+            return redirect(request.args.get("next") or url_for("browse"))
+
     return render_template("home.html")
 
 
