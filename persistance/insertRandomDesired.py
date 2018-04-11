@@ -10,7 +10,7 @@ def insertRandomDesired(cursor):
     for user in users:
         possibilites = list(range(number_of_animals_in_bd))
         random.shuffle(possibilites)
-        for i in range(random.randint(0, 5)):
+        for i in range(random.randint(0, 15)):
             sql = "INSERT desire(username, id) VALUES ('{}', {});"
             current_id = possibilites.pop()
             cursor.execute(sql.format(user['username'], current_id))

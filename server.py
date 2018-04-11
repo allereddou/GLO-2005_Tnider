@@ -38,7 +38,10 @@ def browse():
     ids = []
     for animal in wishlist:
         ids.append(animal['id'])
-    first = random.choice(ids)
+    try:
+        first = random.choice(ids)
+    except IndexError:
+        first = None
     if request.method == 'GET':
         print("GET")
         return render_template('browse.html', wishlist=wishlist, dispo=wishlist, data=data, first=first)
@@ -90,9 +93,6 @@ def login_page():
     if request.method == "POST":
         if login_form.validate_on_submit() and request.form['btn'] == "Login":
             user = User.get(login_form.email.data)
-
-            print(login_form.email.data)
-            print(login_form.password.data)
 
             if user and validatePassword(login_form.email.data, login_form.password.data):
                 login_user(user, remember=True)
@@ -170,8 +170,6 @@ def get_animals_desired():
                 current_id['id']))
         animal = cursor.fetchall()
         wishlist.append(animal[0])
-    for animal in wishlist:
-        print(animal)
     return wishlist
 
 
