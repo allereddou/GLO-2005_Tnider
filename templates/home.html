@@ -1,114 +1,119 @@
 {% extends "index.html" %}
 {% block title %}Home{% endblock %}
 {% block head %}
-{{ super() }}
-<script>
-    $(document).ready(function() {
-        $('select').material_select();
-    });
-</script>
-<style>
-    /* https://github.com/Dogfalo/materialize/issues/2584
-        Needed to remove awkward scrollbar
-    */
-    .tabs {
-        overflow-x: hidden;
-    }
-    body {
-        background-image: url("/static/ressources/kitteh.jpg");
-    }
-</style>
+    {{ super() }}
+    <script>
+        $(document).ready(function () {
+            $('select').material_select();
+        });
+    </script>
+    <style>
+        /* https://github.com/Dogfalo/materialize/issues/2584
+            Needed to remove awkward scrollbar
+        */
+        .tabs {
+            overflow-x: hidden;
+        }
+
+        body {
+            background-image: url("/static/ressources/kitteh.jpg");
+        }
+    </style>
 
 {% endblock %}
 {% block content %}
 
-{% if session['logged_in'] %}
-<p>Already logged in</p>
-{% else %}
+    {% if session['logged_in'] %}
+        <p>Already logged in</p>
+    {% else %}
 
-<!-- https://codepen.io/mblarsen/pen/mVZRMM -->
-<div class="valign-wrapper row login-box">
-    <div class="col card hoverable s10 pull-s1 m6 pull-m3 l4 pull-l4">
-        <div class="card-tabs">
-            <ul class="tabs tabs-fixed-width">
-                <li class="tab"><a href="#signin">Sign In</a></li>
-                <li class="tab"><a class="active" href="#signup">Sign Up</a></li>
-            </ul>
-        </div>
+        <!-- https://codepen.io/mblarsen/pen/mVZRMM -->
+        <div class="valign-wrapper row login-box">
+            <div class="col card hoverable s10 pull-s1 m6 pull-m3 l4 pull-l4">
+                <div class="card-tabs">
+                    <ul class="tabs tabs-fixed-width">
+                        <li class="tab"><a href="#signin">Sign In</a></li>
+                        <li class="tab"><a class="active" href="#signup">Sign Up</a></li>
+                    </ul>
+                </div>
 
-        <div class="card-content">
+                <div class="card-content">
 
-            <div id="signin">
-                <form method="post">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <label for="email">Email address</label>
-                            <input type="email" class="validate" name="email" id="email"/>
-                        </div>
-                        <div class="input-field col s12">
-                            <label for="password">Password </label>
-                            <input type="password" class="validate" name="password" id="password"/>
-                        </div>
+                    <div id="signin">
+                        <form method="post">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <label for="email">Email address</label>
+                                    <input type="email" class="validate" name="email" id="email"/>
+                                </div>
+                                <div class="input-field col s12">
+                                    <label for="password">Password </label>
+                                    <input type="password" class="validate" name="password" id="password"/>
+                                </div>
+                            </div>
+                            <div class="card-action right-align">
+                                <button value="Reset" type="reset" id="reset sign up"
+                                        class="btn-flat grey-text waves-effect">
+                                    Reset
+                                </button>
+                                <button type="submit" name="btn" id="login" class="btn red waves-effect waves-light"
+                                        value="Login">Login
+                                </button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="card-action right-align">
-                        <button value="Reset" type="reset" id="reset sign up" class="btn-flat grey-text waves-effect">
-                            Reset
-                        </button>
-                        <button type="submit" name="btn" id="login" class="btn red waves-effect waves-light" value="Login">Login</button>
+
+                    <div id="signup">
+                        <form method="post">
+
+                            <div class="input-field col s12">
+                                <label for="username">Username</label>
+                                <input type="text" class="validate" name="username" id="username"/>
+                            </div>
+                            <div class="input-field col s6">
+                                <label for="first_name">First Name</label>
+                                <input type="text" class="validate" name="first_name" id="first_namename"/>
+                            </div>
+                            <div class="input-field col s6">
+                                <label for="last_name">Last Name</label>
+                                <input type="text" class="validate" name="last_name" id="last_name"/>
+                            </div>
+                            <div class="input-field col s6">
+                                <label for="password2">Password </label>
+                                <input type="password" class="validate" name="password2" id="password2"/>
+                            </div>
+                            <div class="input-field col s6">
+                                <label for="confirm_password">Confirm Password</label>
+                                <input type="password" class="validate" name="confirm_password" id="confirm_password"/>
+                            </div>
+
+                            <div class="input-field col s12">
+                                <label for="phone_number">Phone Number</label>
+                                <input type="tel" class="validate" name="phone_number" id="phone_number">
+                            </div>
+
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <label for="email">Email address</label>
+                                    <input type="email" class="validate" name="email" id="email2"/>
+                                </div>
+                            </div>
+
+                            <div class="card-action right-align">
+                                <button value="Reset" type="reset" id="reset sign up"
+                                        class="btn-flat grey-text waves-effect">
+                                    Reset
+                                </button>
+                                <button type="submit" name="btn" id="create" class="btn red waves-effect waves-light"
+                                        value="Create">Create
+                                </button>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                </div>
             </div>
-
-            <div id="signup">
-                <form method="post">
-                    <div class=".input-field col s12">
-                        <label for="mode">Account Mode</label>
-                        <select name="account mode" id="mode">
-                            <option value="" disabled selected>Choose your account mode</option>
-                            <option value="buyer">Buyer</option>
-                            <option value="seller">Seller</option>
-                        </select>
-                    </div>
-
-                    <div class="input-field col s12">
-                        <label for="username">Username</label>
-                        <input type="text" class="validate" name="username" id="username"/>
-                    </div>
-                    <div class="input-field col s6">
-                        <label for="first_name">First Name</label>
-                        <input type="text" class="validate" name="first_name" id="first_namename"/>
-                    </div>
-                    <div class="input-field col s6">
-                        <label for="last_name">Last Name</label>
-                        <input type="text" class="validate" name="last_name" id="last_name"/>
-                    </div>
-                    <div class="input-field col s6">
-                        <label for="password2">Password </label>
-                        <input type="password" class="validate" name="password2" id="password2"/>
-                    </div>
-                    <div class="input-field col s6">
-                        <label for="confirm_password">Confirm Password</label>
-                        <input type="password" class="validate" name="confirm_password" id="confirm_password"/>
-                    </div>
-
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <label for="email">Email address</label>
-                            <input type="email" class="validate" name="email" id="email2"/>
-                        </div>
-                    </div>
-                    <div class="card-action right-align">
-                        <button value="Reset" type="reset" id="reset sign up" class="btn-flat grey-text waves-effect">
-                            Reset
-                        </button>
-                        <button type="submit" name="btn" id="create" class="btn red waves-effect waves-light" value="Create">Create</button>
-                    </div>
-                </form>
-            </div>
         </div>
-    </div>
-</div>
-</div>
-{% endif %}
+        </div>
+    {% endif %}
 {% endblock %}
 

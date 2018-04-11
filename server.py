@@ -85,8 +85,7 @@ def login_page():
                 return redirect(request.args.get("next") or url_for("browse"))
 
         if register_form.validate_on_submit() and request.form['btn'] == "Create":
-            print(8)
-        print(register_form.errors)
+            print("bork")
     return render_template("home.html")
 
 
