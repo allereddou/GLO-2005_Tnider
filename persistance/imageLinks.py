@@ -69,7 +69,7 @@ def insertDoggoPics(cursor):
     results = cursor.fetchall()
 
     for i in range(len(results)):
-        link = random.choice(birbs)
+        link = random.choice(doggos)
         sql = "INSERT INTO pic(id, caption, link) VALUES ({}, '{}', '{}')"
         cursor.execute(sql.format(results[i]['id'], caption, link))
 
