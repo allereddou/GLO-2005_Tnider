@@ -81,6 +81,10 @@ def login_page():
                 login_user(user, remember=True)
 
                 return redirect(request.args.get("next") or url_for("browse"))
+
+        if register_form.validate_on_submit() and request.form['btn'] == "Create":
+
+
       
     return render_template("home.html")
 

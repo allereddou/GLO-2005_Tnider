@@ -20,11 +20,9 @@ class User(UserMixin):
             result = getUserFromEmail(email)
 
             if len(result) == 0:
-                print("not result")
                 return None
             else:
                 password = (result['pass'])
-                print("password : " + password)
             return User(email, password)
 
     def is_authenticated(self):
