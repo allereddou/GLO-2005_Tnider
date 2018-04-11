@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, g, redirect, url_for
 from flask_login import LoginManager, login_required, login_user, current_user, logout_user
 import math, random
 
-from Forms.LoginForm import LoginForm, RegisterForm
+from Forms.LoginForm import LoginForm, RegisterForm, LikeForm, DislikeForm, SuperlikeForm
 from Users import *
 from persistance.bdUtils import createUser, checkIfUsernameAlreadyUsed, checkIfEmailAlreadyUsed, validatePassword
 
@@ -33,20 +33,37 @@ def about():
 @app.route('/browse', methods=['GET', 'POST'])
 @login_required
 def browse():
+    global dispo
     wishlist = get_animals_desired()
-    data = get_profile(current_user.email)
-    ids = []
-    for animal in wishlist:
-        ids.append(animal['id'])
-    try:
-        first = random.choice(ids)
-    except IndexError:
-        first = None
+    dispo = get_possible_match()
     if request.method == 'GET':
-        print("GET")
-        return render_template('browse.html', wishlist=wishlist, dispo=wishlist, data=data, first=first)
+        return render_template('browse.html', wishlist=wishlist, animal=dispo, first=dispo['id'])
     if request.method == 'POST':
-        return redirect(url_for('browse', data=data))
+        return render_template('browse.html', wishlist=wishlist, dispo=wishlist, first=first)
+
+
+@app.route('/browse/like')
+@login_required
+def like():
+    cursor = get_db()
+    cursor.execute("INSERT desire(username, id) VALUES ('{}', {})".format(current_user.username, dispo['id']))
+    return redirect(url_for('browse'))
+
+
+@app.route('/browse/dislike')
+@login_required
+def dislike():
+    cursor = get_db()
+    cursor.execute("INSERT desire(username, id) VALUES ('{}', {})".format(current_user.username, dispo['id']))
+    return redirect(url_for('browse'))
+
+
+@app.route('/browse/superlike')
+@login_required
+def superlike():
+    cursor = get_db()
+    cursor.execute("INSERT desire(username, id) VALUES ('{}', {})".format(current_user.username, dispo['id']))
+    return redirect(url_for('browse'))
 
 
 @app.route('/account')
@@ -183,6 +200,15 @@ def get_profile(email):
         return False
     else:
         return result[0]
+
+
+# cette fonction doit être modifiée pour trouver un animal
+def get_possible_match():
+    cursor = get_db()
+    sql = "SELECT DISTINCT A.id, P.link, A.nom, A.race, A.location FROM pic P, animal A WHERE A.id = P.id and A.id = {}".format(
+        random.randint(0, 100))
+    cursor.execute(sql)
+    return cursor.fetchall()[0]
 
 
 if __name__ == '__main__':
