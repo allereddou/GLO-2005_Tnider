@@ -2,7 +2,6 @@
 {% block title %}Browse{% endblock %}
 {% block head %}
     {{ super() }}
-    <script type="text/javascript" src="/static/js/card.js"></script>
     <script>
         $(document).ready(function () {
             $('.modal').modal();
@@ -40,7 +39,7 @@
         <div class="col s12 m6 l9">
             <div class="card" id="animalCard{{ animal['id'] }}" style="display: none">
                 <div class="card-image" id="card-image-random">
-                    <img src="{{ animal['link'] }}" height="100vh">
+                    <img src="{{ animal['link'] }}" style="max-height: 50vh; min-height: 10vh">
                     <span class="card-title">{{ animal['nom'] }}</span>
                 </div>
                 <div class="card-content">
