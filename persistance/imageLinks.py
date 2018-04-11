@@ -42,6 +42,31 @@ doggos = ["http://borkborkiamdoggo.com/wp-content/uploads/2016/12/happy-talk-lik
           "http://pupjoyblog.com/wp-content/uploads/2017/06/Cute-dog-listening-to-music-1_1.jpg"
           ]
 
+cats = ["https://www.funnypica.com/wp-content/uploads/2015/05/TOP-30-Cute-Cats-Cute-Cat-30.jpg",
+        "https://img.diply.com/article-images/a/f4805000-5f86-4594-96ca-c09819be81a7.jpg?impolicy=desktop",
+        "http://fenozi.com/wp-content/uploads/2017/04/cute-cats-6.jpg",
+        "http://www.smashingphotoz.com/wp-content/uploads/2012/11/11_cat_photos.jpg",
+        "http://www.top5ives.com/wp-content/uploads/2012/07/cute-cats-4.jpg",
+        "http://i-love-cats.com/images/2015/04/12/cat-wallpaper-24.jpg",
+        "http://1.bp.blogspot.com/-l7IXp0s01zQ/UAGDAU6tVcI/AAAAAAAAAVs/h2GZjNgNsno/s1600/kijhi.jpg",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPo32jEVvS_nt44_SJF2Zemfzeawi3aoXd5euN2pvyjt2UG4du",
+        "https://cms.hostelbookers.com/hbblog/wp-content/uploads/sites/3/2012/02/search.jpg",
+        "https://catzone-tcwebsites.netdna-ssl.com/wp-content/uploads/2014/09/453768-cats-cute.jpg",
+        "https://i.pinimg.com/736x/ab/ef/cd/abefcdfd757a47dec9387d0803ab9c2e--friend-photos-cute-cats.jpg",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDQuZP0D_uyoSPP88sdXy9JrJY_ukdb2w3_KIaa94c7e88WBSe",
+        "http://darkroom.baltimoresun.com/wp-content/uploads/2013/07/20130709_0103.jpg",
+        "http://youne.com/wp-content/uploads/2013/09/grey-kitten.jpg",
+        "https://i0.wp.com/lovecuteanimals.com/wp-content/uploads/2017/05/1493782516_254_love-cute-cats.jpg?w=1160&ssl=1",
+        "http://babruysk.by/wp-content/uploads/2017/12/%D0%9D%D0%B0%D1%81%D1%82%D1%83%D0%BF%D0%B8%D1%82-%D0%BD%D0%B0%D1%81%D1%82%D0%BE%D1%8F%D1%89%D0%B0%D1%8F-%D0%B7%D0%B8%D0%BC%D0%B0-1.jpg",
+        "https://pbs.twimg.com/media/DSAS1uAWkAENbFI.jpg",
+        "https://pbs.twimg.com/profile_images/571260078292865024/0EvP5vXn_400x400.jpeg",
+        "https://cdn.someecards.com/posts/man-fakes-death-cat-q6U.png",
+        "http://media.socastsrm.com/wordpress/wp-content/blogs.dir/886/files/2018/01/PICTURE-OF-CUTE-CAT.jpg",
+        "http://www.awwtopia.com/wp-content/uploads/2017/07/Happy-Cat-Month-e1473157690358.jpg",
+        "https://www.popsci.com/sites/popsci.com/files/styles/1000_1x_/public/images/2017/08/cat_in_bowl.jpeg?itok=p8hGzKH4&fc=50,50",
+        "http://www.top13.net/wp-content/uploads/2016/10/most-beautiful-cats-world-3.jpg"
+        ]
+
 
 def insertBirbPics(cursor):
     sql = "SELECT * FROM bird"
@@ -86,7 +111,7 @@ def insertKittehPics(cursor):
     results = cursor.fetchall()
 
     for i in range(len(results)):
-        link = random.choice(birbs)
+        link = random.choice(cats)
         sql = "INSERT INTO pic(id, caption, link) VALUES ({}, '{}', '{}')"
         cursor.execute(sql.format(results[i]['id'], caption, link))
 
