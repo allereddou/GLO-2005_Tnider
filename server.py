@@ -71,6 +71,8 @@ def account_info():
 
 @app.route("/", methods=["GET", "POST"])
 def login_page():
+    if current_user.is_authenticated:
+        return redirect(url_for("browse"))
     login_form = LoginForm(request.form)
     register_form = RegisterForm(request.form)
 
