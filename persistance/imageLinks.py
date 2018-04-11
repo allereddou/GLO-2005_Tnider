@@ -21,6 +21,28 @@ birbs = ["https://i.ytimg.com/vi/R_8bwhiHGHc/hqdefault.jpg", "https://i.ytimg.co
          "https://mymodernmet.com/wp/wp-content/uploads/archive/YI24PaMFeQVPANEjuHIu_1082023271.jpeg"
          ]
 
+doggos = ["http://borkborkiamdoggo.com/wp-content/uploads/2016/12/happy-talk-like-a-pirate-day-1.jpg",
+          "https://pics.me.me/pirate-doggo-27554833.png",
+          "https://media.wired.com/photos/5a55457ef41e4c2cd9ee6cb5/master/w_2400,c_limit/Doggo-TopArt-104685145.jpg",
+          "https://ih0.redbubble.net/image.256560162.4934/flat,800x800,075,f.u8.jpg",
+          "https://d3lp4xedbqa8a5.cloudfront.net/s3/digital-cougar-assets/cosmo/2017/03/31/1490937823055_social-doggos.jpg?width=600&height=315&quality=75&mode=crop",
+          "https://az616578.vo.msecnd.net/files/2016/11/19/636151440530835523-978948331_doggo.jpg",
+          "http://cdn.lifebuzz.com/images/234494/lifebuzz-01b7a47204770ca414d635d4685d84b5-limit_2000.jpg",
+          "https://thoughtcatalog.files.wordpress.com/2017/02/dog1.jpg?w=786",
+          "https://www.gannett-cdn.com/-mm-/c56eeec9b599ddadbd11e2f604664fcf9ec67bb7/c=12-0-478-350&r=x404&c=534x401/local/-/media/2017/05/17/Louisville/Louisville/636306125477931409-dachsund-in-hood.jpg",
+          "https://cdn-images-1.medium.com/max/1600/1*xmJO4mMU2U9iF306EjL22g.jpeg",
+          "https://pm1.narvii.com/6273/e2e0709814d60d12d146c8da7b3869ebc202e98f_hq.jpg",
+          "http://www.ru-dog.ru/uploads/images/00/00/08/2013/07/30/1bd0e4.jpg",
+          "https://pbs.twimg.com/profile_images/778264793031516160/ZB-5sDjq.jpg",
+          "https://i.redd.it/4bm184ech64x.jpg",
+          "https://i.reddituploads.com/d2c16bb8f6f448bc85619b87cd3d9ceb?fit=max&h=1536&w=1536&s=6f6f30e59a64ec332812499cf3c52c5a",
+          "https://images.hellogiggles.com/uploads/2017/12/28015616/merriam-webster-doggo.jpg",
+          "http://www.dogbazar.org/wp-content/uploads/2014/09/british-bull-dog-puppies.jpg",
+          "https://static.boredpanda.com/blog/wp-content/uploads/2017/09/funny-dog-thoughts-tweets-1.jpg",
+          "https://www.cheatsheet.com/wp-content/uploads/2017/05/GettyImages-114304972-640x427.jpg",
+          "http://pupjoyblog.com/wp-content/uploads/2017/06/Cute-dog-listening-to-music-1_1.jpg"
+          ]
+
 
 def insertBirbPics(cursor):
     sql = "SELECT * FROM bird"
@@ -37,8 +59,5 @@ def insertBirbPics(cursor):
 
     sql = "SELECT * FROM pic"
     cursor.execute(sql)
-
-   # for row in cursor:
-   #     print(row)
 
 
