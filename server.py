@@ -116,11 +116,6 @@ def account_transactions():
     return render_template('account-transactions.html')
 
 
-@app.route('/test')
-def test():
-    return render_template('test.html')
-
-
 @app.route('/account/info')
 @login_required
 def account_info():
@@ -189,13 +184,6 @@ def close_db(error):
 @login_manager.user_loader
 def load_user(email):
     return User.get(email)
-
-
-@app.route("/restricted/")
-@login_required
-def restricted_page():
-    user_id = (current_user.get_id() or "No User Logged In")
-    return render_template("restricted.html", user_id=user_id)
 
 
 @login_manager.unauthorized_handler
