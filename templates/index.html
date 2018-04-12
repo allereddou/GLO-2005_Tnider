@@ -4,7 +4,6 @@
     {% block head %}
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="/static/js/materialize.js"></script>
-        <script>$(".dropdown-trigger").dropdown();</script>
         <link rel="stylesheet" href="/static/css/materialize.css">
         <link rel="stylesheet" href="/static/css/main.css">
         <link rel="shortcut icon" href="/static/ressources/favicon.png">
@@ -21,6 +20,14 @@
                 flex: 1 0 auto;
             }
         </style>
+        <script>
+            $(document).ready(function () {
+                {
+                    $('select').material_select();
+                    $(".dropdown-trigger").dropdown({hover: false});
+                }
+            });
+        </script>
     {% endblock %}
     <meta charset="UTF-8">
 </head>
@@ -42,6 +49,19 @@
             </ul>
         </div>
     </nav>
+    <div class="hide-on-large-only" id="white-bar">
+        <nav>
+        <div class="row">
+            <ul>{% if current_user.is_authenticated %}
+                <li class="col s6"><a style="color: white" class="show-on-medium-and-down right" href="/account">Account</a></li>
+            {% endif %}
+                <li class="col s6"><a style="color:#white" class="show-on-medium-and-down left"
+                       href="{% if current_user.is_authenticated %}/logout{% else %}/#signin{% endif %}">{% if
+                    current_user.is_authenticated %}Logout{% else %}Login{% endif %}</a></li>
+            </ul>
+        </div>
+        </nav>
+    </div>
 </header>
 
 <body>
