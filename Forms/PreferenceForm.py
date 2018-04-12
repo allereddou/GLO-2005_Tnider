@@ -4,7 +4,7 @@ from wtforms import SubmitField, BooleanField
 
 class PreferenceForm(FlaskForm):
     save = SubmitField('submit')
-    kitteh1 = BooleanField('kitteh')
+    Doggo = BooleanField('Doggo')
 
     def __init__(self, *args, **kwargs):
         kwargs['csrf_enabled'] = False

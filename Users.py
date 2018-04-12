@@ -14,6 +14,7 @@ class User(UserMixin):
         self.telephone = telephone
         self.solde = solde
         self.profileImage = profileImage
+        self.preferences = {}
 
     def get_auth_token(self):
         login_serializer = URLSafeTimedSerializer(app.secret_key)
