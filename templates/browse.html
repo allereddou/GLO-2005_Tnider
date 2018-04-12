@@ -34,7 +34,7 @@
                                             <i class="fa fa-map-marker"></i> {{ animal['location'] }}
                                         </p>
                                         <a class="waves-effect waves-light btn modal-trigger secondary-content pink"
-                               href="/browse/delete?num={{ animal['id'] }}">Delete</a>
+                                           href="/browse/delete?num={{ animal['id'] }}">Delete</a>
                                     </div>
                                 </div>
                             </div>
@@ -46,11 +46,11 @@
         <div class="col s12 m6 l9">
             <div class="card" id="animalCard{{ animal['id'] }}" style="display: none">
                 <div class="card-image" id="card-image-random">
-                    <img src="{{ animal['link'] }}" style="max-height: 60vh">
+                    <img src="{{ animal['link'] }}" style="max-height: 60vh" class="activator">
                     <span class="card-title">{{ animal['nom'] }}</span>
                 </div>
                 <div class="card-content">
-                    <p> I'm a doggo, plz boop me</p>
+                    <p>{{ animal['description'] }}</p>
                 </div>
                 <div class="card-action">
                     <div class="row valign-wrapper" id="card-button">
@@ -58,16 +58,20 @@
                             <div class="col s4 center-align"><a href="/browse/dislike"
                                                                 class="fas fa-times-circle fa-5x"
                                                                 style="color: red"></a></div>
+                            <div class="col s4 center-align"><a class="fas fa-info-circle fa-5x activator"
+                                                                style="color:blue"></a>
+                            </div>
                             <div class="col s4 center-align"><a href="/browse/like"
                                                                 class="fab fa-gratipay fa-5x"
                                                                 style="color:#42c682"></a>
                             </div>
-                            <div class="col s4 center-align"><a href="browse/superlike" class="fas fa-star fa-5x"
-                                                                style="color:blue"></a>
-                            </div>
 
                         </div>
                     </div>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4"><b>{{ animal['nom'] }}</b> - {{ animal['race'] }}<i class="fas fa-times right"></i></span>
+                    <p>Sexe: {{ animal['sexe'] }}<br>Location: {{ animal['location'] }}<br>Poids: {{ animal['poids'] }} kg<br>{{ animal['age'] }} ans<br>{{ animal['description'] }}</p>
                 </div>
             </div>
         </div>
