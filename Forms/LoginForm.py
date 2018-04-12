@@ -28,28 +28,6 @@ class RegisterForm(FlaskForm):
         super(RegisterForm, self).__init__(*args, **kwargs)
 
 
-class LikeForm(FlaskForm):
-    like = SubmitField('submit')
-
-    def __init__(self, *args, **kwargs):
-        kwargs['csrf_enabled'] = False
-        super(LikeForm, self).__init__(*args, **kwargs)
-
-
-class DislikeForm(FlaskForm):
-    like = SubmitField('submit')
-
-    def __init__(self, *args, **kwargs):
-        kwargs['csrf_enabled'] = False
-        super(DislikeForm, self).__init__(*args, **kwargs)
-
-
-class SuperlikeForm(FlaskForm):
-    like = SubmitField('submit')
-
-    def __init__(self, *args, **kwargs):
-        kwargs['csrf_enabled'] = False
-        super(SuperlikeForm, self).__init__(*args, **kwargs)
 
 
 

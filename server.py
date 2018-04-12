@@ -4,7 +4,8 @@ from flask import Flask, render_template, request, g, redirect, url_for
 from flask_login import LoginManager, login_required, login_user, current_user, logout_user
 import math, random, re
 
-from Forms.LoginForm import LoginForm, RegisterForm, LikeForm, DislikeForm, SuperlikeForm
+from Forms.LoginForm import LoginForm, RegisterForm
+from Forms.PreferenceForm import PreferenceForm
 from Users import *
 from persistance.bdUtils import createUser, checkIfUsernameAlreadyUsed, checkIfEmailAlreadyUsed, validatePassword
 
@@ -98,9 +99,13 @@ def contact_us():
     return render_template('contact_us.html')
 
 
-@app.route('/account/preferences')
+@app.route('/account/preferences', methods=["GET", "POST"])
 @login_required
 def account_preferences():
+    preference_form = PreferenceForm(request.form)
+    if preference_form.validate_on_submit() and request.form['btn'] == "Save":
+        print("allo")
+    print(preference_form.data)
     return render_template('account-preferences.html')
 
 
