@@ -2,7 +2,6 @@
 {% block title %}Browse{% endblock %}
 {% block head %}
     {{ super() }}
-    <script type="text/javascript" src="/static/js/card.js"></script>
     <script>
         $(document).ready(function () {
             $('.modal').modal();
@@ -12,59 +11,66 @@
 {% block content %}
     <div class="row">
         <!-- http://materializecss.com/collections.html -->
-        <div class="col s12 m6 l3" style="overflow-y: scroll; max-height: 70vh;">
-            <ul class="collection">
-
-                {% for animal in wishlist %}
-                    <li class="collection-item avatar">
-                        <img src="{{ animal['link'] }}" alt="" class="circle">
-                        <span class="title">{{ animal['nom'] }}</span>
-                        <p><i class="fa fa-exclamation"></i> {{ animal['race'] }} <br>
-                            <i class="fa fa-map-marker"></i> {{ animal['location'] }}
-                        </p>
-                        <a class="waves-effect waves-light btn modal-trigger secondary-content"
-                           href="#animal_modal{{ animal['id'] }}">Open</a>
-                    </li>
-                    <div id="animal_modal{{ animal['id'] }}" class="modal">
-                        <div class="modal-content">
-                            <img src="{{ animal['link'] }}"><br>
+        <div class="col s12 m6 l3">
+            <div style="overflow-y: scroll; max-height: 70vh;">
+                <ul class="collection">
+                    {% for animal in wishlist %}
+                        <li class="collection-item avatar">
+                            <img src="{{ animal['link'] }}" alt="" class="circle">
                             <span class="title">{{ animal['nom'] }}</span>
                             <p><i class="fa fa-exclamation"></i> {{ animal['race'] }} <br>
                                 <i class="fa fa-map-marker"></i> {{ animal['location'] }}
                             </p>
-                        </div>
-                    </div>
-                {% endfor %}
-            </ul>
-        </div>
-        {% for animal in dispo %}
-            <div class="col s12 m6 l9">
-                <form method="post">
-                    <div class="card" id="animalCard{{ animal['id'] }}" style="display: none">
-                        <div class="card-image" id="card-image-random">
-                            <img src="{{ animal['link'] }}" height="100vh">
-                            <span class="card-title">{{ animal['nom'] }}</span>
-                        </div>
-                        <div class="card-content">
-                            <p> I'm a doggo, plz boop me</p>
-                        </div>
-                        <div class="card-action">
-                            <div class="row s12 valign-wrapper" id="card-button">
-                                <div class="col s4 center-align"><a onclick="dislike({{ animal['id'] }})"
-                                                                    class="fas fa-times-circle fa-5x"
-                                                                    style="color: red"></a></div>
-                                <div class="col s4 center-align"><a onclick="like({{ animal['id'] }})"
-                                                                    class="fab fa-gratipay fa-5x"
-                                                                    style="color:#42c682"></a>
-                                </div>
-                                <div class="col s4 center-align"><a class="fas fa-star fa-5x" style="color:blue"></a>
+                            <a class="waves-effect waves-light btn modal-trigger secondary-content pink"
+                               href="#animal_modal{{ animal['id'] }}">Open</a>
+                        </li>
+                        <div id="animal_modal{{ animal['id'] }}" class="modal">
+                            <div class="modal-content">
+                                <div class="row">
+                                    <img src="{{ animal['link'] }}" style="max-height: 60vh" class="col s6">
+                                    <div class="row">
+                                        <span class="title">{{ animal['nom'] }}</span>
+                                        <p><i class="fa fa-exclamation"></i> {{ animal['race'] }} <br>
+                                            <i class="fa fa-map-marker"></i> {{ animal['location'] }}
+                                        </p>
+                                        <a class="waves-effect waves-light btn modal-trigger secondary-content pink"
+                               href="/browse/delete?num={{ animal['id'] }}">Delete</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </form>
+                    {% endfor %}
+                </ul>
             </div>
-        {% endfor %}
+        </div>
+        <div class="col s12 m6 l9">
+            <div class="card" id="animalCard{{ animal['id'] }}" style="display: none">
+                <div class="card-image" id="card-image-random">
+                    <img src="{{ animal['link'] }}" style="max-height: 60vh">
+                    <span class="card-title">{{ animal['nom'] }}</span>
+                </div>
+                <div class="card-content">
+                    <p> I'm a doggo, plz boop me</p>
+                </div>
+                <div class="card-action">
+                    <div class="row valign-wrapper" id="card-button">
+                        <div class="row s12 valign-wrapper" id="card-button">
+                            <div class="col s4 center-align"><a href="/browse/dislike"
+                                                                class="fas fa-times-circle fa-5x"
+                                                                style="color: red"></a></div>
+                            <div class="col s4 center-align"><a href="/browse/like"
+                                                                class="fab fa-gratipay fa-5x"
+                                                                style="color:#42c682"></a>
+                            </div>
+                            <div class="col s4 center-align"><a href="browse/superlike" class="fas fa-star fa-5x"
+                                                                style="color:blue"></a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script>document.getElementById('animalCard{{ first }}').style.display = 'block';</script>
     </div>
 {% endblock %}

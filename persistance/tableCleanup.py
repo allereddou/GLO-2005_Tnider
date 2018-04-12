@@ -30,6 +30,9 @@ def deleteAllTables(cursor):
         sql = "DROP TABLE IF EXISTS desire"
         cursor.execute(sql)
 
+        sql = "DROP TABLE IF EXISTS notdesired"
+        cursor.execute(sql)
+
         sql = "DROP DATABASE IF EXISTS PROJET_BD"
         cursor.execute(sql)
 
@@ -64,5 +67,8 @@ def createTables(cursor):
     cursor.execute(sql)
 
     sql = "CREATE TABLE IF NOT EXISTS desire(username VARCHAR(20), id INT, PRIMARY KEY (username, id));"
+    cursor.execute(sql)
+
+    sql = "CREATE TABLE IF NOT EXISTS notdesired(username VARCHAR(20), id INT, PRIMARY KEY (username, id));"
     cursor.execute(sql)
 

@@ -2,9 +2,9 @@ from datetime import timedelta
 import pymysql
 from flask import Flask, render_template, request, g, redirect, url_for
 from flask_login import LoginManager, login_required, login_user, current_user, logout_user
-import math, random
+import math, random, re
 
-from Forms.LoginForm import LoginForm, RegisterForm
+from Forms.LoginForm import LoginForm, RegisterForm, LikeForm, DislikeForm, SuperlikeForm
 from Users import *
 from persistance.bdUtils import createUser, checkIfUsernameAlreadyUsed, checkIfEmailAlreadyUsed, validatePassword
 
@@ -33,20 +33,55 @@ def about():
 @app.route('/browse', methods=['GET', 'POST'])
 @login_required
 def browse():
+    global dispo
     wishlist = get_animals_desired()
-    data = get_profile(current_user.email)
-    ids = []
-    for animal in wishlist:
-        ids.append(animal['id'])
-    try:
-        first = random.choice(ids)
-    except IndexError:
-        first = None
+    dispo = get_possible_match()
     if request.method == 'GET':
-        print("GET")
-        return render_template('browse.html', wishlist=wishlist, dispo=wishlist, data=data, first=first)
+        return render_template('browse.html', wishlist=wishlist, animal=dispo, first=dispo['id'])
     if request.method == 'POST':
-        return redirect(url_for('browse', data=data))
+        return render_template('browse.html', wishlist=wishlist, dispo=wishlist, first=first)
+
+
+@app.route('/browse/like')
+@login_required
+def like():
+    cursor = get_db()
+    cursor.execute("INSERT desire(username, id) VALUES ('{}', {})".format(current_user.username, dispo['id']))
+    return redirect(request.referrer)
+
+
+@app.route('/browse/dislike')
+@login_required
+def dislike():
+    cursor = get_db()
+    cursor.execute("INSERT notdesired(username, id) VALUES ('{}', {})".format(current_user.username, dispo['id']))
+    return redirect(request.referrer)
+
+
+@app.route('/browse/superlike')
+@login_required
+def superlike():
+    cursor = get_db()
+    cursor.execute("INSERT desire(username, id) VALUES ('{}', {})".format(current_user.username, dispo['id']))
+    return redirect(request.referrer)
+
+
+@app.route('/deletenotdesired')
+@login_required
+def delete_not_desired():
+    cursor = get_db()
+    cursor.execute("DELETE FROM notdesired WHERE username = '{}'".format(current_user.username))
+    return redirect(request.referrer)
+
+
+@app.route('/browse/delete')
+@login_required
+def delete_desired():
+    num = request.args['num']
+    cursor = get_db()
+    cursor.execute(
+        "DELETE FROM desire WHERE username = '{}' and id = {}".format(current_user.username, num))
+    return redirect(request.referrer)
 
 
 @app.route('/account')
@@ -183,6 +218,23 @@ def get_profile(email):
         return False
     else:
         return result[0]
+
+
+# cette fonction doit être modifiée pour trouver un animal
+def get_possible_match():
+    cursor = get_db()
+    sql = "SELECT A.id FROM animal A WHERE A.id not in (SELECT D.id FROM desire D WHERE D.username = '{}') and A.id not in (SELECT D.id FROM notdesired D WHERE D.username = '{}');".format(
+        current_user.username, current_user.username)
+    cursor.execute(sql)
+    possible_id = cursor.fetchall()
+    IDs = list()
+    for i in possible_id:
+        IDs.append(i['id'])
+    random.shuffle(IDs)
+    sql = "SELECT DISTINCT A.id, P.link, A.nom, A.race, A.location FROM pic P, animal A WHERE A.id = P.id and A.id = {}".format(
+        IDs.pop())
+    cursor.execute(sql)
+    return cursor.fetchall()[0]
 
 
 if __name__ == '__main__':
