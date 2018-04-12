@@ -60,14 +60,6 @@ def dislike():
     return redirect(request.referrer)
 
 
-@app.route('/browse/superlike')
-@login_required
-def superlike():
-    cursor = get_db()
-    cursor.execute("INSERT desire(username, id) VALUES ('{}', {})".format(current_user.username, dispo['id']))
-    return redirect(request.referrer)
-
-
 @app.route('/deletenotdesired')
 @login_required
 def delete_not_desired():
@@ -230,7 +222,7 @@ def get_possible_match():
     for i in possible_id:
         IDs.append(i['id'])
     random.shuffle(IDs)
-    sql = "SELECT DISTINCT A.id, P.link, A.nom, A.race, A.location FROM pic P, animal A WHERE A.id = P.id and A.id = {}".format(
+    sql = "SELECT DISTINCT A.id, P.link, A.nom, A.race, A.location, A.sexe, A.age, A.poids, A.description FROM pic P, animal A WHERE A.id = P.id and A.id = {}".format(
         IDs.pop())
     cursor.execute(sql)
     return cursor.fetchall()[0]
