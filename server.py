@@ -102,12 +102,7 @@ def contact_us():
 @app.route('/account/preferences', methods=["GET", "POST"])
 @login_required
 def account_preferences():
-    preference_form = PreferenceForm(request.form)
-    if preference_form.validate_on_submit() and request.form['btn'] == "Save":
-        print("allo")
-
-    print(preference_form.Doggo)
-
+    print(request.form.to_dict())
     return render_template('account-preferences.html')
 
 
