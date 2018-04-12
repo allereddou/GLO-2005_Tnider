@@ -11,6 +11,7 @@ python3 data.py
 
 * [python v3.6.x](https://www.python.org/downloads/)
 * [pip v9.0.x](https://pypi.python.org/pypi/pip)
+* [mySQL](https://www.mysql.com/downloads/)
 
 ## Démarrage
 
