@@ -65,6 +65,12 @@ def superlike():
     cursor.execute("INSERT desire(username, id) VALUES ('{}', {})".format(current_user.username, dispo['id']))
     return redirect(url_for('browse'))
 
+@app.route('/deletenotdesired')
+@login_required
+def delete_not_desired():
+    cursor = get_db()
+    cursor.execute("DELETE FROM notdesired WHERE username = '{}'".format(current_user.username))
+    return redirect(request.referrer)
 
 @app.route('/account')
 @login_required
