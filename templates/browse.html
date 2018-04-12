@@ -11,34 +11,35 @@
 {% block content %}
     <div class="row">
         <!-- http://materializecss.com/collections.html -->
-        <div class="col s12 m6 l3" style="overflow-y: scroll; max-height: 70vh;">
-            <ul class="collection">
-
-                {% for animal in wishlist %}
-                    <li class="collection-item avatar">
-                        <img src="{{ animal['link'] }}" alt="" class="circle">
-                        <span class="title">{{ animal['nom'] }}</span>
-                        <p><i class="fa fa-exclamation"></i> {{ animal['race'] }} <br>
-                            <i class="fa fa-map-marker"></i> {{ animal['location'] }}
-                        </p>
-                        <a class="waves-effect waves-light btn modal-trigger secondary-content"
-                           href="#animal_modal{{ animal['id'] }}">Open</a>
-                    </li>
-                    <div id="animal_modal{{ animal['id'] }}" class="modal">
-                        <div class="modal-content">
-                            <div class="row">
-                                <img src="{{ animal['link'] }}" style="max-height: 40vh;" class="col s6">
+        <div class="col s12 m6 l3">
+            <div style="overflow-y: scroll; max-height: 70vh;">
+                <ul class="collection">
+                    {% for animal in wishlist %}
+                        <li class="collection-item avatar">
+                            <img src="{{ animal['link'] }}" alt="" class="circle">
+                            <span class="title">{{ animal['nom'] }}</span>
+                            <p><i class="fa fa-exclamation"></i> {{ animal['race'] }} <br>
+                                <i class="fa fa-map-marker"></i> {{ animal['location'] }}
+                            </p>
+                            <a class="waves-effect waves-light btn modal-trigger secondary-content pink"
+                               href="#animal_modal{{ animal['id'] }}">Open</a>
+                        </li>
+                        <div id="animal_modal{{ animal['id'] }}" class="modal">
+                            <div class="modal-content">
                                 <div class="row">
-                                    <span class="title">{{ animal['nom'] }}</span>
-                                    <p><i class="fa fa-exclamation"></i> {{ animal['race'] }} <br>
-                                        <i class="fa fa-map-marker"></i> {{ animal['location'] }}
-                                    </p>
+                                    <img src="{{ animal['link'] }}" style="max-height: 40vh;" class="col s6">
+                                    <div class="row">
+                                        <span class="title">{{ animal['nom'] }}</span>
+                                        <p><i class="fa fa-exclamation"></i> {{ animal['race'] }} <br>
+                                            <i class="fa fa-map-marker"></i> {{ animal['location'] }}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
-            </ul>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
         <div class="col s12 m6 l9">
             <div class="card" id="animalCard{{ animal['id'] }}" style="display: none">
