@@ -4,6 +4,7 @@ from persistance.bdUtils import getUserFromEmail
 
 defaultProfileImage = "https://accrualnet.cancer.gov/sites/accrualnet.cancer.gov/themes/accrualnet/accrualnet-internals/images/avatars/male/Red.png"
 
+
 class User(UserMixin):
     def __init__(self, email, password, username, nom, prenom, telephone, solde, profileImage):
         self.email = email
@@ -14,6 +15,7 @@ class User(UserMixin):
         self.telephone = telephone
         self.solde = solde
         self.profileImage = profileImage
+        self.preferences = {}
 
     def get_auth_token(self):
         login_serializer = URLSafeTimedSerializer(app.secret_key)
