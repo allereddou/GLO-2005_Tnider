@@ -54,7 +54,7 @@ def like():
 @login_required
 def dislike():
     cursor = get_db()
-    cursor.execute("INSERT desire(username, id) VALUES ('{}', {})".format(current_user.username, dispo['id']))
+    cursor.execute("INSERT notdesired(username, id) VALUES ('{}', {})".format(current_user.username, dispo['id']))
     return redirect(url_for('browse'))
 
 
@@ -205,8 +205,16 @@ def get_profile(email):
 # cette fonction doit être modifiée pour trouver un animal
 def get_possible_match():
     cursor = get_db()
+    sql = "SELECT A.id FROM animal A WHERE A.id not in (SELECT D.id FROM desire D WHERE D.username = '{}') and A.id not in (SELECT D.id FROM notdesired D WHERE D.username = '{}');".format(
+        current_user.username, current_user.username)
+    cursor.execute(sql)
+    possible_id = cursor.fetchall()
+    IDs = list()
+    for i in possible_id:
+        IDs.append(i['id'])
+    random.shuffle(IDs)
     sql = "SELECT DISTINCT A.id, P.link, A.nom, A.race, A.location FROM pic P, animal A WHERE A.id = P.id and A.id = {}".format(
-        random.randint(0, 100))
+        IDs.pop())
     cursor.execute(sql)
     return cursor.fetchall()[0]
 

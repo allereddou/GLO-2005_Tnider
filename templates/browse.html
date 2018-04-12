@@ -26,11 +26,15 @@
                     </li>
                     <div id="animal_modal{{ animal['id'] }}" class="modal">
                         <div class="modal-content">
-                            <img src="{{ animal['link'] }}"><br>
-                            <span class="title">{{ animal['nom'] }}</span>
-                            <p><i class="fa fa-exclamation"></i> {{ animal['race'] }} <br>
-                                <i class="fa fa-map-marker"></i> {{ animal['location'] }}
-                            </p>
+                            <div class="row">
+                                <img src="{{ animal['link'] }}" style="max-height: 40vh;" class="col s6">
+                                <div class="row">
+                                    <span class="title">{{ animal['nom'] }}</span>
+                                    <p><i class="fa fa-exclamation"></i> {{ animal['race'] }} <br>
+                                        <i class="fa fa-map-marker"></i> {{ animal['location'] }}
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 {% endfor %}
@@ -55,7 +59,8 @@
                                                                 class="fab fa-gratipay fa-5x"
                                                                 style="color:#42c682"></a>
                             </div>
-                            <div class="col s4 center-align"><a href="browse/superlike" class="fas fa-star fa-5x" style="color:blue"></a>
+                            <div class="col s4 center-align"><a href="browse/superlike" class="fas fa-star fa-5x"
+                                                                style="color:blue"></a>
                             </div>
 
                         </div>
