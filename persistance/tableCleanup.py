@@ -2,7 +2,7 @@ def deleteAllTables(cursor):
     sql = "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'PROJET_BD';"
     tableExists = cursor.execute(sql)
 
-    if (tableExists):
+    if tableExists:
         sql = "USE PROJET_BD"
         cursor.execute(sql)
 
