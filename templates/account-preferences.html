@@ -17,10 +17,22 @@
                 radioButtonsColors[j].disabled = (source.checked) ? '' : 'disabled';
             }
 
-            let radioButtonsGender = document.getElementsByName('grpGenderCat');
-            for (let k = 0, n = radioButtonsGender.length; k < n; k++) {
-                radioButtonsGender[k].checked = source.checked;
-                radioButtonsGender[k].disabled = (source.checked) ? '' : 'disabled';
+            let checkBoxGender = document.getElementsByName('grpGenderCat');
+            for (let k = 0, n = checkBoxGender.length; k < n; k++) {
+                checkBoxGender[k].checked = source.checked;
+                checkBoxGender[k].disabled = (source.checked) ? '' : 'disabled';
+            }
+
+            let checkBoxWeight = document.getElementsByName("grpWeightCat");
+            for (let l = 0, n = checkBoxWeight.length; l < n; l++) {;
+                checkBoxWeight[l].checked = source.checked;
+                checkBoxWeight[l].disabled = (source.checked) ? '' : 'disabled';
+            }
+
+            let checkBoxAge = document.getElementsByName("grpAgeCat");
+            for (let m = 0, n = checkBoxAge.length; m < n; m++) {
+                checkBoxAge[m].checked = source.checked;
+                checkBoxAge[m].disabled = (source.checked) ? '' : 'disabled';
             }
         }
 
@@ -42,6 +54,21 @@
                 checkBoxGender[k].checked = source.checked;
                 checkBoxGender[k].disabled = (source.checked) ? '' : 'disabled';
             }
+
+            let checkBoxWeight = document.getElementsByName("grpWeightDoggo");
+            for (let l = 0, n = checkBoxWeight.length; l < n; l++) {
+                checkBoxWeight[l].checked = source.checked;
+                checkBoxWeight[l].disabled = (source.checked) ? '' : 'disabled';
+            }
+
+            let checkBoxAge = document.getElementsByName("grpAgeDoggo");
+            for (let m = 0, n = checkBoxAge.length; m < n; m++) {
+                checkBoxAge[m].checked = source.checked;
+                checkBoxAge[m].disabled = (source.checked) ? '' : 'disabled';
+            }
+
+
+
         }
 
         function toggleBirb(source) {
@@ -55,6 +82,18 @@
             for (let j = 0, n = checkBoxGender.length; j < n; j++) {
                 checkBoxGender[j].checked = source.checked;
                 checkBoxGender[j].disabled = (source.checked) ? '' : 'disabled';
+            }
+
+            let checkBoxAge = document.getElementsByName('grpAgeBirb');
+            for (let k = 0, n = checkBoxAge.length; k < n; k++) {
+                checkBoxAge[k].checked = source.checked;
+                checkBoxAge[k].disabled = (source.checked) ? '' : 'disabled';
+            }
+
+            let checkBoxWeight = document.getElementsByName('grpWeightBirb');
+            for (let l = 0, n = checkBoxWeight.length; l < n; l++) {
+                checkBoxWeight[l].checked = source.checked;
+                checkBoxWeight[l].disabled = (source.checked) ? '' : 'disabled';
             }
 
 
@@ -94,6 +133,36 @@
                                                    disabled="disabled"/><label for="blackCat">Black </label></li>
 
 
+
+                <li class="collection-item">Weight (lbs)</li>
+                <li class="collection-item"><input type="checkbox" name="grpWeightCat" id="0_10CatWeight"
+                                                   disabled="disabled"/><label for="0_10CatWeight">0 - 10 </label>
+                </li>
+
+                <li class="collection-item"><input type="checkbox" name="grpWeightCat" id="10_20CatWeight"
+                                                   disabled="disabled"/><label for="10_20CatWeight">10 - 20 </label>
+                </li>
+
+                <li class="collection-item"><input type="checkbox" name="grpWeightCat" id="20PlusCatWeight"
+                                                   disabled="disabled"/><label for="20PlusCatWeight">20+ </label>
+                </li>
+
+
+                <li class="collection-item">Age</li>
+                <li class="collection-item"><input type="checkbox" name="grpAgeCat" id="0_5CatAge"
+                                                   disabled="disabled"/><label for="0_5CatAge">0 - 5 </label>
+                </li>
+
+                <li class="collection-item"><input type="checkbox" name="grpAgeCat" id="5_10CatAge"
+                                                   disabled="disabled"/><label for="5_10CatAge">5 - 10 </label>
+                </li>
+
+                <li class="collection-item"><input type="checkbox" name="grpAgeCat" id="10PlusCatAge"
+                                                   disabled="disabled"/><label for="10PlusCatAge">10+ </label>
+                </li>
+
+
+
                 <li class="collection-item">Gender</li>
 
 
@@ -119,8 +188,6 @@
 
 
                 <li class="collection-item">Color</li>
-
-
                 <li class="collection-item"><input type="checkbox" name="grpColorDoggo" id="gingerDoggo"
                                                    disabled="disabled"/><label for="gingerDoggo">Ginger </label>
                 </li>
@@ -139,6 +206,35 @@
 
                 <li class="collection-item"><input type="checkbox" name="grpColorDoggo" id="blackDoggo"
                                                    disabled="disabled"/><label for="blackDoggo">Black </label>
+                </li>
+
+
+                <li class="collection-item">Weight (lbs)</li>
+                <li class="collection-item"><input type="checkbox" name="grpWeightDoggo" id="0_20Doggo"
+                                                   disabled="disabled"/><label for="0_20Doggo">0 - 20 </label>
+                </li>
+
+                <li class="collection-item"><input type="checkbox" name="grpWeightDoggo" id="20_40Doggo"
+                                                   disabled="disabled"/><label for="20_40Doggo">20 - 40 </label>
+                </li>
+
+                <li class="collection-item"><input type="checkbox" name="grpWeightDoggo" id="40PlusDoggo"
+                                                   disabled="disabled"/><label for="40PlusDoggo">40+ </label>
+                </li>
+
+
+
+                <li class="collection-item">Age</li>
+                <li class="collection-item"><input type="checkbox" name="grpAgeDoggo" id="0_5Doggo"
+                                                   disabled="disabled"/><label for="0_5Doggo">0 - 5 </label>
+                </li>
+
+                <li class="collection-item"><input type="checkbox" name="grpAgeDoggo" id="5_10Doggo"
+                                                   disabled="disabled"/><label for="5_10Doggo">5 - 10 </label>
+                </li>
+
+                <li class="collection-item"><input type="checkbox" name="grpAgeDoggo" id="10PlusDoggo"
+                                                   disabled="disabled"/><label for="10PlusDoggo">10+ </label>
                 </li>
 
 
@@ -191,9 +287,35 @@
                                                    disabled="disabled"/><label for="greyBirb">Grey </label></li>
 
 
+                <li class="collection-item">Weight (lbs)</li>
+                <li class="collection-item"><input type="checkbox" name="grpWeightBirb" id="0_1Birb"
+                                                   disabled="disabled"/><label for="0_1Birb">0 - 1 </label>
+                </li>
+
+                <li class="collection-item"><input type="checkbox" name="grpAgeBirb" id="1_2Birb"
+                                                   disabled="disabled"/><label for="1_2Birb">1 - 2 </label>
+                </li>
+
+                <li class="collection-item"><input type="checkbox" name="grpAgeBirb" id="2PlusBirb"
+                                                   disabled="disabled"/><label for="2PlusBirb">2+ </label>
+                </li>
+
+
+                <li class="collection-item">Age</li>
+                <li class="collection-item"><input type="checkbox" name="grpAgeBirb" id="0_5Birb"
+                                                   disabled="disabled"/><label for="0_5Birb">0 - 5 </label>
+                </li>
+
+                <li class="collection-item"><input type="checkbox" name="grpAgeBirb" id="5_10Birb"
+                                                   disabled="disabled"/><label for="5_10Birb">5 - 10 </label>
+                </li>
+
+                <li class="collection-item"><input type="checkbox" name="grpAgeBirb" id="10PlusBirb"
+                                                   disabled="disabled"/><label for="10PlusBirb">10+ </label>
+                </li>
+
+
                 <li class="collection-item">Gender</li>
-
-
                 <li class="collection-item"><input type="checkbox" class="with-gap" name="grpGenderBirb" id="maleBirb"
                                                    disabled="disabled"/><label for="maleBirb">Male </label></li>
 
