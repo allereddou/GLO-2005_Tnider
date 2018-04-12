@@ -6,6 +6,7 @@
         $(document).ready(function () {
             $('.modal').modal();
         });
+
         function update(field) {
             window.location.search += '_change?' + field + '=' + document.getElementById(field).value;
         }
@@ -73,5 +74,8 @@
         <p>Reset all not desired animals</p>
         <button class="btn red waves-effect waves-light"><a class="white-text" href="/deletenotdesired">Reset</a>
         </button>
+
+        <p>Add more funds to your account</p>
+        <button class="btn red waves-effect waves-light"><a class="white-text">Add funds</a>
     </div>
 {% endblock %}
