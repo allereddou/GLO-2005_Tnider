@@ -84,6 +84,15 @@ def delete_desired():
     return redirect(request.referrer)
 
 
+@app.route('/account/info')
+@login_required
+def change_username(username):
+    username = request.args['username']
+    cursor = get_db()
+    cursor.execute("UPDATE user SET username = '{}' WHERE username = '{}'".format(username, current_user.username))
+    return redirect('/account/info')
+
+
 @app.route('/account')
 @login_required
 def sign_in():
@@ -95,13 +104,13 @@ def contact_us():
     return render_template('contact_us.html')
 
 
-@app.route('/account-preferences')
+@app.route('/account/preferences')
 @login_required
 def account_preferences():
     return render_template('account-preferences.html')
 
 
-@app.route('/account-transactions')
+@app.route('/account/transactions')
 @login_required
 def account_transactions():
     return render_template('account-transactions.html')
@@ -112,7 +121,7 @@ def test():
     return render_template('test.html')
 
 
-@app.route('/account-info')
+@app.route('/account/info')
 @login_required
 def account_info():
     return render_template('account-info.html')
