@@ -33,6 +33,9 @@ def deleteAllTables(cursor):
         sql = "DROP TABLE IF EXISTS notdesired"
         cursor.execute(sql)
 
+        sql = "DROP TABLE IF EXISTS transaction"
+        cursor.execute(sql)
+
         sql = "DROP DATABASE IF EXISTS PROJET_BD"
         cursor.execute(sql)
 
@@ -66,9 +69,11 @@ def createTables(cursor):
     sql = "CREATE TABLE IF NOT EXISTS pic (id INT NOT NULL , caption VARCHAR(45) NOT NULL, link VARCHAR(200) NOT NULL, PRIMARY KEY(id));"
     cursor.execute(sql)
 
-    sql = "CREATE TABLE IF NOT EXISTS desire(username VARCHAR(20), id INT, PRIMARY KEY (username, id));"
+    sql = "CREATE TABLE IF NOT EXISTS desire(username VARCHAR(20), id INT, PRIMARY KEY (username, id), FOREIGN KEY(username) REFERENCES user(username), FOREIGN KEY(id) REFERENCES animal(id));"
     cursor.execute(sql)
 
-    sql = "CREATE TABLE IF NOT EXISTS notdesired(username VARCHAR(20), id INT, PRIMARY KEY (username, id));"
+    sql = "CREATE TABLE IF NOT EXISTS notdesired(username VARCHAR(20), id INT, PRIMARY KEY (username, id), FOREIGN KEY(username) REFERENCES user(username), FOREIGN KEY(id) REFERENCES animal(id));"
     cursor.execute(sql)
 
+    sql = "CREATE TABLE IF NOT EXISTS transactions(seller VARCHAR(20), id INT, buyer VARCHAR(20), PRIMARY KEY (seller, id, buyer), FOREIGN KEY(seller) REFERENCES user(username), FOREIGN KEY(buyer) REFERENCES user(username), FOREIGN KEY(id) REFERENCES animal(id));"
+    cursor.execute(sql)
