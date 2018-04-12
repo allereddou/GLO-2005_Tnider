@@ -2,7 +2,7 @@ from datetime import timedelta
 import pymysql
 from flask import Flask, render_template, request, g, redirect, url_for
 from flask_login import LoginManager, login_required, login_user, current_user, logout_user
-import math, random
+import math, random, re
 
 from Forms.LoginForm import LoginForm, RegisterForm, LikeForm, DislikeForm, SuperlikeForm
 from Users import *
@@ -47,7 +47,7 @@ def browse():
 def like():
     cursor = get_db()
     cursor.execute("INSERT desire(username, id) VALUES ('{}', {})".format(current_user.username, dispo['id']))
-    return redirect(url_for('browse'))
+    return redirect(request.referrer)
 
 
 @app.route('/browse/dislike')
@@ -55,7 +55,7 @@ def like():
 def dislike():
     cursor = get_db()
     cursor.execute("INSERT notdesired(username, id) VALUES ('{}', {})".format(current_user.username, dispo['id']))
-    return redirect(url_for('browse'))
+    return redirect(request.referrer)
 
 
 @app.route('/browse/superlike')
@@ -63,7 +63,8 @@ def dislike():
 def superlike():
     cursor = get_db()
     cursor.execute("INSERT desire(username, id) VALUES ('{}', {})".format(current_user.username, dispo['id']))
-    return redirect(url_for('browse'))
+    return redirect(request.referrer)
+
 
 @app.route('/deletenotdesired')
 @login_required
@@ -71,6 +72,17 @@ def delete_not_desired():
     cursor = get_db()
     cursor.execute("DELETE FROM notdesired WHERE username = '{}'".format(current_user.username))
     return redirect(request.referrer)
+
+
+@app.route('/browse/delete')
+@login_required
+def delete_desired():
+    num = request.args['num']
+    cursor = get_db()
+    cursor.execute(
+        "DELETE FROM desire WHERE username = '{}' and id = {}".format(current_user.username, num))
+    return redirect(request.referrer)
+
 
 @app.route('/account')
 @login_required
