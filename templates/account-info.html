@@ -6,6 +6,7 @@
         $(document).ready(function () {
             $('.modal').modal();
         });
+
         function update(field) {
             window.location.search += '_change?' + field + '=' + document.getElementById(field).value;
         }
@@ -68,10 +69,23 @@
                                                                   class="secondary-content modal-trigger"><i
                         class="fas fa-pencil-alt"></i></a></div>
             </li>
+            <li class="collection-item">
+                <div><b>Profile Image: </b>{{ current_user.profileImage }}<a href="#change_profileImage"
+                                                                  class="secondary-content modal-trigger"><i
+                        class="fas fa-pencil-alt"></i></a></div>
+            </li>
+            <li class="collection-item">
+                <div><b>Password: </b>**********<a href="#change_password"
+                                                                  class="secondary-content modal-trigger"><i
+                        class="fas fa-pencil-alt"></i></a></div>
+            </li>
         </ul>
 
         <p>Reset all not desired animals</p>
         <button class="btn red waves-effect waves-light"><a class="white-text" href="/deletenotdesired">Reset</a>
         </button>
+
+        <p>Add more funds to your account</p>
+        <button class="btn red waves-effect waves-light"><a class="white-text">Add funds</a>
     </div>
 {% endblock %}
