@@ -84,9 +84,9 @@ def delete_desired():
     return redirect(request.referrer)
 
 
-@app.route('/account/info')
+@app.route('/account/info_change')
 @login_required
-def change_username(username):
+def change_username():
     username = request.args['username']
     cursor = get_db()
     cursor.execute("UPDATE user SET username = '{}' WHERE username = '{}'".format(username, current_user.username))
