@@ -6,8 +6,7 @@
         $(document).ready(function () {
             $('.modal').modal();
         });
-
-        function update(field, page_id) {
+        function update(field) {
             window.location.search += '_change?' + field + '=' + document.getElementById(field).value;
         }
     </script>
