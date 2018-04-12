@@ -4,6 +4,8 @@ import random
 
 genders = 'mf'
 
+defaultProfileImage = "https://accrualnet.cancer.gov/sites/accrualnet.cancer.gov/themes/accrualnet/accrualnet-internals/images/avatars/male/Red.png"
+
 
 def insertUsers(cursor, number):
     for i in range(0, number + 1):
@@ -17,8 +19,8 @@ def insertUsers(cursor, number):
         telephone = random.randint(1000000000, 10000000000)
         solde = random.randint(0.00, 999.00)
 
-        sql = "INSERT INTO user(username, pass, nom, prenom, email, telephone, solde) VALUES ('{}', '{}', '{}', '{}', '{}', {}, {})"
-        cursor.execute(sql.format(username, hashed, nom, prenom, email, telephone, solde))
+        sql = "INSERT INTO user(username, pass, nom, prenom, email, telephone, solde, profileImage) VALUES ('{}', '{}', '{}', '{}', '{}', {}, {}, '{}')"
+        cursor.execute(sql.format(username, hashed, nom, prenom, email, telephone, solde, defaultProfileImage))
 
         username = "admin"
         password = "admin"
@@ -30,8 +32,8 @@ def insertUsers(cursor, number):
         solde = 0.0
 
         if i == 0:
-            sql = "INSERT INTO user(username, pass, nom, prenom, email, telephone, solde) VALUES ('{}', '{}', '{}', '{}', '{}', {}, {})"
-            cursor.execute(sql.format(username, hashed, nom, prenom, email, telephone, solde))
+            sql = "INSERT INTO user(username, pass, nom, prenom, email, telephone, solde, profileImage) VALUES ('{}', '{}', '{}', '{}', '{}', {}, {}, '{}')"
+            cursor.execute(sql.format(username, hashed, nom, prenom, email, telephone, solde, defaultProfileImage))
 
 
 
