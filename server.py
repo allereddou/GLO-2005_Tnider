@@ -78,6 +78,15 @@ def delete_desired():
     return redirect(request.referrer)
 
 
+@app.route('/addanimal', methods=["GET", "POST"])
+@login_required
+def add_animal():
+    return render_template('addAnimals.html')
+
+
+
+
+
 @app.route('/account/info_change')
 @login_required
 def change_username():
@@ -158,6 +167,8 @@ def logout_page():
 
 
 def get_db():
+    sql = "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'PROJET_BD';"
+
     if not hasattr(g, 'cursor'):
         db = pymysql.connect(host='localhost',
                              port=3306,
@@ -165,6 +176,12 @@ def get_db():
                              autocommit=True)
 
         g.cursor = db.cursor(pymysql.cursors.DictCursor)
+        schemaExists = g.cursor.execute(sql)
+
+        if (not(schemaExists)):
+            sql = "CREATE DATABASE IF NOT EXISTS PROJET_BD"
+            g.cursor.execute(sql)
+
         g.cursor.execute("USE PROJET_BD")
     return g.cursor
 
