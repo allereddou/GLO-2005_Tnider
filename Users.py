@@ -2,9 +2,10 @@ from flask_login import UserMixin
 from itsdangerous import URLSafeTimedSerializer
 from persistance.bdUtils import getUserFromEmail
 
+defaultProfileImage = "https://accrualnet.cancer.gov/sites/accrualnet.cancer.gov/themes/accrualnet/accrualnet-internals/images/avatars/male/Red.png"
 
 class User(UserMixin):
-    def __init__(self, email, password, username, nom, prenom, telephone, solde):
+    def __init__(self, email, password, username, nom, prenom, telephone, solde, profileImage):
         self.email = email
         self.password = password
         self.username = username
@@ -12,6 +13,7 @@ class User(UserMixin):
         self.prenom = prenom
         self.telephone = telephone
         self.solde = solde
+        self.profileImage = profileImage
 
     def get_auth_token(self):
         login_serializer = URLSafeTimedSerializer(app.secret_key)
@@ -30,7 +32,7 @@ class User(UserMixin):
                 password = (result['pass'])
 
             return User(email, password, result['username'], result['nom'], result['prenom'], result['telephone'],
-                        result['solde'])
+                        result['solde'], defaultProfileImage)
 
     def is_authenticated(self):
         return True

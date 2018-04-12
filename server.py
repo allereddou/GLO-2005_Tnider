@@ -19,6 +19,8 @@ app.config.update(dict(
 login_manager = LoginManager()
 login_serializer = URLSafeTimedSerializer(app.secret_key)
 
+defaultProfileImage = "https://accrualnet.cancer.gov/sites/accrualnet.cancer.gov/themes/accrualnet/accrualnet-internals/images/avatars/male/Red.png"
+
 
 @app.route('/home')
 def home():
@@ -148,7 +150,7 @@ def login_page():
                 return render_template("home.html")
 
             user = User(register_form.email.data, register_form.password2.data, register_form.username.data,
-                        register_form.last_name.data, register_form.first_name.data, register_form.phone_number.data, 0)
+                        register_form.last_name.data, register_form.first_name.data, register_form.phone_number.data, 0, defaultProfileImage)
 
             createUser(user)
             login_user(user, remember=True)

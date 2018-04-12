@@ -34,7 +34,7 @@
                 <li><a id="white_bar_writing" href="/about">About</a></li>
                 <li><a id="white_bar_writing" href="/contact_us">Contact us </a></li>
                 {% if current_user.is_authenticated %}
-                    <li><a id="white_bar_writing" href="/account"><i class="fas fa-user-circle"></i></a></li>
+                    <li><a id="white_bar_writing" href="/account"><img class="circle responsive-img" style="max-height: 5vh; padding-top: 6px" src="{{ current_user.profileImage }}"></a></li>
                 {% endif %}
                 <li><a id="white_bar_writing"
                        href="{% if current_user.is_authenticated %}/logout{% else %}/#signin{% endif %}">{% if
