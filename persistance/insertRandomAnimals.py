@@ -2,11 +2,12 @@ import random
 import names
 
 races = ['Birb', 'Doggo', 'Kitteh']
-plumages = ['blanc', 'noir', 'jaune']
-pelages = ['blanc', 'noir', 'brun', 'gris']
+plumages = ['blanc', 'noir', 'jaune', 'gris', 'beige', 'vert']
+pelages = ['blanc', 'noir', 'brun', 'gris', 'roux']
 binaryChoice = [0, 1]
 genders = 'mf'
 cities = ['Montreal', 'Quebec', 'Rouyn-Noranda', 'Levis', 'St-Hyacinthe', 'Riviere-Du-Loup', 'London', 'Mongolie Orientale']
+
 
 def insertAnimal(cursor, number):
     for j in range(0, number + 1):

@@ -32,3 +32,12 @@
 .clickable:hover {
     cursor: pointer;
 }
+
+.card-profile-image {
+    width: 110px;
+    position: absolute;
+    z-index: 1;
+    left: 40px;
+    cursor: pointer;
+    margin: 0;
+}

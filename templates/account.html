@@ -1,31 +1,46 @@
 {% extends "index.html" %}
 {% block title %}Account{% endblock %}
 {% block head %}
-{{ super() }}
+    {{ super() }}
 
 {% endblock %}
 {% block content %}
-<div class="section white">
-    <div class="row">
-        <div class="card s12">
+
+    <div class="section white">
+        <div class="card">
+
             <div class="card-content">
-                <p>NOM PIS TOUTE</p>
+                <div class="row">
+                    <div class="col s3">
+                        <img src="http://demo.geekslabs.com/materialize/v2.1/layout03/images/avatar.jpg"
+                             class="circle z-depth-2 responsive-img activator card-profile-image">
+                    </div>
+                    <div class="col s3">
+                        <h4 class="card-title grey-text text-darken-4">{{ current_user.prenom }} {{ current_user.nom }}</h4>
+                        <p class="medium-small grey-text">{{ current_user.email }}</p>
+                    </div>
+                    <div class="col s2 center-align">
+                        <h4 class="card-title grey-text text-darken-4">Balance</h4>
+                        <p class="medium-small grey-text">{{ current_user.solde }} $</p>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="col s12 m3">
-        <div class="collection">
-            <a href="/account/info" class="collection-item {% block infoaction %}{% endblock %}">Infos</a>
-            <a href="/account/transactions" class="collection-item {% block transactionaction %}{% endblock %}">Transactions</a>
-            <a href="/account/preferences" class="collection-item {% block prefaction %}{% endblock %}">Preferences</a>
+
+    <div class="row">
+        <div class="col s12 m3">
+            <div class="collection">
+                <a href="account-info" class="collection-item {% block infoaction %}{% endblock %}">Infos</a>
+                <a href="account-transactions" class="collection-item {% block transactionaction %}{% endblock %}">Transactions</a>
+                <a href="account-preferences"
+                   class="collection-item {% block prefaction %}{% endblock %}">Preferences</a>
+            </div>
+        </div>
+        <div class="s12 m9">
+            {% block account %}
+            {% endblock %}
         </div>
     </div>
-    <div class="s12 m9">
-        {% block account %}
-        {% endblock %}
-    </div>
-</div>
-
 {% endblock %}
