@@ -1,24 +1,78 @@
 {% extends "account.html" %}
 {% block title %}Account - Preferences{% endblock %}
 {% block head %}
-{{ super() }}
+    {{ super() }}
+    <script>
+        $(document).ready(function () {
+            $('.modal').modal();
+        });
+
+        function update(field, page_id) {
+            window.location.search += '_change?' + field + '=' + document.getElementById(field).value;
+        }
+    </script>
 
 {% endblock %}
 {% block infoaction %}active{% endblock %}
 {% block account %}
-<div class="col s12 m9">
-    <form id="preferences">
-        <div class="collection col s12 m4">
-            <p>Kitteh</p>
+    <div id="change_username" class="modal">
+        <div class="modal-content">
+            <var id="new_username">x</var>
+            <input type="text" id="username"/><label for="username">Username</label>
         </div>
-        <div class="collection col s12 m4">
-            <p>Birbs</p>
+    </div>
+    <a onclick="update(username);">ALLO</a>
+    <div id="change_firstname" class="modal">
+        <div class="modal-content">
+            <form><input type="text" id="first_name"><label for="first_name">First name</label></form>
         </div>
-        <div class="collection col s12 m4">
-            <p>Doggos</p>
+    </div>
+    <div id="change_lastname" class="modal">
+        <div class="modal-content">
+            <form><input type="text" id="last_name"><label for="last_name">Last name</label></form>
         </div>
-    </form>
-    <p>Erase all not desired animals</p>
-    <button class="btn red waves-effect waves-light"><a class="white-text" href="/deletenotdesired">Delete</a></button>
-</div>
+    </div>
+    <div id="change_email" class="modal">
+        <div class="modal-content">
+            <form><input type="text" id="email"><label for="email">Email</label></form>
+        </div>
+    </div>
+    <div id="change_phone" class="modal">
+        <div class="modal-content">
+            <form><input type="text" id="phone"><label for="phone">Phone</label></form>
+        </div>
+    </div>
+    <div class="col s12 m9">
+        <ul class="collection with-header">
+            <li class="collection-item">
+                <div><b>Username: </b>{{ current_user.username }}<a href="#change_username"
+                                                                    class="secondary-content modal-trigger"><i
+                        class="fas fa-pencil-alt"></i></a></div>
+            </li>
+            <li class="collection-item">
+                <div><b>Last name: </b>{{ current_user.nom }}<a href="#change_lastname"
+                                                                class="secondary-content modal-trigger"><i
+                        class="fas fa-pencil-alt"></i></a></div>
+            </li>
+            <li class="collection-item">
+                <div><b>First name: </b>{{ current_user.prenom }}<a href="#change_firstname"
+                                                                    class="secondary-content modal-trigger"><i
+                        class="fas fa-pencil-alt"></i></a></div>
+            </li>
+            <li class="collection-item">
+                <div><b>Email: </b>{{ current_user.email }}<a href="#change_email"
+                                                              class="secondary-content modal-trigger"><i
+                        class="fas fa-pencil-alt"></i></a></div>
+            </li>
+            <li class="collection-item">
+                <div><b>Phone: </b>{{ current_user.telephone }}<a href="#change_phone"
+                                                                  class="secondary-content modal-trigger"><i
+                        class="fas fa-pencil-alt"></i></a></div>
+            </li>
+        </ul>
+
+        <p>Reset all not desired animals</p>
+        <button class="btn red waves-effect waves-light"><a class="white-text" href="/deletenotdesired">Reset</a>
+        </button>
+    </div>
 {% endblock %}
