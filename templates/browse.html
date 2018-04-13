@@ -41,6 +41,11 @@
                                                     <a class="waves-effect waves-light btn modal-trigger secondary-content pink"
                                                        href="/browse/buy?num={{ animal['id'] }}">Buy</a>
                                                 </div>
+                                            {% else %}
+                                                <div class="col s3 right">
+                                                    <a class="waves-effect waves-light btn modal-trigger secondary-content pink"
+                                                       href="#">Not enough funds</a>
+                                                </div>
                                             {% endif %}
                                             <div class="col s3 left">
                                                 <a class="center waves-effect waves-light btn modal-trigger secondary-content pink"
