@@ -31,7 +31,7 @@ def home():
 @app.route('/account/myanimals')
 @login_required
 def myanimals():
-    cursor =get_db()
+    cursor = get_db()
     cursor.execute("SELECT * FROM vend WHERE username = '{}'".format(current_user.username))
     tosell = cursor.fetchall()
     return render_template('account-my-animals.html', tosell=tosell)
@@ -85,6 +85,24 @@ def delete_desired():
     cursor = get_db()
     cursor.execute(
         "DELETE FROM desire WHERE username = '{}' and id = {}".format(current_user.username, num))
+    return redirect(request.referrer)
+
+
+@app.route('/browse/buy')
+@login_required
+def buy():
+    num = request.args['num']
+    cursor = get_db()
+    cursor.execute("SELECT * FROM vend WHERE id_animal = {}".format(num))
+    vend = cursor.fetchall()[0]
+    cursor.execute(
+        "INSERT transactions(seller, id, buyer, prix) VALUES('{}',{},'{}',{})".format(vend['username'], num,
+                                                                                      current_user.username,
+                                                                                      vend['prix']))
+
+    cursor.execute("DELETE FROM desire WHERE id = {}".format(num))
+    cursor.execute("DELETE FROM notdesired WHERE id = {}".format(num))
+    cursor.execute("DELETE FROM vend WHERE id_animal = {}".format(num))
     return redirect(request.referrer)
 
 

@@ -17,12 +17,12 @@ def insertRandomTransactions(cursor):
 
     for user in users:
         for i in range(random.randint(0, 2)):
-            sql = "INSERT transactions(seller, id, buyer) VALUES('{}', {}, '{}')"
+            sql = "INSERT transactions(seller, id, buyer, prix) VALUES('{}', {}, '{}', {})"
             seller = user['username']
             buyer = chooseRandomBuyer(seller, users)
             animal = animals[present_iterator]
             present_iterator += 1
-            cursor.execute(sql.format(seller, animal, buyer))
+            cursor.execute(sql.format(seller, animal, buyer, random.randint(0, 99)))
 
 
 def chooseRandomBuyer(seller, users):

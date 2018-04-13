@@ -32,14 +32,14 @@ def setupDatabase():
         # insérer des photos de chats
         insertKittehPics(cursor)
 
-        # insérer des wishlits
-        insertRandomDesired(cursor)
-
         # insérer des transactions
         insertRandomTransactions(cursor)
 
         # insérer des owners
         insertRandomOwners(cursor)
+
+        # insérer des wishlits
+        insertRandomDesired(cursor)
 
 
 with app.app_context():

@@ -75,5 +75,5 @@ def createTables(cursor):
     sql = "CREATE TABLE IF NOT EXISTS notdesired(username VARCHAR(20), id INT, PRIMARY KEY (username, id), FOREIGN KEY(username) REFERENCES user(username), FOREIGN KEY(id) REFERENCES animal(id));"
     cursor.execute(sql)
 
-    sql = "CREATE TABLE IF NOT EXISTS transactions(seller VARCHAR(20), id INT, buyer VARCHAR(20), PRIMARY KEY (seller, id, buyer), FOREIGN KEY(seller) REFERENCES user(username), FOREIGN KEY(buyer) REFERENCES user(username), FOREIGN KEY(id) REFERENCES animal(id));"
+    sql = "CREATE TABLE IF NOT EXISTS transactions(seller VARCHAR(20), id INT, buyer VARCHAR(20), prix DECIMAL(5,2), PRIMARY KEY (seller, id, buyer), FOREIGN KEY(seller) REFERENCES user(username), FOREIGN KEY(buyer) REFERENCES user(username), FOREIGN KEY(id) REFERENCES animal(id));"
     cursor.execute(sql)
