@@ -2,10 +2,9 @@ from datetime import timedelta
 import pymysql
 from flask import Flask, render_template, request, g, redirect, url_for
 from flask_login import LoginManager, login_required, login_user, current_user, logout_user
-import math, random, re
+import random
 
 from Forms.LoginForm import LoginForm, RegisterForm
-from Forms.PreferenceForm import PreferenceForm
 from Users import *
 from persistance.bdUtils import createUser, checkIfUsernameAlreadyUsed, checkIfEmailAlreadyUsed, validatePassword
 
@@ -102,7 +101,8 @@ def contact_us():
 @app.route('/account/preferences', methods=["GET", "POST"])
 @login_required
 def account_preferences():
-    print(request.form.to_dict())
+    if request.method == "GET":
+        print(request.args.to_dict())
     return render_template('account-preferences.html')
 
 
