@@ -31,13 +31,17 @@
                                     <div class="row">
                                         <span class="title">{{ animal['nom'] }}</span>
                                         <p><i class="fa fa-exclamation"></i> {{ animal['race'] }} <br>
-                                            <i class="fa fa-map-marker"></i> {{ animal['location'] }}
+                                            <i class="fa fa-map-marker"></i> {{ animal['location'] }} <br>
+                                            Owner: {{ animal['username'] }}<br>
+                                            Price: {{ animal['prix'] }}$
                                         </p>
                                         <div class="row">
-                                            <div class="col s3 right">
-                                                <a class="waves-effect waves-light btn modal-trigger secondary-content pink"
-                                                   href="/browse/buy?num={{ animal['id'] }}">Buy</a>
-                                            </div>
+                                            {% if current_user.solde >= animal['prix'] %}
+                                                <div class="col s3 right">
+                                                    <a class="waves-effect waves-light btn modal-trigger secondary-content pink"
+                                                       href="/browse/buy?num={{ animal['id'] }}">Buy</a>
+                                                </div>
+                                            {% endif %}
                                             <div class="col s3 left">
                                                 <a class="center waves-effect waves-light btn modal-trigger secondary-content pink"
                                                    href="/browse/delete?num={{ animal['id'] }}">Delete</a>

@@ -1,6 +1,6 @@
 from datetime import timedelta
 import pymysql
-from flask import Flask, render_template, request, g, redirect, url_for
+from flask import Flask, render_template, request, g, redirect, url_for, flash
 from flask_login import LoginManager, login_required, login_user, current_user, logout_user
 import math, random, re
 
@@ -95,6 +95,7 @@ def buy():
     cursor = get_db()
     cursor.execute("SELECT * FROM vend WHERE id_animal = {}".format(num))
     vend = cursor.fetchall()[0]
+    current_user.solde -= vend['prix']
     cursor.execute(
         "INSERT transactions(seller, id, buyer, prix) VALUES('{}',{},'{}',{})".format(vend['username'], num,
                                                                                       current_user.username,
@@ -239,7 +240,7 @@ def get_animals_desired():
     wishlist = []
     for current_id in id_wishlist:
         cursor.execute(
-            "SELECT DISTINCT A.id, P.link, A.nom, A.race, A.location FROM pic P, animal A WHERE A.id = P.id and A.id = {};".format(
+            "SELECT DISTINCT A.id, P.link, A.nom, A.race, A.location, V.username, V.prix FROM pic P, animal A, vend V WHERE A.id = V.id_animal and A.id = P.id and A.id = {};".format(
                 current_id['id']))
         animal = cursor.fetchall()
         wishlist.append(animal[0])
