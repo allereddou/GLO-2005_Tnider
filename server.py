@@ -28,6 +28,15 @@ def home():
     return render_template('home.html')
 
 
+@app.route('/account/myanimals')
+@login_required
+def myanimals():
+    cursor =get_db()
+    cursor.execute("SELECT * FROM vend WHERE username = '{}'".format(current_user.username))
+    tosell = cursor.fetchall()
+    return render_template('account-my-animals.html', tosell=tosell)
+
+
 @app.route('/about')
 def about():
     return render_template('about.html')
