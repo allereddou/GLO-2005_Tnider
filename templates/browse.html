@@ -33,8 +33,16 @@
                                         <p><i class="fa fa-exclamation"></i> {{ animal['race'] }} <br>
                                             <i class="fa fa-map-marker"></i> {{ animal['location'] }}
                                         </p>
-                                        <a class="waves-effect waves-light btn modal-trigger secondary-content pink"
-                                           href="/browse/delete?num={{ animal['id'] }}">Delete</a>
+                                        <div class="row">
+                                            <div class="col s3 right">
+                                                <a class="waves-effect waves-light btn modal-trigger secondary-content pink"
+                                                   href="/browse/buy?num={{ animal['id'] }}">Buy</a>
+                                            </div>
+                                            <div class="col s3 left">
+                                                <a class="center waves-effect waves-light btn modal-trigger secondary-content pink"
+                                                   href="/browse/delete?num={{ animal['id'] }}">Delete</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -70,8 +78,10 @@
                     </div>
                 </div>
                 <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4"><b>{{ animal['nom'] }}</b> - {{ animal['race'] }}<i class="fas fa-times right"></i></span>
-                    <p>Sexe: {{ animal['sexe'] }}<br>Location: {{ animal['location'] }}<br>Poids: {{ animal['poids'] }} kg<br>{{ animal['age'] }} ans<br>{{ animal['description'] }}</p>
+                    <span class="card-title grey-text text-darken-4"><b>{{ animal['nom'] }}</b> - {{ animal['race'] }}<i
+                            class="fas fa-times right"></i></span>
+                    <p>Sexe: {{ animal['sexe'] }}<br>Location: {{ animal['location'] }}<br>Poids: {{ animal['poids'] }}
+                        kg<br>{{ animal['age'] }} ans<br>{{ animal['description'] }}</p>
                 </div>
             </div>
         </div>

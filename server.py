@@ -28,6 +28,15 @@ def home():
     return render_template('home.html')
 
 
+@app.route('/account/myanimals')
+@login_required
+def myanimals():
+    cursor = get_db()
+    cursor.execute("SELECT * FROM vend WHERE username = '{}'".format(current_user.username))
+    tosell = cursor.fetchall()
+    return render_template('account-my-animals.html', tosell=tosell)
+
+
 @app.route('/about')
 def about():
     return render_template('about.html')
@@ -79,6 +88,24 @@ def delete_desired():
     return redirect(request.referrer)
 
 
+@app.route('/browse/buy')
+@login_required
+def buy():
+    num = request.args['num']
+    cursor = get_db()
+    cursor.execute("SELECT * FROM vend WHERE id_animal = {}".format(num))
+    vend = cursor.fetchall()[0]
+    cursor.execute(
+        "INSERT transactions(seller, id, buyer, prix) VALUES('{}',{},'{}',{})".format(vend['username'], num,
+                                                                                      current_user.username,
+                                                                                      vend['prix']))
+
+    cursor.execute("DELETE FROM desire WHERE id = {}".format(num))
+    cursor.execute("DELETE FROM notdesired WHERE id = {}".format(num))
+    cursor.execute("DELETE FROM vend WHERE id_animal = {}".format(num))
+    return redirect(request.referrer)
+
+
 @app.route('/account/info_change')
 @login_required
 def change_username():
@@ -114,7 +141,19 @@ def account_preferences():
 @app.route('/account/transactions')
 @login_required
 def account_transactions():
-    return render_template('account-transactions.html')
+    cursor = get_db()
+    cursor.execute(
+        "SELECT T.buyer, T.seller, A.nom FROM transactions T, animal A WHERE T.seller = '{}' and A.id = T.id".format(
+            current_user.username))
+    sold = cursor.fetchall()
+
+    cursor = get_db()
+    cursor.execute(
+        "SELECT T.buyer, T.seller, A.nom FROM transactions T, animal A WHERE T.buyer = '{}' and A.id = T.id".format(
+            current_user.username))
+    bought = cursor.fetchall()
+
+    return render_template('account-transactions.html', sold=sold, bought=bought)
 
 
 @app.route('/account/info')
@@ -149,7 +188,8 @@ def login_page():
                 return render_template("home.html")
 
             user = User(register_form.email.data, register_form.password2.data, register_form.username.data,
-                        register_form.last_name.data, register_form.first_name.data, register_form.phone_number.data, 0, defaultProfileImage)
+                        register_form.last_name.data, register_form.first_name.data, register_form.phone_number.data, 0,
+                        defaultProfileImage)
 
             createUser(user)
             login_user(user, remember=True)
@@ -221,7 +261,7 @@ def get_profile(email):
 # cette fonction doit être modifiée pour trouver un animal
 def get_possible_match():
     cursor = get_db()
-    sql = "SELECT A.id FROM animal A WHERE A.id not in (SELECT D.id FROM desire D WHERE D.username = '{}') and A.id not in (SELECT D.id FROM notdesired D WHERE D.username = '{}');".format(
+    sql = "SELECT A.id FROM animal A WHERE A.id not in (SELECT D.id FROM desire D WHERE D.username = '{}') and A.id not in (SELECT D.id FROM notdesired D WHERE D.username = '{}') and A.id not in (SELECT T.id FROM transactions T);".format(
         current_user.username, current_user.username)
     cursor.execute(sql)
     possible_id = cursor.fetchall()
