@@ -4,7 +4,7 @@ def insertRandomDesired(cursor):
     sql = "SELECT COUNT(*) FROM animal;"
     cursor.execute(sql)
     number_of_animals_in_bd = cursor.fetchall()[0]['COUNT(*)']
-    sql = "SELECT * FROM user U;"
+    sql = "SELECT * FROM user;"
     cursor.execute(sql)
     users = cursor.fetchall()
     for user in users:
