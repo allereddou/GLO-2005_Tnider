@@ -24,9 +24,6 @@ def deleteAllTables(cursor):
         sql = "DROP TABLE IF EXISTS preferences"
         cursor.execute(sql)
 
-        sql = "DROP TABLE IF EXISTS user"
-        cursor.execute(sql)
-
         sql = "DROP TABLE IF EXISTS pic"
         cursor.execute(sql)
 
@@ -40,9 +37,6 @@ def deleteAllTables(cursor):
         cursor.execute(sql)
 
         sql = "DROP TABLE IF EXISTS user"
-        cursor.execute(sql)
-
-        sql = "DROP TABLE IF EXISTS pic"
         cursor.execute(sql)
 
         sql = "DROP DATABASE IF EXISTS PROJET_BD"
