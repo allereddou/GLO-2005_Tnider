@@ -1,6 +1,6 @@
 from datetime import timedelta
 import pymysql
-from flask import Flask, render_template, request, g, redirect, url_for
+from flask import Flask, render_template, request, g, redirect, url_for, flash
 from flask_login import LoginManager, login_required, login_user, current_user, logout_user
 import random
 
@@ -25,6 +25,15 @@ defaultProfileImage = "https://accrualnet.cancer.gov/sites/accrualnet.cancer.gov
 @app.route('/home')
 def home():
     return render_template('home.html')
+
+
+@app.route('/account/myanimals')
+@login_required
+def myanimals():
+    cursor = get_db()
+    cursor.execute("SELECT * FROM vend WHERE username = '{}'".format(current_user.username))
+    tosell = cursor.fetchall()
+    return render_template('account-my-animals.html', tosell=tosell)
 
 
 @app.route('/about')
@@ -78,6 +87,25 @@ def delete_desired():
     return redirect(request.referrer)
 
 
+@app.route('/browse/buy')
+@login_required
+def buy():
+    num = request.args['num']
+    cursor = get_db()
+    cursor.execute("SELECT * FROM vend WHERE id_animal = {}".format(num))
+    vend = cursor.fetchall()[0]
+    current_user.solde -= vend['prix']
+    cursor.execute(
+        "INSERT transactions(seller, id, buyer, prix) VALUES('{}',{},'{}',{})".format(vend['username'], num,
+                                                                                      current_user.username,
+                                                                                      vend['prix']))
+
+    cursor.execute("DELETE FROM desire WHERE id = {}".format(num))
+    cursor.execute("DELETE FROM notdesired WHERE id = {}".format(num))
+    cursor.execute("DELETE FROM vend WHERE id_animal = {}".format(num))
+    return redirect(request.referrer)
+
+
 @app.route('/account/info_change')
 @login_required
 def change_username():
@@ -109,7 +137,19 @@ def account_preferences():
 @app.route('/account/transactions')
 @login_required
 def account_transactions():
-    return render_template('account-transactions.html')
+    cursor = get_db()
+    cursor.execute(
+        "SELECT T.buyer, T.seller, A.nom FROM transactions T, animal A WHERE T.seller = '{}' and A.id = T.id".format(
+            current_user.username))
+    sold = cursor.fetchall()
+
+    cursor = get_db()
+    cursor.execute(
+        "SELECT T.buyer, T.seller, A.nom FROM transactions T, animal A WHERE T.buyer = '{}' and A.id = T.id".format(
+            current_user.username))
+    bought = cursor.fetchall()
+
+    return render_template('account-transactions.html', sold=sold, bought=bought)
 
 
 @app.route('/account/info')
@@ -144,7 +184,8 @@ def login_page():
                 return render_template("home.html")
 
             user = User(register_form.email.data, register_form.password2.data, register_form.username.data,
-                        register_form.last_name.data, register_form.first_name.data, register_form.phone_number.data, 0, defaultProfileImage)
+                        register_form.last_name.data, register_form.first_name.data, register_form.phone_number.data, 0,
+                        defaultProfileImage)
 
             createUser(user)
             login_user(user, remember=True)
@@ -160,6 +201,8 @@ def logout_page():
 
 
 def get_db():
+    sql = "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'PROJET_BD';"
+
     if not hasattr(g, 'cursor'):
         db = pymysql.connect(host='localhost',
                              port=3306,
@@ -167,6 +210,12 @@ def get_db():
                              autocommit=True)
 
         g.cursor = db.cursor(pymysql.cursors.DictCursor)
+        schemaExists = g.cursor.execute(sql)
+
+        if (not(schemaExists)):
+            sql = "CREATE DATABASE IF NOT EXISTS PROJET_BD"
+            g.cursor.execute(sql)
+
         g.cursor.execute("USE PROJET_BD")
     return g.cursor
 
@@ -194,7 +243,7 @@ def get_animals_desired():
     wishlist = []
     for current_id in id_wishlist:
         cursor.execute(
-            "SELECT DISTINCT A.id, P.link, A.nom, A.race, A.location FROM pic P, animal A WHERE A.id = P.id and A.id = {};".format(
+            "SELECT DISTINCT A.id, P.link, A.nom, A.race, A.location, V.username, V.prix FROM pic P, animal A, vend V WHERE A.id = V.id_animal and A.id = P.id and A.id = {};".format(
                 current_id['id']))
         animal = cursor.fetchall()
         wishlist.append(animal[0])
@@ -216,7 +265,7 @@ def get_profile(email):
 # cette fonction doit être modifiée pour trouver un animal
 def get_possible_match():
     cursor = get_db()
-    sql = "SELECT A.id FROM animal A WHERE A.id not in (SELECT D.id FROM desire D WHERE D.username = '{}') and A.id not in (SELECT D.id FROM notdesired D WHERE D.username = '{}');".format(
+    sql = "SELECT A.id FROM animal A WHERE A.id not in (SELECT D.id FROM desire D WHERE D.username = '{}') and A.id not in (SELECT D.id FROM notdesired D WHERE D.username = '{}') and A.id not in (SELECT T.id FROM transactions T);".format(
         current_user.username, current_user.username)
     cursor.execute(sql)
     possible_id = cursor.fetchall()

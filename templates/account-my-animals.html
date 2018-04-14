@@ -1,0 +1,25 @@
+{% extends "account.html" %}
+{% block title %}Account - My Animals{% endblock %}
+{% block head %}
+    {{ super() }}
+
+{% endblock %}
+{% block myanimals %}active{% endblock %}
+{% block account %}
+    <div class="col s12 m9">
+        <table class="highlight responsive-table">
+            <thead>
+            <tr>
+                <th>My Animals</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for animal in tosell %}
+                <tr>
+                    <td>{{ animal['id_animal'] }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

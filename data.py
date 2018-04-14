@@ -4,7 +4,8 @@ from persistance.insertRandomUsers import insertUsers
 from persistance.insertRandomAnimals import insertAnimal
 from persistance.imageLinks import insertBirbPics, insertDoggoPics, insertKittehPics
 from persistance.insertRandomDesired import insertRandomDesired
-from persistance.bdUtils import updatePreferences
+from persistance.insertRandomTransactions import insertRandomTransactions
+from persistance.insertRandomOwners import insertRandomOwners
 
 
 def setupDatabase():
@@ -20,16 +21,22 @@ def setupDatabase():
         insertUsers(cursor, 100)
 
         # insérer des animaux
-        insertAnimal(cursor, 100)
+        insertAnimal(cursor, 300)
 
         # insérer des photos d'oiseaux
         insertBirbPics(cursor)
 
-        #insérer des photos de doggo
+        # insérer des photos de doggo
         insertDoggoPics(cursor)
 
-        #insérer des photos de chats
+        # insérer des photos de chats
         insertKittehPics(cursor)
+
+        # insérer des transactions
+        insertRandomTransactions(cursor)
+
+        # insérer des owners
+        insertRandomOwners(cursor)
 
         # insérer des wishlits
         insertRandomDesired(cursor)
