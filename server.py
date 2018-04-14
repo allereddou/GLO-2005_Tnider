@@ -6,7 +6,7 @@ import random
 
 from Forms.LoginForm import LoginForm, RegisterForm
 from Users import *
-from persistance.bdUtils import createUser, checkIfUsernameAlreadyUsed, checkIfEmailAlreadyUsed, validatePassword
+from persistance.bdUtils import createUser, checkIfUsernameAlreadyUsed, checkIfEmailAlreadyUsed, validatePassword, updatePreferences
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -101,9 +101,9 @@ def contact_us():
 @app.route('/account/preferences', methods=["GET", "POST"])
 @login_required
 def account_preferences():
-    if request.method == "GET":
-        print(request.args.to_dict())
-    return render_template('account-preferences.html')
+    if request.method == "GET" and request.args.to_dict().get('Save') == "Save":
+        current_user.preferences = updatePreferences(current_user, request.args.to_dict())
+    return render_template("account-preferences.html")
 
 
 @app.route('/account/transactions')

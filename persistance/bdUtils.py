@@ -70,3 +70,31 @@ def validatePassword(email, password):
     else:
         print("wrong pass")
         return False
+
+
+def updatePreferences(user, preferences):
+    from server import get_db
+
+    cursor = get_db()
+    user.preferences = {}
+
+    try:
+        del preferences['Save']
+    except KeyError:
+        pass
+
+    for key, value in preferences.items():
+        sql = "UPDATE preferences SET {} = 1 WHERE username='{}';"
+        cursor.execute(sql.format(key, user.username))
+        user.preferences[key] = 1
+
+    print(user.preferences)
+    return user.preferences
+
+
+def setDefaultPreferences(user):
+    from server import get_db
+
+    cursor = get_db()
+
+
