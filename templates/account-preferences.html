@@ -2,6 +2,14 @@
 {% block title %}Account - Preferences{% endblock %}
 {% block head %}
     {{ super() }}
+    <script type="text/javascript">
+        {#        console.log({{pref[0]}});#}
+        {#        for (let i = 0, n = {{ pref|length }}; i < n; i++) {#}
+        {#            let checkbox = document.getElementsByName({{ pref[i] }});#}
+        {#            console.log(checkbox);#}
+        {#        }#}
+
+    </script>
     <script>
         //https://stackoverflow.com/questions/386281/how-to-implement-select-all-check-box-in-html
         function toggleKitteh(source) {
@@ -26,7 +34,6 @@
 
             let checkBoxWeight = document.getElementsByClassName("grpWeightCat");
             for (let l = 0, n = checkBoxWeight.length; l < n; l++) {
-                ;
                 checkBoxWeight[l].checked = source.checked;
                 checkBoxWeight[l].disabled = (source.checked) ? '' : 'disabled';
             }
@@ -96,8 +103,6 @@
                 checkBoxWeight[l].checked = source.checked;
                 checkBoxWeight[l].disabled = (source.checked) ? '' : 'disabled';
             }
-
-
         }
     </script>
 {% endblock %}
@@ -191,7 +196,8 @@
                 <li class="collection-item"><input class="doggo" type="checkbox" name="declawedDoggo" id="declawedDoggo"
                                                    disabled="disabled"><label
                         for="declawedDoggo">Declawed</label></li>
-                <li class="collection-item"><input type="checkbox" class="doggo" name="castratedDoggo" id="castratedDoggo"
+                <li class="collection-item"><input type="checkbox" class="doggo" name="castratedDoggo"
+                                                   id="castratedDoggo"
                                                    disabled="disabled"><label
                         for="castratedDoggo">Castrated</label></li>
 
@@ -240,11 +246,13 @@
 
 
                 <li class="collection-item">Age</li>
-                <li class="collection-item"><input type="checkbox" class="grpAgeDoggo" name="0_5AgeDoggo" id="0_5AgeDoggo"
+                <li class="collection-item"><input type="checkbox" class="grpAgeDoggo" name="0_5AgeDoggo"
+                                                   id="0_5AgeDoggo"
                                                    disabled="disabled"/><label for="0_5AgeDoggo">0 - 5 </label>
                 </li>
 
-                <li class="collection-item"><input type="checkbox" class="grpAgeDoggo" name="5_10AgeDoggo" id="5_10AgeDoggo"
+                <li class="collection-item"><input type="checkbox" class="grpAgeDoggo" name="5_10AgeDoggo"
+                                                   id="5_10AgeDoggo"
                                                    disabled="disabled"/><label for="5_10AgeDoggo">5 - 10 </label>
                 </li>
 
@@ -305,15 +313,18 @@
 
 
                 <li class="collection-item">Weight (lbs)</li>
-                <li class="collection-item"><input type="checkbox" class="grpWeightBirb" name="0_1WeightBirb" id="0_1WeightBirb"
+                <li class="collection-item"><input type="checkbox" class="grpWeightBirb" name="0_1WeightBirb"
+                                                   id="0_1WeightBirb"
                                                    disabled="disabled"/><label for="0_1WeightBirb">0 - 1 </label>
                 </li>
 
-                <li class="collection-item"><input type="checkbox" class="grpWeightBirb" name="1_2WeightBirb" id="1_2WeightBirb"
+                <li class="collection-item"><input type="checkbox" class="grpWeightBirb" name="1_2WeightBirb"
+                                                   id="1_2WeightBirb"
                                                    disabled="disabled"/><label for="1_2WeightBirb">1 - 2 </label>
                 </li>
 
-                <li class="collection-item"><input type="checkbox" class="grpWeightBirb" name="2PlusWeightBirb" id="2PlusWeightBirb"
+                <li class="collection-item"><input type="checkbox" class="grpWeightBirb" name="2PlusWeightBirb"
+                                                   id="2PlusWeightBirb"
                                                    disabled="disabled"/><label for="2PlusWeightBirb">2+ </label>
                 </li>
 
@@ -323,11 +334,13 @@
                                                    disabled="disabled"/><label for="0_5AgeBirb">0 - 5 </label>
                 </li>
 
-                <li class="collection-item"><input type="checkbox" class="grpAgeBirb" name="5_10AgeBirb" id="5_10AgeBirb"
+                <li class="collection-item"><input type="checkbox" class="grpAgeBirb" name="5_10AgeBirb"
+                                                   id="5_10AgeBirb"
                                                    disabled="disabled"/><label for="5_10AgeBirb">5 - 10 </label>
                 </li>
 
-                <li class="collection-item"><input type="checkbox" class="grpAgeBirb" name="10AgePlusBirb" id="10AgePlusBirb"
+                <li class="collection-item"><input type="checkbox" class="grpAgeBirb" name="10AgePlusBirb"
+                                                   id="10AgePlusBirb"
                                                    disabled="disabled"/><label for="10AgePlusBirb">10+ </label>
                 </li>
 
@@ -345,6 +358,6 @@
             <button type="submit" class="btn red waves-effect waves-light" name="Save" value="Save">Save</button>
         </form>
     </div>
-
 {% endblock %}
+
 

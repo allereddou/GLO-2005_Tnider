@@ -131,7 +131,8 @@ def contact_us():
 def account_preferences():
     if request.method == "GET" and request.args.to_dict().get('Save') == "Save":
         current_user.preferences = updatePreferences(current_user, request.args.to_dict())
-    return render_template("account-preferences.html")
+        print(current_user.preferences.keys())
+    return render_template("account-preferences.html", pref=current_user.preferences.keys())
 
 
 @app.route('/account/transactions')
@@ -212,7 +213,7 @@ def get_db():
         g.cursor = db.cursor(pymysql.cursors.DictCursor)
         schemaExists = g.cursor.execute(sql)
 
-        if (not(schemaExists)):
+        if not schemaExists:
             sql = "CREATE DATABASE IF NOT EXISTS PROJET_BD"
             g.cursor.execute(sql)
 

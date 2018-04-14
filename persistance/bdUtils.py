@@ -2,6 +2,7 @@ from Users import *
 from persistance.passwordUtil import check_password, hash_password
 
 
+
 def getUserFromEmail(email):
     from server import app, get_db
     with app.app_context():
@@ -88,7 +89,6 @@ def updatePreferences(user, preferences):
         cursor.execute(sql.format(key, user.username))
         user.preferences[key] = 1
 
-    print(user.preferences)
     return user.preferences
 
 
@@ -96,5 +96,6 @@ def setDefaultPreferences(user):
     from server import get_db
 
     cursor = get_db()
+
 
 
