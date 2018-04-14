@@ -107,15 +107,6 @@ def buy():
     return redirect(request.referrer)
 
 
-@app.route('/account/info_change')
-@login_required
-def change_username():
-    username = request.args['username']
-    cursor = get_db()
-    cursor.execute("UPDATE user SET username = '{}' WHERE username = '{}'".format(username, current_user.username))
-    return redirect('/account/info')
-
-
 @app.route('/account')
 @login_required
 def sign_in():
@@ -161,6 +152,17 @@ def account_transactions():
 @login_required
 def account_info():
     return render_template('account-info.html')
+
+
+@app.route('/account/info/change/<field>=<new>')
+@login_required
+def change(field, new):
+    cursor = get_db()
+    if field == 'telephone':
+        cursor.execute("UPDATE user SET {} = {} WHERE username = '{}'".format(field, new, current_user.username))
+    else:
+        cursor.execute("UPDATE user SET {} = '{}' WHERE username = '{}'".format(field, new, current_user.username))
+    return redirect(request.referrer)
 
 
 @app.route("/", methods=["GET", "POST"])

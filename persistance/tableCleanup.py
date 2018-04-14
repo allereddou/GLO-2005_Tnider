@@ -63,17 +63,17 @@ def createTables(cursor):
     sql = "CREATE TABLE IF NOT EXISTS cat(id INT, PRIMARY KEY (id), pelage VARCHAR(20), castre BOOLEAN, degriffe BOOLEAN, FOREIGN KEY (id) REFERENCES animal(id) ON DELETE CASCADE);"
     cursor.execute(sql)
 
-    sql = "CREATE TABLE IF NOT EXISTS vend(username VARCHAR(20), id_animal INT, prix DECIMAL(5,2), id_vente INT AUTO_INCREMENT, PRIMARY KEY(id_vente), FOREIGN KEY (username) REFERENCES user(username), FOREIGN KEY (id_animal) REFERENCES animal(id) ON DELETE CASCADE);"
+    sql = "CREATE TABLE IF NOT EXISTS vend(username VARCHAR(20), id_animal INT, prix DECIMAL(5,2), id_vente INT AUTO_INCREMENT, PRIMARY KEY(id_vente), FOREIGN KEY (username) REFERENCES user(username) ON UPDATE CASCADE, FOREIGN KEY (id_animal) REFERENCES animal(id) ON DELETE CASCADE);"
     cursor.execute(sql)
 
     sql = "CREATE TABLE IF NOT EXISTS pic (id INT NOT NULL , caption VARCHAR(45) NOT NULL, link VARCHAR(200) NOT NULL, PRIMARY KEY(id));"
     cursor.execute(sql)
 
-    sql = "CREATE TABLE IF NOT EXISTS desire(username VARCHAR(20), id INT, PRIMARY KEY (username, id), FOREIGN KEY(username) REFERENCES user(username), FOREIGN KEY(id) REFERENCES animal(id));"
+    sql = "CREATE TABLE IF NOT EXISTS desire(username VARCHAR(20), id INT, PRIMARY KEY (username, id), FOREIGN KEY(username) REFERENCES user(username) ON UPDATE CASCADE , FOREIGN KEY(id) REFERENCES animal(id));"
     cursor.execute(sql)
 
-    sql = "CREATE TABLE IF NOT EXISTS notdesired(username VARCHAR(20), id INT, PRIMARY KEY (username, id), FOREIGN KEY(username) REFERENCES user(username), FOREIGN KEY(id) REFERENCES animal(id));"
+    sql = "CREATE TABLE IF NOT EXISTS notdesired(username VARCHAR(20), id INT, PRIMARY KEY (username, id), FOREIGN KEY(username) REFERENCES user(username) ON UPDATE CASCADE , FOREIGN KEY(id) REFERENCES animal(id));"
     cursor.execute(sql)
 
-    sql = "CREATE TABLE IF NOT EXISTS transactions(seller VARCHAR(20), id INT, buyer VARCHAR(20), prix DECIMAL(5,2), PRIMARY KEY (seller, id, buyer), FOREIGN KEY(seller) REFERENCES user(username), FOREIGN KEY(buyer) REFERENCES user(username), FOREIGN KEY(id) REFERENCES animal(id));"
+    sql = "CREATE TABLE IF NOT EXISTS transactions(seller VARCHAR(20), id INT, buyer VARCHAR(20), prix DECIMAL(5,2), PRIMARY KEY (seller, id, buyer), FOREIGN KEY(seller) REFERENCES user(username) ON UPDATE CASCADE, FOREIGN KEY(buyer) REFERENCES user(username) ON UPDATE CASCADE, FOREIGN KEY(id) REFERENCES animal(id));"
     cursor.execute(sql)

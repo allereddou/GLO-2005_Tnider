@@ -8,38 +8,45 @@
         });
 
         function update(field) {
-            window.location.search += '_change?' + field + '=' + document.getElementById(field).value;
+            if (document.getElementById(field).value){
+                document.getElementById('change').href = '/account/info/change/'+ field + '=' + document.getElementById(field).value;
+                document.getElementById('change').click()
+            }
         }
     </script>
 
 {% endblock %}
 {% block infoaction %}active{% endblock %}
 {% block account %}
+    <a href="" id="change" style="display: none"></a>
     <div id="change_username" class="modal">
         <div class="modal-content">
-            <var id="new_username">x</var>
             <input type="text" id="username"/><label for="username">Username</label>
+            <a onclick="update('username')" class="btn">UPDATE</a>
         </div>
     </div>
-    <a onclick="update(username);">ALLO</a>
     <div id="change_firstname" class="modal">
         <div class="modal-content">
-            <form><input type="text" id="first_name"><label for="first_name">First name</label></form>
+            <input type="text" id="first_name"/><label for="first_name">First Name</label>
+            <a onclick="update('prenom')" class="btn">UPDATE</a>
         </div>
     </div>
     <div id="change_lastname" class="modal">
         <div class="modal-content">
-            <form><input type="text" id="last_name"><label for="last_name">Last name</label></form>
+            <input type="text" id="last_name"/><label for="last_name">Last Name</label>
+            <a onclick="update('nom')" class="btn">UPDATE</a>
         </div>
     </div>
     <div id="change_email" class="modal">
         <div class="modal-content">
-            <form><input type="text" id="email"><label for="email">Email</label></form>
+            <input type="email" id="email"/><label for="email">Email</label>
+            <a onclick="update('email')" class="btn">UPDATE</a>
         </div>
     </div>
     <div id="change_phone" class="modal">
         <div class="modal-content">
-            <form><input type="text" id="phone"><label for="phone">Phone</label></form>
+            <input type="text" id="phone"/><label for="phone">Phone</label>
+            <a onclick="update('telephone')" class="btn">UPDATE</a>
         </div>
     </div>
     <div class="col s12 m9">
