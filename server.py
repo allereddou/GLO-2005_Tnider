@@ -183,6 +183,15 @@ def changeimg(field, new):
     return redirect(request.referrer)
 
 
+@app.route('/user/<username>')
+@login_required
+def username(username):
+    cursor = get_db()
+    cursor.execute("SELECT U.username, U.nom, U.prenom, U.nom, U.email, U.profileImage, U.telephone FROM user U WHERE U.username = '{}'".format(username))
+    user = cursor.fetchall()[0]
+    return render_template('user.html', user=user)
+
+
 @app.route('/addAnimal')
 @login_required
 def add_Animal():

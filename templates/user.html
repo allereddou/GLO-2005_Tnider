@@ -1,0 +1,29 @@
+{% extends "index.html" %}
+{% block title %}Tnider - {{ user['prenom'] }} {{ user['nom'] }}{% endblock %}
+{% block head %}
+{{ super() }}
+<script>
+</script>
+{% endblock %}
+{% block content %}
+    <div class="card">
+        <div class="card-content">
+            <div class="row">
+                <div class="col s4">
+                    <img src='{{ user['profileImage'] }}'
+                         class="circle z-depth-2 responsive-img card-profile-image">
+                </div>
+                <div class="col s4">
+                    <h4 class="card-title grey-text text-darken-4">{{ user['prenom'] }} {{ user['nom'] }}</h4>
+                    <p class="medium-small grey-text">{{ user['username'] }}</p>
+                </div>
+                <div class="col s4">
+                    <h4 class="card-title grey-text text-darken-4">Contact</h4>
+                    <p class="medium-small grey-text">{{ user['telephone'] }}</p>
+                    <p class="medium-small grey-text">{{ user['email'] }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

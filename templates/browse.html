@@ -41,7 +41,7 @@
                                                 {% if animal['degriffe'] == 1 %}Declawed{% endif %}<br>
                                             {% endif %}
                                             <br> {{ animal['description'] }}<br><br>
-                                            Owner: {{ animal['username'] }}<br>
+                                            Contact Owner: <a class="center waves-effect waves-light btn pink" href="/user/{{ animal['username'] }}">{{ animal['username'] }}</a><br>
                                             Price: {{ animal['prix'] }}$<br>
                                         </p>
                                         <div class="row">
