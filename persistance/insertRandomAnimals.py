@@ -21,8 +21,8 @@ def insertAnimal(cursor, number):
         race = random.choice(races)
 
         if race == 'Birb':
-            poids = random.randint(0, 4)
-        elif race == 'Cat'
+            poids = random.randint(0, 10)
+        elif race == 'Cat':
             poids = random.randint(0, 30)
         else:
             poids = random.randint(0, 50)

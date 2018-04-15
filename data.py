@@ -21,7 +21,7 @@ def setupDatabase():
         insertUsers(cursor, 100)
 
         # insérer des animaux
-        insertAnimal(cursor, 300)
+        insertAnimal(cursor, 1000)
 
         # insérer des photos d'oiseaux
         insertBirbPics(cursor)
