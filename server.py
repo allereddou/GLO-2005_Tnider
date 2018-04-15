@@ -6,7 +6,9 @@ import random
 
 from Forms.LoginForm import LoginForm, RegisterForm
 from Users import *
-from persistance.bdUtils import createUser, checkIfUsernameAlreadyUsed, checkIfEmailAlreadyUsed, validatePassword, updatePreferences
+from persistance.bdUtils import createUser, checkIfUsernameAlreadyUsed, checkIfEmailAlreadyUsed, validatePassword, \
+    updatePreferences
+from persistance.passwordUtil import hash_password
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -31,9 +33,17 @@ def home():
 @login_required
 def myanimals():
     cursor = get_db()
-    cursor.execute("SELECT * FROM vend WHERE username = '{}'".format(current_user.username))
+    cursor.execute(
+        "SELECT P.link, A.nom, A.id FROM vend V, animal A, pic P WHERE V.username = '{}' and V.id_animal = A.id and P.id = A.id".format(current_user.username))
     tosell = cursor.fetchall()
     return render_template('account-my-animals.html', tosell=tosell)
+
+
+@app.route('/account/trash/<num>')
+def trash(num):
+    cursor = get_db()
+    cursor.execute("DELETE FROM animal WHERE id = {}".format(num))
+    return redirect(request.referrer)
 
 
 @app.route('/about')
@@ -95,6 +105,7 @@ def buy():
     cursor.execute("SELECT * FROM vend WHERE id_animal = {}".format(num))
     vend = cursor.fetchall()[0]
     current_user.solde -= vend['prix']
+    cursor.execute("UPDATE user SET solde = {} WHERE username = '{}'".format(current_user.solde, current_user.username))
     cursor.execute(
         "INSERT transactions(seller, id, buyer, prix) VALUES('{}',{},'{}',{})".format(vend['username'], num,
                                                                                       current_user.username,
@@ -154,10 +165,21 @@ def account_info():
 @login_required
 def change(field, new):
     cursor = get_db()
-    if field == 'telephone':
+    if field == 'telephone' and isinstance(new, int):
         cursor.execute("UPDATE user SET {} = {} WHERE username = '{}'".format(field, new, current_user.username))
+    elif field == 'pass':
+        new = hash_password(new)
+        cursor.execute("UPDATE user SET {} = '{}' WHERE username = '{}'".format(field, new, current_user.username))
     else:
         cursor.execute("UPDATE user SET {} = '{}' WHERE username = '{}'".format(field, new, current_user.username))
+    return redirect(request.referrer)
+
+
+@app.route('/account/info/change/image/<field>=<path:new>')
+@login_required
+def changeimg(field, new):
+    cursor = get_db()
+    cursor.execute("UPDATE user SET {} = '{}' WHERE username = '{}'".format(field, new, current_user.username))
     return redirect(request.referrer)
 
 
