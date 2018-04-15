@@ -163,6 +163,12 @@ def account_info():
     return render_template('account-info.html')
 
 
+@app.route('/addAnimal')
+@login_required
+def add_Animal():
+    return render_template('addAnimals.html')
+
+
 @app.route("/", methods=["GET", "POST"])
 def login_page():
     if current_user.is_authenticated:

@@ -38,6 +38,7 @@
             <a href="{% if current_user.is_authenticated %}/browse{% else %}/{% endif %}" class="brand-logo"><img
                     src="/static/ressources/tnider.png" height="50"</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a id="white_bar_writing" href="/addAnimal">Test Add Animal</a></li>
                 <li><a id="white_bar_writing" href="/about">About</a></li>
                 <li><a id="white_bar_writing" href="/contact_us">Contact us </a></li>
                 {% if current_user.is_authenticated %}

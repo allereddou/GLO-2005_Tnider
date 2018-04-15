@@ -1,106 +1,273 @@
 {% extends "index.html" %}
-{% block title %}Home{% endblock %}
+{% block title %}Add Animals{% endblock %}
 {% block head %}
-{{ super() }}
+    {{ super() }}
+    <script>
+        $(document).ready(function () {
+            $('select').material_select();
+        });
+        $('#textarea1').val('New Text');
+        $('#textarea1').trigger('autoresize');
+    </script>
 
 {% endblock %}
 {% block content %}
 
-    {% if session['logged_in'] %}
-        <p>Already logged in</p>
+    <!-- https://codepen.io/mblarsen/pen/mVZRMM -->
+    <div class="valign-wrapper row login-box">
+        <div class="col card hoverable s10 pull-s1 m6 pull-m3 l4 pull-l4">
+            <div class="card-tabs">
+                <ul class="tabs tabs-fixed-width">
+                    <li class="tab"><a href="#Bird">Bird</a></li>
+                    <li class="tab"><a class="active" href="#Dog">Dog</a></li>
+                    <li class="tab"><a href="#Cat">Cat</a></li>
+                </ul>
+            </div>
 
-        <!-- https://codepen.io/mblarsen/pen/mVZRMM -->
-        <div class="valign-wrapper row login-box">
-            <div class="col card hoverable s10 pull-s1 m6 pull-m3 l4 pull-l4">
-                <div class="card-tabs">
-                    <ul class="tabs tabs-fixed-width">
-                        <li class="tab"><a href="#signin">Bird</a></li>
-                        <li class="tab"><a class="active" href="#signup">Dog</a></li>
-                    </ul>
+            <div class="card-content">
+
+                <div id="Dog">
+                    <p>This is for doggo</p>
+                    <form method="post">
+
+                        <div class="input-field col s12">
+                            <label for="Name">Name</label>
+                            <input type="text" class="validate" name="Name" id="Name"/>
+                        </div>
+                        <div class="input-field col s6">
+                            <label for="Age">Age</label>
+                            <input type="number" class="validate" name="Age" id="Age"/>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <select>
+                                <option value="" disabled selected>Select the sex</option>
+                                <option value="1">Male</option>
+                                <option value="2">Female</option>
+                            </select>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <label for="poids">Weight (lbs)</label>
+                            <input type="number" class="validate" name="poids" id="poids">
+                        </div>
+
+                        <div class="input-field col s6">
+                            <label for="race">Breed</label>
+                            <input type="text" class="validate" name="race" id="race">
+                        </div>
+
+                        <div class="input-field col s12">
+                            <label for="location">Location</label>
+                            <input type="text" class="validate" name="location" id="location">
+                        </div>
+
+                        <div class="input-field col s6">
+                            <input type="text" class="validate" name="pelage" id="pelage">
+                            <label for="pelage">Coat color</label>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <select>
+                                <option value="" disabled selected>Castrated?</option>
+                                <option value="1">Castrated</option>
+                                <option value="2">Not castrated</option>
+                            </select>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <select>
+                                <option value="" disabled selected>Declawed?</option>
+                                <option value="1">Declawed</option>
+                                <option value="2">Not declawed</option>
+                            </select>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <input type="number" class="validate" name="prix" id="prix">
+                            <label for="prix">Price</label>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <input type="url" class="validate" name="picture" id="picture">
+                            <label for="picture">Picture URL</label>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <textarea id="description" class="materialize-textarea"></textarea>
+                            <label for="description">Description</label>
+                        </div>
+
+                        <div class="row"></div>
+
+                        <div class="card-action right-align">
+                            <button value="Reset" type="reset" id="reset sign up"
+                                    class="btn-flat grey-text waves-effect">
+                                Reset
+                            </button>
+                            <button type="submit" name="btn" id="addAnimal" class="btn red waves-effect waves-light"
+                                    value="addAnimal">Add Dog
+                            </button>
+                        </div>
+                    </form>
                 </div>
 
-                <div class="card-content">
+                <div id="Cat">
+                    <p>This is for Kitteh</p>
+                    <form method="post">
 
-                    <div id="signin">
-                        <form method="post">
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <label for="email">Email address</label>
-                                    <input type="email" class="validate" name="email" id="email"/>
-                                </div>
-                                <div class="input-field col s12">
-                                    <label for="password">Password </label>
-                                    <input type="password" class="validate" name="password" id="password"/>
-                                </div>
-                            </div>
-                            <div class="card-action right-align">
-                                <button value="Reset" type="reset" id="reset sign up"
-                                        class="btn-flat grey-text waves-effect">
-                                    Reset
-                                </button>
-                                <button type="submit" name="btn" id="login" class="btn red waves-effect waves-light"
-                                        value="Login">Login
-                                </button>
-                            </div>
-                        </form>
-                    </div>
+                        <div class="input-field col s12">
+                            <label for="Name">Name</label>
+                            <input type="text" class="validate" name="Name" id="Name"/>
+                        </div>
+                        <div class="input-field col s6">
+                            <label for="Age">Age</label>
+                            <input type="number" class="validate" name="Age" id="Age"/>
+                        </div>
 
-                    <div id="signup">
-                        <form method="post">
+                        <div class="input-field col s6">
+                            <select>
+                                <option value="" disabled selected>Select the sex</option>
+                                <option value="1">Male</option>
+                                <option value="2">Female</option>
+                            </select>
+                        </div>
 
-                            <div class="input-field col s12">
-                                <label for="username">Username</label>
-                                <input type="text" class="validate" name="username" id="username"/>
-                            </div>
-                            <div class="input-field col s6">
-                                <label for="first_name">First Name</label>
-                                <input type="text" class="validate" name="first_name" id="first_namename"/>
-                            </div>
-                            <div class="input-field col s6">
-                                <label for="last_name">Last Name</label>
-                                <input type="text" class="validate" name="last_name" id="last_name"/>
-                            </div>
-                            <div class="input-field col s6">
-                                <label for="password2">Password </label>
-                                <input type="password" class="validate" name="password2" id="password2"/>
-                            </div>
-                            <div class="input-field col s6">
-                                <label for="confirm_password">Confirm Password</label>
-                                <input type="password" class="validate" name="confirm_password" id="confirm_password"/>
-                            </div>
+                        <div class="input-field col s6">
+                            <label for="poids">Weight (lbs)</label>
+                            <input type="number" class="validate" name="poids" id="poids">
+                        </div>
 
-                            <div class="input-field col s12">
-                                <label for="phone_number">Phone Number</label>
-                                <input type="tel" class="validate" name="phone_number" id="phone_number">
-                            </div>
+                        <div class="input-field col s6">
+                            <label for="race">Breed</label>
+                            <input type="text" class="validate" name="race" id="race">
+                        </div>
 
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <label for="email">Email address</label>
-                                    <input type="email" class="validate" name="email" id="email2"/>
-                                </div>
-                            </div>
+                        <div class="input-field col s12">
+                            <label for="location">Location</label>
+                            <input type="text" class="validate" name="location" id="location">
+                        </div>
 
-                            <div class="card-action right-align">
-                                <button value="Reset" type="reset" id="reset sign up"
-                                        class="btn-flat grey-text waves-effect">
-                                    Reset
-                                </button>
-                                <button type="submit" name="btn" id="create" class="btn red waves-effect waves-light"
-                                        value="Create">Create
-                                </button>
-                            </div>
-                        </form>
-                    </div>
+                        <div class="input-field col s6">
+                            <input type="text" class="validate" name="pelage" id="pelage">
+                            <label for="pelage">Coat color</label>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <select>
+                                <option value="" disabled selected>Castrated?</option>
+                                <option value="1">Castrated</option>
+                                <option value="2">Not castrated</option>
+                            </select>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <select>
+                                <option value="" disabled selected>Declawed?</option>
+                                <option value="1">Declawed</option>
+                                <option value="2">Not declawed</option>
+                            </select>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <input type="number" class="validate" name="prix" id="prix">
+                            <label for="prix">Price</label>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <input type="url" class="validate" name="picture" id="picture">
+                            <label for="picture">Picture URL</label>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <textarea id="description" class="materialize-textarea"></textarea>
+                            <label for="description">Description</label>
+                        </div>
+
+                        <div class="row"></div>
+
+                        <div class="card-action right-align">
+                            <button value="Reset" type="reset" id="reset sign up"
+                                    class="btn-flat grey-text waves-effect">
+                                Reset
+                            </button>
+                            <button type="submit" name="btn" id="addAnimal" class="btn red waves-effect waves-light"
+                                    value="addAnimal">Add Cat
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="Bird">
+                    <p>This is for Birb</p>
+                    <form method="post">
+
+                        <div class="input-field col s12">
+                            <label for="Name">Name</label>
+                            <input type="text" class="validate" name="Name" id="Name"/>
+                        </div>
+                        <div class="input-field col s6">
+                            <label for="Age">Age</label>
+                            <input type="number" class="validate" name="Age" id="Age"/>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <select>
+                                <option value="" disabled selected>Select the sex</option>
+                                <option value="1">Male</option>
+                                <option value="2">Female</option>
+                            </select>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <label for="poids">Weight (lbs)</label>
+                            <input type="number" class="validate" name="poids" id="poids">
+                        </div>
+
+                        <div class="input-field col s6">
+                            <label for="race">Breed</label>
+                            <input type="text" class="validate" name="race" id="race">
+                        </div>
+
+                        <div class="input-field col s12">
+                            <label for="location">Location</label>
+                            <input type="text" class="validate" name="location" id="location">
+                        </div>
+
+                        <div class="input-field col s6">
+                            <label for="plumage">Plumage</label>
+                            <input type="text" class="validate" name="plumage" id="plumage">
+                        </div>
+
+                        <div class="input-field col s6">
+                            <label for="prix">Price</label>
+                            <input type="number" class="validate" name="prix" id="prix">
+                        </div>
+
+                        <div class="input-field col s12">
+                            <input type="url" class="validate" name="picture" id="picture">
+                            <label for="picture">Picture URL</label>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <textarea id="description" class="materialize-textarea"></textarea>
+                            <label for="description">Description</label>
+                        </div>
+
+                        <div class="row"></div>
+
+                        <div class="card-action right-align">
+                            <button value="Reset" type="reset" id="reset sign up"
+                                    class="btn-flat grey-text waves-effect">
+                                Reset
+                            </button>
+                            <button type="submit" name="btn" id="addAnimal" class="btn red waves-effect waves-light"
+                                    value="addAnimal">Add Bird
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-
-    {% else %}
-        <p>You have to be logged in to access here!</p>
-
-    {% endif %}
-
-
-
+    </div>
 {% endblock %}
