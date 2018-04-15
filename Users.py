@@ -36,7 +36,7 @@ class User(UserMixin):
                 password = (result['pass'])
 
             return User(email, password, result['username'], result['nom'], result['prenom'], result['telephone'],
-                        result['solde'], defaultProfileImage)
+                        result['solde'], result['profileImage'])
 
     def is_authenticated(self):
         return True
