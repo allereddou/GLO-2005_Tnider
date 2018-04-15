@@ -5,8 +5,12 @@
         $(document).ready(function () {
             $('.modal').modal();
             $('.collapsible').collapsible();
-            document.getElementById('li-' +{{ active }}).click();
-
+            try {
+                document.getElementById('li-' +{{ active }}).click();
+            }
+            catch (e) {
+                console.log('Could not get active animal');
+            }
         });
 
         function update(field, ID) {
