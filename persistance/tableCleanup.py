@@ -12,7 +12,7 @@ def deleteAllTables(cursor):
         sql = "DROP TABLE IF EXISTS bird"
         cursor.execute(sql)
 
-        sql = "DROP TABLE  IF EXISTS cat"
+        sql = "DROP TABLE IF EXISTS cat"
         cursor.execute(sql)
 
         sql = "DROP TABLE IF EXISTS vend"
