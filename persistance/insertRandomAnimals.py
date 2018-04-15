@@ -9,17 +9,23 @@ genders = 'mf'
 cities = ['Montreal', 'Quebec', 'Rouyn-Noranda', 'Levis', 'St-Hyacinthe', 'Riviere-Du-Loup', 'London',
           'Mongolie Orientale']
 descriptions = ['reeeeeeeeeeeee', 'aaaaaaaaaaa', 'Hello there', 'Boop', 'l ll ll l_', 's+e', 'o+e', 'Hello doug',
-                'No this is patrick', 'Shreck is love, Shreck is life', 'boop boop', 'bork bork', 'plz boop me', 'floof']
+                'No this is patrick', 'Shreck is love, Shreck is life', 'boop boop', 'bork bork', 'plz boop me', 'floof', 'zoooop']
 
 
 def insertAnimal(cursor, number):
     for j in range(0, number + 1):
         sexe = random.choice(genders)
         prenom = names.get_first_name(sexe)
-        age = random.randint(0, 11)
-        poids = random.randint(0, 101)
+        age = random.randint(0, 15)
         location = random.choice(cities)
         race = random.choice(races)
+
+        if race == 'Birb':
+            poids = random.randint(0, 4)
+        elif race == 'Cat'
+            poids = random.randint(0, 30)
+        else:
+            poids = random.randint(0, 50)
         description = random.choice(descriptions)
 
         sql = "INSERT INTO animal(id, nom, sexe, age, poids, location, race, description) VALUES ({}, '{}', '{}', {}, {}, '{}', '{}', '{}')"

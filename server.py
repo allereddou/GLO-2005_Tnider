@@ -353,10 +353,11 @@ def filterIds(possible_id):
         # filtre chien
         sql = "SELECT * FROM preferencesDog WHERE username='{}';"
         cursor.execute(sql.format(current_user.username))
-        sqlresults = cursor.fetchall()[0]
+        prefsDog = cursor.fetchall()[0]
 
-        #filtre sexe
-        if sqlresults['']
+        if prefsDog['maleGenderDoggo'] == 1 and animal['gender'] == 'm' or prefsDog['femaleGenderDoggo'] == 1 and animal['gender'] == 'f':
+            if (prefsDog['gingerDoggo'] == 1 and animal or prefsDog['blackDoggo'] == 1or prefsDog
+
 
 
 
