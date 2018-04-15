@@ -8,38 +8,71 @@
         });
 
         function update(field) {
-            window.location.search += '_change?' + field + '=' + document.getElementById(field).value;
+            if (document.getElementById(field).value) {
+                document.getElementById('change').href = '/account/info/change/' + field + '=' + document.getElementById(field).value;
+                document.getElementById('change').click()
+            }
+        }
+
+        function updateImage(field) {
+            if (document.getElementById(field).value) {
+                document.getElementById('change').href = '/account/info/change/image/' + field + '=' + document.getElementById(field).value;
+                document.getElementById('change').click()
+            }
         }
     </script>
 
 {% endblock %}
 {% block infoaction %}active{% endblock %}
 {% block account %}
-    <div id="change_username" class="modal">
+    <a href="" id="change" style="display: none"></a>
+    <div id="change_profileImage" class="modal">
         <div class="modal-content">
-            <var id="new_username">x</var>
-            <input type="text" id="username"/><label for="username">Username</label>
+            <input type="text" id="profileImage"/><label for="profileImage">Profile Image Link</label>
+            <a onclick="updateImage('profileImage')" class="btn red waves-effect waves-light red">UPDATE</a>
         </div>
     </div>
-    <a onclick="update(username);">ALLO</a>
+    <div id="add_fund" class="modal">
+        <div class="modal-content">
+            <input type="number" id="solde"/><label for="solde">Solde</label>
+            <a onclick="update('solde')" class="btn red waves-effect waves-light">UPDATE</a>
+        </div>
+    </div>
+    <div id="change_username" class="modal">
+        <div class="modal-content">
+            <input type="text" id="username"/><label for="username">Username</label>
+            <a onclick="update('username')" class="btn red waves-effect waves-light">UPDATE</a>
+        </div>
+    </div>
     <div id="change_firstname" class="modal">
         <div class="modal-content">
-            <form><input type="text" id="first_name"><label for="first_name">First name</label></form>
+            <input type="text" id="prenom"/><label for="prenom">First Name</label>
+            <a onclick="update('prenom')" class="btn red waves-effect waves-light">UPDATE</a>
         </div>
     </div>
     <div id="change_lastname" class="modal">
         <div class="modal-content">
-            <form><input type="text" id="last_name"><label for="last_name">Last name</label></form>
+            <input type="text" id="nom"/><label for="nom">Last Name</label>
+            <a onclick="update('nom')" class="btn red waves-effect waves-light">UPDATE</a>
         </div>
     </div>
     <div id="change_email" class="modal">
         <div class="modal-content">
-            <form><input type="text" id="email"><label for="email">Email</label></form>
+            <input type="email" id="email"/><label for="email">Email</label>
+            <a onclick="update('email')" class="btn red waves-effect waves-light">UPDATE</a>
         </div>
     </div>
     <div id="change_phone" class="modal">
         <div class="modal-content">
-            <form><input type="text" id="phone"><label for="phone">Phone</label></form>
+            <input type="text" id="telephone"/><label for="telephone">Telephone</label>
+            <a onclick="update('telephone')" class="btn red waves-effect waves-light">UPDATE</a>
+        </div>
+    </div>
+
+    <div id="change_password" class="modal">
+        <div class="modal-content">
+            <input type="password" id="pass"/><label for="pass">Password</label>
+            <a onclick="update('pass')" class="btn red waves-effect waves-light">UPDATE</a>
         </div>
     </div>
     <div class="col s12 m9">
@@ -60,9 +93,7 @@
                         class="fas fa-pencil-alt"></i></a></div>
             </li>
             <li class="collection-item">
-                <div><b>Email: </b>{{ current_user.email }}<a href="#change_email"
-                                                              class="secondary-content modal-trigger"><i
-                        class="fas fa-pencil-alt"></i></a></div>
+                <div><b>Email: </b>{{ current_user.email }}</div>
             </li>
             <li class="collection-item">
                 <div><b>Phone: </b>{{ current_user.telephone }}<a href="#change_phone"
@@ -71,21 +102,20 @@
             </li>
             <li class="collection-item">
                 <div><b>Profile Image: </b>{{ current_user.profileImage }}<a href="#change_profileImage"
-                                                                  class="secondary-content modal-trigger"><i
+                                                                             class="secondary-content modal-trigger"><i
                         class="fas fa-pencil-alt"></i></a></div>
             </li>
             <li class="collection-item">
                 <div><b>Password: </b>**********<a href="#change_password"
-                                                                  class="secondary-content modal-trigger"><i
+                                                   class="secondary-content modal-trigger"><i
                         class="fas fa-pencil-alt"></i></a></div>
             </li>
         </ul>
 
         <p>Reset all not desired animals</p>
-        <button class="btn red waves-effect waves-light"><a class="white-text" href="/deletenotdesired">Reset</a>
-        </button>
+        <a class="btn red waves-effect waves-light btn" href="/deletenotdesired">Reset</a>
 
         <p>Add more funds to your account</p>
-        <button class="btn red waves-effect waves-light"><a class="white-text">Add funds</a>
+        <a class="btn red waves-effect waves-light modal-trigger" href="#add_fund">Add funds</a>
     </div>
 {% endblock %}

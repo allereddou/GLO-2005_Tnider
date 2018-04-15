@@ -43,10 +43,12 @@ def setupDatabase():
 
 
 with app.app_context():
-
     setupDatabase()
 
     sql = "SELECT * FROM user"
     cursor = get_db()
 
     cursor.execute(sql)
+
+    sql = "INSERT INTO preferences (username, blackDoggo) VALUES('{}', {});"
+    cursor.execute(sql.format('admin', 1))
