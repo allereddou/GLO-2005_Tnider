@@ -29,9 +29,9 @@ def home():
     return render_template('home.html')
 
 
-@app.route('/account/myanimals')
+@app.route('/account/myanimals/<active>')
 @login_required
-def myanimals():
+def myanimals(active):
     cursor = get_db()
     cursor.execute(
         "SELECT P.link, A.nom, A.id, A.race, A.sexe, A.poids, A.age, V.prix, A.location, A.description FROM vend V, animal A, pic P WHERE V.username = '{}' and V.id_animal = A.id and P.id = A.id".format(
@@ -46,11 +46,12 @@ def myanimals():
         elif animal['race'] == 'Birb':
             cursor.execute("SELECT plumage FROM bird WHERE id = {}".format(animal['id']))
         race = cursor.fetchall()[0]
-        myanimals.append({**animal, **race})
-    return render_template('account-my-animals.html', tosell=myanimals)
+        myanimals.append({**animal, **race, 'activeID': str(animal['id'])})
+    return render_template('account-my-animals.html', tosell=myanimals, active=active)
 
 
 @app.route('/account/trash/<num>')
+@login_required
 def trash(num):
     cursor = get_db()
     cursor.execute("DELETE FROM animal WHERE id = {}".format(num))
@@ -196,21 +197,64 @@ def changeuserimg(field, new):
 @login_required
 def changeanimal(ID, field, new):
     cursor = get_db()
-    cursor.execute("")
-    return redirect(request.referrer)
+    cursor.execute("SELECT race FROM animal WHERE id = {}".format(ID))
+    race = cursor.fetchall()[0]['race']
+    if field == 'color':
+        if race == 'Doggo':
+            cursor.execute("UPDATE dog SET pelage = '{}' WHERE id = {}".format(new, ID))
+        elif race == 'Kitteh':
+            cursor.execute("UPDATE cat SET pelage = '{}' WHERE id = {}".format(new, ID))
+        elif race == 'Birb':
+            cursor.execute("UPDATE bird SET plumage = '{}' WHERE id = {}".format(new, ID))
+    elif field == 'prix':
+        cursor.execute("UPDATE vend SET prix = {} WHERE id_animal = {}".format(new, ID))
+    else:
+        cursor.execute("UPDATE animal SET {} = '{}' WHERE id = {}".format(field, new, ID))
+    return redirect('account/myanimals/' + ID)
 
 
-@app.route('/animal/change/<ID>/image/<field>=<path:new>')
+@app.route('/animal/change/<ID>/castre=<castre>&degriffe=<degriffe>')
 @login_required
-def changeanimalimg(ID, field, new):
+def changeanimalother(ID, castre, degriffe):
     cursor = get_db()
-    cursor.execute("UPDATE pic SET {} = '{}' WHERE id = '{}'".format(field, new, ID))
-    return redirect(request.referrer)
+    cursor.execute("SELECT race FROM animal WHERE id = {}".format(ID))
+    race = cursor.fetchall()[0]['race']
+    print(castre, '         ', degriffe)
+    if castre == 'true':
+        if race == 'Doggo':
+            cursor.execute("UPDATE dog SET castre = 1 WHERE id = {}".format(ID))
+        elif race == 'Kitteh':
+            cursor.execute("UPDATE cat SET castre = 1 WHERE id = {}".format(ID))
+    if degriffe == 'true':
+        if race == 'Doggo':
+            cursor.execute("UPDATE dog SET degriffe = 1 WHERE id = {}".format(ID))
+        elif race == 'Kitteh':
+            cursor.execute("UPDATE cat SET degriffe = 1 WHERE id = {}".format(ID))
+    if castre == 'false':
+        if race == 'Doggo':
+            cursor.execute("UPDATE dog SET castre = 0 WHERE id = {}".format(ID))
+        elif race == 'Kitteh':
+            cursor.execute("UPDATE cat SET castre = 0 WHERE id = {}".format(ID))
+    if degriffe == 'false':
+        if race == 'Doggo':
+            cursor.execute("UPDATE dog SET degriffe = 0 WHERE id = {}".format(ID))
+        elif race == 'Kitteh':
+            cursor.execute("UPDATE cat SET degriffe = 0 WHERE id = {}".format(ID))
+    return redirect('account/myanimals/' + ID)
+
+
+@app.route('/animal/change/<ID>/image=<path:new>')
+@login_required
+def changeanimalimg(ID, new):
+    cursor = get_db()
+    print(new)
+    cursor.execute("UPDATE pic SET link = '{}' WHERE id = {}".format(new, ID))
+    return redirect('account/myanimals/' + ID)
 
 
 @app.route('/user/<username>')
 @login_required
-def username(username):
+def user(username):
     cursor = get_db()
     cursor.execute(
         "SELECT U.username, U.nom, U.prenom, U.nom, U.email, U.profileImage, U.telephone FROM user U WHERE U.username = '{}'".format(

@@ -3,24 +3,32 @@
     {{ super() }}
     <script>
         $(document).ready(function () {
-            $('.collapsible').collapsible();
-        });
-        $(document).ready(function () {
             $('.modal').modal();
+            $('.collapsible').collapsible();
+            document.getElementById('li-' +{{ active }}).click();
+
         });
 
         function update(field, ID) {
-            if (document.getElementById(field).value) {
-                document.getElementById('change').href = "/animal/change/" + ID + "/image/" + field + document.getElementById(field);
+            console.log(document.getElementById(field + ID).value);
+            if (document.getElementById(field + ID).value) {
+                document.getElementById('change').href = "/animal/change/" + ID + '/' + field + '=' + document.getElementById(field + ID).value;
                 document.getElementById('change').click()
             }
         }
 
-        function updateImage(field) {
-            if (document.getElementById(field).value) {
-                document.getElementById('change').href = '/account/info/change/image/' + field + '=' + document.getElementById(field).value;
+        function updateImage(field, ID) {
+            if (document.getElementById(field + ID).value) {
+                document.getElementById('change').href = '/animal/change/' + ID + '/image=' + document.getElementById(field + ID).value;
                 document.getElementById('change').click()
             }
+        }
+
+        function updateOther(ID) {
+            console.log('ALLO');
+            document.getElementById('change').href = '/animal/change/' + ID + '/castre=' + document.getElementById('castre' + ID).checked + '&degriffe=' + document.getElementById('degriffe' + ID).checked;
+            document.getElementById('change').click()
+
         }
     </script>
     <style>
@@ -40,40 +48,112 @@
 {% block myanimals %}active{% endblock %}
 {% block account %}
     <a href="" style="display: none" id="change"></a>
-    <div id="change_img" class="modal">
-        <div class="modal-content">
-            <input type="password" id="link"/><label for="link">Image link</label>
-            <a onclick="updateImage('link')" class="btn red waves-effect waves-light">UPDATE</a>
-        </div>
-    </div>
-
     <div class="col s12 m9">
         <ul class="collapsible popout">
             {% for animal in tosell %}
+
+                <div id="change_img{{ animal['id'] }}" class="modal">
+                    <div class="modal-content">
+                        <input type="text" id="link{{ animal['id'] }}"/><label for="link{{ animal['id'] }}">Image
+                        link</label>
+                        <a onclick="updateImage('link', {{ animal['id'] }})" class="btn red waves-effect waves-light">UPDATE</a>
+                    </div>
+                </div>
+                <div id="change_location{{ animal['id'] }}" class="modal">
+                    <div class="modal-content">
+                        <input type="text" id="location{{ animal['id'] }}"/><label for="location{{ animal['id'] }}">Location</label>
+                        <a onclick="update('location', {{ animal['id'] }})" class="btn red waves-effect waves-light">UPDATE</a>
+                    </div>
+                </div>
+                <div id="change_age{{ animal['id'] }}" class="modal">
+                    <div class="modal-content">
+                        <input type="number" id="age{{ animal['id'] }}"/><label for="age{{ animal['id'] }}">Age</label>
+                        <a onclick="update('age', {{ animal['id'] }})"
+                           class="btn red waves-effect waves-light">UPDATE</a>
+                    </div>
+                </div>
+                <div id="change_gender{{ animal['id'] }}" class="modal">
+                    <div class="modal-content">
+                        <select id="sexe{{ animal['id'] }}">
+                            <option value="" disabled selected>Select the gender</option>
+                            <option value="m">Male</option>
+                            <option value="f">Female</option>
+                        </select>
+                        <a onclick="update('sexe', {{ animal['id'] }})"
+                           class="btn red waves-effect waves-light">UPDATE</a>
+                    </div>
+                </div>
+                <div id="change_weight{{ animal['id'] }}" class="modal">
+                    <div class="modal-content">
+                        <input type="number" id="poids{{ animal['id'] }}"/><label
+                            for="poids{{ animal['id'] }}">Weight</label>
+                        <a onclick="update('poids', {{ animal['id'] }})"
+                           class="btn red waves-effect waves-light">UPDATE</a>
+                    </div>
+                </div>
+                <div id="change_color{{ animal['id'] }}" class="modal">
+                    <div class="modal-content">
+                        <input type="text" id="color{{ animal['id'] }}"/><label
+                            for="color{{ animal['id'] }}">Color</label>
+                        <a onclick="update('color', {{ animal['id'] }})"
+                           class="btn red waves-effect waves-light">UPDATE</a>
+                    </div>
+                </div>
+                <div id="change_description{{ animal['id'] }}" class="modal">
+                    <div class="modal-content">
+                        <input type="text" id="description{{ animal['id'] }}"/><label
+                            for="description{{ animal['id'] }}">Description</label>
+                        <a onclick="update('description', {{ animal['id'] }})"
+                           class="btn red waves-effect waves-light">UPDATE</a>
+                    </div>
+                </div>
+                <div id="change_price{{ animal['id'] }}" class="modal">
+                    <div class="modal-content">
+                        <input type="number" id="prix{{ animal['id'] }}"/><label
+                            for="prix{{ animal['id'] }}">Price</label>
+                        <a onclick="update('prix', {{ animal['id'] }})"
+                           class="btn red waves-effect waves-light">UPDATE</a>
+                    </div>
+                </div>
+                <div id="change_other{{ animal['id'] }}" class="modal">
+                    <div class="modal-content">
+                        <input type="checkbox" id="castre{{ animal['id'] }}"/>
+                        <label for="castre{{ animal['id'] }}">Castrated</label><br>
+                        <input type="checkbox" id="degriffe{{ animal['id'] }}"/>
+                        <label for="degriffe{{ animal['id'] }}">Unclawed</label><br>
+                        <a onclick="updateOther({{ animal['id'] }})"
+                           class="btn red waves-effect waves-light">UPDATE</a>
+                    </div>
+                </div>
                 <li>
-                    <div class="collapsible-header">{{ animal['nom'] }}</div>
+                    <div id="li-{{ animal['id'] }}" class="collapsible-header">{{ animal['nom'] }}</div>
                     <div class="collapsible-body">
-                        <a href="#change_img" class="modal-trigger"><img class="details_image" src="{{ animal['link'] }}" height="100 px"/></a>
+                        <a href="#change_img{{ animal['id'] }}" class="modal-trigger"><img class="details_image"
+                                                                                           src="{{ animal['link'] }}"
+                                                                                           height="100 px"/></a>
                         <a class="waves-effect waves-light btn secondary-content red"
                            href="trash/{{ animal['id'] }}">Delete</a>
-                        <p><a href="#change_location"
+                        <p><a href="#change_location{{ animal['id'] }}"
                               class="details modal-trigger">Location: {{ animal['location'] }}</a> <br>
-                            <a href="#change_location" class="details modal-trigger">Age: {{ animal['age'] }}
+                            <a href="#change_age{{ animal['id'] }}"
+                               class="details modal-trigger">Age: {{ animal['age'] }}
                                 y/o</a><br>
-                            <a href="#change_location" class="details modal-trigger">Gender:
+                            <a href="#change_gender{{ animal['id'] }}" class="details modal-trigger">Gender:
                                 {% if animal['sexe'] == 'f' %}&#9792;{% else %}&#9794;{% endif %}</a><br>
-                            <a href="#change_location" class="details modal-trigger">Weight: {{ animal['poids'] }}
+                            <a href="#change_weight{{ animal['id'] }}"
+                               class="details modal-trigger">Weight: {{ animal['poids'] }}
                                 lbs</a><br>
-                            <a href="#change_location" class="details modal-trigger">Color:
+                            <a href="#change_color{{ animal['id'] }}" class="details modal-trigger">Color:
                                 {{ animal['pelage'] }}{{ animal['plumage'] }}</a><br>
                             {% if animal['race'] == 'Doggo' or animal['race'] == 'Kitteh' %}
-                                <a href="#change_location" class="details modal-trigger">Other:
+                                <a href="#change_other{{ animal['id'] }}" class="details modal-trigger">Other:
                                     {% if animal['castre'] == 1 %}Castrated, {% endif %}
                                     {% if animal['degriffe'] == 1 %}Declawed{% endif %}</a><br>
                             {% endif %}
-                            <a href="#change_location"
+                            <a href="#change_description{{ animal['id'] }}"
                                class="details modal-trigger">Description: {{ animal['description'] }}</a><br>
-                            <a href="#change_location" class="details modal-trigger">Price: {{ animal['prix'] }}$</a>
+                            <a href="#change_price{{ animal['id'] }}"
+                               class="details modal-trigger">Price: {{ animal['prix'] }}$</a>
                         </p>
                     </div>
                 </li>
