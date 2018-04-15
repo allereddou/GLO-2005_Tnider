@@ -32,9 +32,9 @@
                                         <span class="title"><b>{{ animal['nom'] }}</b> - {{ animal['race'] }}</span>
                                         <p>
                                             Location: {{ animal['location'] }} <br>
-                                            Age: {{ animal['age'] }} ans<br>
-                                            Sex: {% if animal['sexe'] == 'f' %}&#9792;{% else %}&#9794;{% endif %}<br>
-                                            Poids: {{ animal['poids'] }} kg<br>
+                                            Age: {{ animal['age'] }} y/o<br>
+                                            Gender: {% if animal['sexe'] == 'f' %}&#9792;{% else %}&#9794;{% endif %}<br>
+                                            Weight: {{ animal['poids'] }} lbs<br>
                                             Color: {{ animal['pelage'] }}{{ animal['plumage'] }}<br>
                                             {% if animal['race'] == 'Doggo' or animal['race'] == 'Kitteh' %}
                                                 Other: {% if animal['castre'] == 1 %}Castrated, {% endif %}
@@ -109,9 +109,9 @@
                     <span class="card-title grey-text text-darken-4"><b>{{ animal['nom'] }}</b> - {{ animal['race'] }} - {{ animal['prix'] }}$<i
                             class="fas fa-times right"></i></span>
                     Location: {{ animal['location'] }} <br>
-                    Age: {{ animal['age'] }} ans<br>
-                    Sex: {% if animal['sexe'] == 'f' %}&#9792;{% else %}&#9794;{% endif %}<br>
-                    Poids: {{ animal['poids'] }} kg<br>
+                    Age: {{ animal['age'] }} y/o<br>
+                    Gender: {% if animal['sexe'] == 'f' %}&#9792;{% else %}&#9794;{% endif %}<br>
+                    Weight: {{ animal['poids'] }} lbs<br>
                     Color: {{ animal['pelage'] }}{{ animal['plumage'] }}<br>
                     {% if animal['race'] == 'Doggo' or animal['race'] == 'Kitteh' %}
                         Other: {% if animal['castre'] == 1 %}Castrated, {% endif %}

@@ -2,8 +2,8 @@ import random
 import names
 
 races = ['Birb', 'Doggo', 'Kitteh']
-plumages = ['blanc', 'noir', 'jaune', 'gris', 'beige', 'vert']
-pelages = ['blanc', 'noir', 'brun', 'gris', 'roux']
+plumages = ['white', 'black', 'yellow', 'gray', 'beige', 'green']
+pelages = ['white', 'black', 'brown', 'gray', 'ginger']
 binaryChoice = [0, 1]
 genders = 'mf'
 cities = ['Montreal', 'Quebec', 'Rouyn-Noranda', 'Levis', 'St-Hyacinthe', 'Riviere-Du-Loup', 'London',
