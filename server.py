@@ -312,8 +312,8 @@ def get_profile(email):
 # cette fonction doit être modifiée pour trouver un animal
 def get_possible_match():
     cursor = get_db()
-    sql = "SELECT A.id FROM animal A WHERE A.id not in (SELECT D.id FROM desire D WHERE D.username = '{}') and A.id not in (SELECT D.id FROM notdesired D WHERE D.username = '{}') and A.id not in (SELECT T.id FROM transactions T);".format(
-        current_user.username, current_user.username)
+    sql = "SELECT A.id FROM animal A WHERE A.id not in (SELECT D.id FROM desire D WHERE D.username = '{}') and A.id not in (SELECT D.id FROM notdesired D WHERE D.username = '{}') and A.id not in (SELECT T.id FROM transactions T) and A.id not in (SELECT V.id_animal FROM vend V WHERE V.username = '{}');".format(
+        current_user.username, current_user.username, current_user.username)
     cursor.execute(sql)
     possible_id = cursor.fetchall()
     IDs = list()
@@ -331,7 +331,9 @@ def get_possible_match():
     elif animal['race'] == 'Birb':
         cursor.execute("SELECT plumage FROM bird WHERE id = {}".format(animal['id']))
     race = cursor.fetchall()[0]
-    return {**animal, **race}
+    cursor.execute("SELECT prix FROM vend WHERE id_animal = {}".format(animal['id']))
+    prix = cursor.fetchall()[0]
+    return {**animal, **race, **prix}
 
 
 if __name__ == '__main__':
