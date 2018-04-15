@@ -142,9 +142,9 @@ def contact_us():
 @login_required
 def account_preferences():
     if request.method == "GET" and request.args.to_dict().get('Save') == "Save":
-        current_user.preferences = updatePreferences(current_user, request.args.to_dict())
+        updatePreferences(current_user, request.args.to_dict())
 
-    return render_template("account-preferences.html", pref=current_user.preferencesCat.keys())
+    return render_template("account-preferences.html", prefCat=current_user.preferencesCat.keys(), prefDog=current_user.preferencesDog.keys(), prefBirb=current_user.preferencesBird.keys())
 
 
 

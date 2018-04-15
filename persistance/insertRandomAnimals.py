@@ -15,7 +15,11 @@ descriptions = ['reeeeeeeeeeeee', 'aaaaaaaaaaa', 'Hello there', 'Boop', 'l ll ll
 def insertAnimal(cursor, number):
     for j in range(0, number + 1):
         sexe = random.choice(genders)
-        prenom = names.get_first_name(sexe)
+        if sexe == 'f':
+            prenom = names.get_first_name(gender='female')
+        else:
+            prenom = names.get_first_name(gender='male')
+
         age = random.randint(0, 15)
         location = random.choice(cities)
         race = random.choice(races)

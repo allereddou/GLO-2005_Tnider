@@ -141,4 +141,3 @@ def updatePreferences(user, preferences):
         else:
             print("key error")
 
-    return user.preferences
