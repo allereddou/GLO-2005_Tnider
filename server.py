@@ -34,9 +34,20 @@ def home():
 def myanimals():
     cursor = get_db()
     cursor.execute(
-        "SELECT P.link, A.nom, A.id FROM vend V, animal A, pic P WHERE V.username = '{}' and V.id_animal = A.id and P.id = A.id".format(current_user.username))
+        "SELECT P.link, A.nom, A.id, A.race, A.sexe, A.poids, A.age, V.prix, A.location, A.description FROM vend V, animal A, pic P WHERE V.username = '{}' and V.id_animal = A.id and P.id = A.id".format(
+            current_user.username))
     tosell = cursor.fetchall()
-    return render_template('account-my-animals.html', tosell=tosell)
+    myanimals = []
+    for animal in tosell:
+        if animal['race'] == 'Kitteh':
+            cursor.execute("SELECT pelage, castre, degriffe FROM cat WHERE id = {}".format(animal['id']))
+        elif animal['race'] == 'Doggo':
+            cursor.execute("SELECT pelage, castre, degriffe FROM dog WHERE id = {}".format(animal['id']))
+        elif animal['race'] == 'Birb':
+            cursor.execute("SELECT plumage FROM bird WHERE id = {}".format(animal['id']))
+        race = cursor.fetchall()[0]
+        myanimals.append({**animal, **race})
+    return render_template('account-my-animals.html', tosell=myanimals)
 
 
 @app.route('/account/trash/<num>')
@@ -124,7 +135,6 @@ def sign_in():
 
 @app.route('/contact_us')
 def contact_us():
-    print(current_user.preferences)
     return render_template('contact_us.html')
 
 
@@ -133,7 +143,6 @@ def contact_us():
 def account_preferences():
     if request.method == "GET" and request.args.to_dict().get('Save') == "Save":
         current_user.preferences = updatePreferences(current_user, request.args.to_dict())
-    print(current_user.preferences)
     return render_template("account-preferences.html", pref=current_user.preferences.keys())
 
 
@@ -163,7 +172,7 @@ def account_info():
 
 @app.route('/account/info/change/<field>=<new>')
 @login_required
-def change(field, new):
+def changeuser(field, new):
     cursor = get_db()
     if field == 'telephone' and isinstance(new, int):
         cursor.execute("UPDATE user SET {} = {} WHERE username = '{}'".format(field, new, current_user.username))
@@ -177,9 +186,25 @@ def change(field, new):
 
 @app.route('/account/info/change/image/<field>=<path:new>')
 @login_required
-def changeimg(field, new):
+def changeuserimg(field, new):
     cursor = get_db()
     cursor.execute("UPDATE user SET {} = '{}' WHERE username = '{}'".format(field, new, current_user.username))
+    return redirect(request.referrer)
+
+
+@app.route("/animal/change/<ID>/<field>=<new>")
+@login_required
+def changeanimal(ID, field, new):
+    cursor = get_db()
+    cursor.execute("")
+    return redirect(request.referrer)
+
+
+@app.route('/animal/change/<ID>/image/<field>=<path:new>')
+@login_required
+def changeanimalimg(ID, field, new):
+    cursor = get_db()
+    cursor.execute("UPDATE pic SET {} = '{}' WHERE id = '{}'".format(field, new, ID))
     return redirect(request.referrer)
 
 
@@ -187,7 +212,9 @@ def changeimg(field, new):
 @login_required
 def username(username):
     cursor = get_db()
-    cursor.execute("SELECT U.username, U.nom, U.prenom, U.nom, U.email, U.profileImage, U.telephone FROM user U WHERE U.username = '{}'".format(username))
+    cursor.execute(
+        "SELECT U.username, U.nom, U.prenom, U.nom, U.email, U.profileImage, U.telephone FROM user U WHERE U.username = '{}'".format(
+            username))
     user = cursor.fetchall()[0]
     return render_template('user.html', user=user)
 

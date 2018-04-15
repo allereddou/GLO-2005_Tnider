@@ -5,21 +5,81 @@
         $(document).ready(function () {
             $('.collapsible').collapsible();
         });
-    </script>
+        $(document).ready(function () {
+            $('.modal').modal();
+        });
 
+        function update(field, ID) {
+            if (document.getElementById(field).value) {
+                document.getElementById('change').href = "/animal/change/" + ID + "/image/" + field + document.getElementById(field);
+                document.getElementById('change').click()
+            }
+        }
+
+        function updateImage(field) {
+            if (document.getElementById(field).value) {
+                document.getElementById('change').href = '/account/info/change/image/' + field + '=' + document.getElementById(field).value;
+                document.getElementById('change').click()
+            }
+        }
+    </script>
+    <style>
+        .details {
+            color: black;
+        }
+
+        .details:hover {
+            color: red;
+        }
+
+        .details_image:hover {
+            opacity: 0.5;
+        }
+    </style>
 {% endblock %}
 {% block myanimals %}active{% endblock %}
 {% block account %}
+    <a href="" style="display: none" id="change"></a>
+    <div id="change_img" class="modal">
+        <div class="modal-content">
+            <input type="password" id="link"/><label for="link">Image link</label>
+            <a onclick="updateImage('link')" class="btn red waves-effect waves-light">UPDATE</a>
+        </div>
+    </div>
+
     <div class="col s12 m9">
         <ul class="collapsible popout">
             {% for animal in tosell %}
                 <li>
                     <div class="collapsible-header">{{ animal['nom'] }}</div>
-                    <div class="collapsible-body"><img src="{{ animal['link']}}" height="100 px" /><a class="waves-effect waves-light btn secondary-content red" href="trash/{{ animal['id'] }}">Delete</a></div>
+                    <div class="collapsible-body">
+                        <a href="#change_img" class="modal-trigger"><img class="details_image" src="{{ animal['link'] }}" height="100 px"/></a>
+                        <a class="waves-effect waves-light btn secondary-content red"
+                           href="trash/{{ animal['id'] }}">Delete</a>
+                        <p><a href="#change_location"
+                              class="details modal-trigger">Location: {{ animal['location'] }}</a> <br>
+                            <a href="#change_location" class="details modal-trigger">Age: {{ animal['age'] }}
+                                y/o</a><br>
+                            <a href="#change_location" class="details modal-trigger">Gender:
+                                {% if animal['sexe'] == 'f' %}&#9792;{% else %}&#9794;{% endif %}</a><br>
+                            <a href="#change_location" class="details modal-trigger">Weight: {{ animal['poids'] }}
+                                lbs</a><br>
+                            <a href="#change_location" class="details modal-trigger">Color:
+                                {{ animal['pelage'] }}{{ animal['plumage'] }}</a><br>
+                            {% if animal['race'] == 'Doggo' or animal['race'] == 'Kitteh' %}
+                                <a href="#change_location" class="details modal-trigger">Other:
+                                    {% if animal['castre'] == 1 %}Castrated, {% endif %}
+                                    {% if animal['degriffe'] == 1 %}Declawed{% endif %}</a><br>
+                            {% endif %}
+                            <a href="#change_location"
+                               class="details modal-trigger">Description: {{ animal['description'] }}</a><br>
+                            <a href="#change_location" class="details modal-trigger">Price: {{ animal['prix'] }}$</a>
+                        </p>
+                    </div>
                 </li>
             {% endfor %}
 
         </ul>
-    <a class="btn red waves-effect waves-light btn red" href="/addAnimal">add animal</a>
+        <a class="btn red waves-effect waves-light btn red" href="/addAnimal">add animal</a>
     </div>
 {% endblock %}
