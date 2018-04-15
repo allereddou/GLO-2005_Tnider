@@ -2,12 +2,11 @@ from datetime import timedelta
 import pymysql
 from flask import Flask, render_template, request, g, redirect, url_for, flash
 from flask_login import LoginManager, login_required, login_user, current_user, logout_user
-import math, random, re
+import random
 
 from Forms.LoginForm import LoginForm, RegisterForm
-from Forms.PreferenceForm import PreferenceForm
 from Users import *
-from persistance.bdUtils import createUser, checkIfUsernameAlreadyUsed, checkIfEmailAlreadyUsed, validatePassword
+from persistance.bdUtils import createUser, checkIfUsernameAlreadyUsed, checkIfEmailAlreadyUsed, validatePassword, updatePreferences
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -130,13 +129,10 @@ def contact_us():
 @app.route('/account/preferences', methods=["GET", "POST"])
 @login_required
 def account_preferences():
-    preference_form = PreferenceForm(request.form)
-    if preference_form.validate_on_submit() and request.form['btn'] == "Save":
-        print("allo")
-
-    print(preference_form.Doggo)
-
-    return render_template('account-preferences.html')
+    if request.method == "GET" and request.args.to_dict().get('Save') == "Save":
+        current_user.preferences = updatePreferences(current_user, request.args.to_dict())
+        print(current_user.preferences)
+    return render_template("account-preferences.html", pref=current_user.preferences.keys())
 
 
 @app.route('/account/transactions')
@@ -223,7 +219,7 @@ def get_db():
         g.cursor = db.cursor(pymysql.cursors.DictCursor)
         schemaExists = g.cursor.execute(sql)
 
-        if (not(schemaExists)):
+        if not schemaExists:
             sql = "CREATE DATABASE IF NOT EXISTS PROJET_BD"
             g.cursor.execute(sql)
 
