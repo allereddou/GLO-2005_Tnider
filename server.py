@@ -343,24 +343,69 @@ def get_possible_match():
 def filterIds(possible_id):
     cursor = get_db()
     goodIds = []
-    for i in range(len(possible_id)):
-        id = possible_id[i]['id']
+
+
+    # filtre chien
+    sql = "SELECT * FROM preferencesDog WHERE username='{}';"
+    cursor.execute(sql.format(current_user.username))
+    prefsDog = cursor.fetchall()[0]
+
+    # filtre chat
+    sql = "SELECT * FROM preferencesCat WHERE username='{}';"
+    cursor.execute(sql.format(current_user.username))
+    prefsCat = cursor.fetchall()[0]
+
+    # filtre oiseau
+    sql = "SELECT * FROM preferencesBird WHERE username='{}';"
+    cursor.execute(sql.format(current_user.username))
+    prefsBirb = cursor.fetchall()[0]
+
+    for animalId in possible_id:
         sql = "SELECT * from animal WHERE id = '{}';"
-        cursor.execute(sql.format(id))
+        cursor.execute(sql.format(animalId['id']))
         animal = cursor.fetchall()[0]
 
+        if prefsDog['maleGenderDoggo'] == 1 and animal['sexe'] == 'm' or prefsDog['femaleGenderDoggo'] == 1 and animal['sexe'] == 'f':
+            if prefsDog['0_20WeigthDoggo'] == 1 and animal['poids'] <= 20 or prefsDog['20_40Weight'] == 1 and 20 < animal['poids'] < 40 or prefsDog['40WeigthPlusDoggo'] == 1 and animal['poids'] > 40:
+                if prefsDog['0_5AgeDoggo'] == 1 and animal['age'] <= 5 or prefsDog['5_10AgeDoggo'] == 1 and 5 < animal['age'] <= 10 or prefsDog['10AgePlusDoggo'] == 1 and animal['age'] > 10:
+                    sql = "SELECT * FROM dog WHERE id={}"
+                    cursor.execute(sql.format(animalId))
+                    dog = cursor.fetchall()[0]
 
-        # filtre chien
-        sql = "SELECT * FROM preferencesDog WHERE username='{}';"
-        cursor.execute(sql.format(current_user.username))
-        prefsDog = cursor.fetchall()[0]
+                    if prefsDog['declawedDoggo'] == dog['degriffe'] and prefsDog['castratedDoggo'] == dog['castre']:
+                        if prefsDog['gingerDoggo'] == 1 and dog['pelage'] == 'roux' or prefsDog['whiteDoggo'] == 1 and dog['pelage'] == 'blanc' or prefsDog['blackDoggo'] and dog['pelage'] == 'noir' or prefsDog['brownDoggo'] == 1 and dog['pelage'] == 'brun' or prefsDog['greyDoggo'] == 1 and dog['pelage'] == 'gris':
+                            goodIds.append(animalId)
 
-        if prefsDog['maleGenderDoggo'] == 1 and animal['gender'] == 'm' or prefsDog['femaleGenderDoggo'] == 1 and animal['gender'] == 'f':
-            if (prefsDog['gingerDoggo'] == 1 and animal or prefsDog['blackDoggo'] == 1or prefsDog
+        elif prefsCat['maleGenderCat'] == 1 and animal['sexe'] == 'm' or prefsCat['femaleGenderDoggo'] == 1 and animal['sexe'] == 'f':
+            if prefsCat['0_10WeigthCat'] == 1 and animal['poids'] <= 10 or prefsCat['10_20Weight'] == 1 and 10 < animal['poids'] <= 20 or prefsCat['20WeigthPlusCat'] == 1 and animal['poids'] > 20:
+                if prefsCat['0_5AgeCat'] == 1 and animal['age'] <= 5 or prefsCat['5_10AgeCat'] == 1 and 5 < animal['age'] <= 10 or prefsCat['10AgePlusCat'] == 1 and animal['age'] > 10:
+                    sql = "SELECT * FROM cat WHERE id={}"
+                    cursor.execute(sql.format(animalId))
+                    cat = cursor.fetchall()[0]
+
+                    if prefsCat['declawedCat'] == cat['degriffe'] and prefsCat['castratedCat'] == cat['castre']:
+                        if prefsCat['gingerCat'] == 1 and cat['pelage'] == 'roux' or prefsCat['whiteCat'] == 1 and cat['pelage'] == 'blanc' or prefsCat['blackCat'] and cat['pelage'] == 'noir' or prefsCat['brownCat'] == 1 and cat['pelage'] == 'brun' or prefsCat['greyCat'] == 1 and cat['pelage'] == 'gris':
+                            goodIds.append(animalId)
+
+        defaultPrefBird = {'blackBirb': 1, 'greenBirb': 1, '1_2WeightBirb': 1, 'maleBirb': 1, 'greyBirb': 1,
+                           '10AgePlusBirb': 1,
+                           'whiteBirb': 1, 'blueBirb': 1, '0_1WeightBirb': 1, '2PlusWeightBirb': 1, 'yellowBirb': 1,
+                           '5_10AgeBirb': 1, 'femaleBirb': 1, 'beigeBirb': 1, '0_5AgeBirb': 1}
+
+
+        elif prefsBirb['maleGenderBirb'] == 1 and animal['sexe'] == 'm' or prefsBirb['femaleGenderBirb'] == 1 and animal['sexe'] == 'f':
+            if prefsBirb['0_1WeigthBirb'] == 1 and animal['poids'] <= 1 or prefsBirb['1_2Weight'] == 1 and 1 < animal['poids'] <= 2 or prefsBirb['2PlusWeigthBirb'] == 1 and animal['poids'] > 3:
+                if prefsBirb['0_5AgeBirb'] == 1 and animal['age'] <= 5 or prefsBirb['5_10AgeBirb'] == 1 and 5 < animal['age'] <= 10 or prefsBirb['10AgePlusBirb'] == 1 and animal['age'] > 10:
+                    sql = "SELECT * FROM bird WHERE id={}"
+                    cursor.execute(sql.format(animalId))
+                    bird = cursor.fetchall()[0]
+
+                    if prefsBirb['yellowBirb'] == 1 and bird['plumage'] == 'jaune' or prefsBirb['blackBirb'] == 1 and bird['plumage'] == 'noir' or prefsBirb['whiteBirb'] and bird['plumage'] == 'blanc' or prefsBirb['brownCat'] == 1 and bird['plumage'] == 'brun' or prefsBirb['greyCat'] == 1 and bird['plumage'] == 'gris':
+                        goodIds.append(animalId)
 
 
 
-
+                plumages = ['blanc', '', '', 'gris', 'beige', 'vert']
 
 
 
