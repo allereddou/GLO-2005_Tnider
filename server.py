@@ -6,7 +6,8 @@ import random
 
 from Forms.LoginForm import LoginForm, RegisterForm
 from Users import *
-from persistance.bdUtils import createUser, checkIfUsernameAlreadyUsed, checkIfEmailAlreadyUsed, validatePassword, updatePreferences
+from persistance.bdUtils import createUser, checkIfUsernameAlreadyUsed, checkIfEmailAlreadyUsed, validatePassword, \
+    updatePreferences
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -31,9 +32,17 @@ def home():
 @login_required
 def myanimals():
     cursor = get_db()
-    cursor.execute("SELECT * FROM vend WHERE username = '{}'".format(current_user.username))
+    cursor.execute(
+        "SELECT P.link, A.nom, A.id FROM vend V, animal A, pic P WHERE V.username = '{}' and V.id_animal = A.id and P.id = A.id".format(current_user.username))
     tosell = cursor.fetchall()
     return render_template('account-my-animals.html', tosell=tosell)
+
+
+@app.route('/account/trash/<num>')
+def trash(num):
+    cursor = get_db()
+    cursor.execute("DELETE FROM animal WHERE id = {}".format(num))
+    return redirect(request.referrer)
 
 
 @app.route('/about')

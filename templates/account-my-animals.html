@@ -2,24 +2,24 @@
 {% block title %}Account - My Animals{% endblock %}
 {% block head %}
     {{ super() }}
+    <script>
+        $(document).ready(function () {
+            $('.collapsible').collapsible();
+        });
+    </script>
 
 {% endblock %}
 {% block myanimals %}active{% endblock %}
 {% block account %}
     <div class="col s12 m9">
-        <table class="highlight responsive-table">
-            <thead>
-            <tr>
-                <th>My Animals</th>
-            </tr>
-            </thead>
-            <tbody>
+        <ul class="collapsible popout">
             {% for animal in tosell %}
-                <tr>
-                    <td>{{ animal['id_animal'] }}</td>
-                </tr>
+                <li>
+                    <div class="collapsible-header">{{ animal['nom'] }}</div>
+                    <div class="collapsible-body"><img src="{{ animal['link']}}" height="100 px" /><a class="waves-effect waves-light btn secondary-content red" href="trash/{{ animal['id'] }}">Delete</a></div>
+                </li>
             {% endfor %}
-            </tbody>
-        </table>
+
+        </ul>
     </div>
 {% endblock %}
