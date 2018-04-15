@@ -274,6 +274,7 @@ def get_profile(email):
 # cette fonction doit être modifiée pour trouver un animal
 def get_possible_match():
     cursor = get_db()
+    print(current_user.preferences)
     sql = "SELECT A.id FROM animal A WHERE A.id not in (SELECT D.id FROM desire D WHERE D.username = '{}') and A.id not in (SELECT D.id FROM notdesired D WHERE D.username = '{}') and A.id not in (SELECT T.id FROM transactions T);".format(
         current_user.username, current_user.username)
     cursor.execute(sql)
