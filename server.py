@@ -50,7 +50,7 @@ def myanimals(active):
     return render_template('account-my-animals.html', tosell=myanimals, active=active)
 
 
-@app.route('/account/trash/<num>')
+@app.route('/account/myanimals/trash/<num>')
 @login_required
 def trash(num):
     cursor = get_db()
