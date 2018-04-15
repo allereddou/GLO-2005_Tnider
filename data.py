@@ -50,5 +50,15 @@ with app.app_context():
 
     cursor.execute(sql)
 
-    sql = "INSERT INTO preferences (username, blackDoggo) VALUES('{}', {});"
+    sql = "INSERT INTO preferencesDog (username, blackDoggo) VALUES('{}', {});"
     cursor.execute(sql.format('admin', 1))
+
+    sql = "INSERT INTO preferencesCat (username, blackCat) VALUES('{}', {});"
+    cursor.execute(sql.format('admin', 1))
+
+    sql = "INSERT INTO preferencesBird (username, blackBirb) VALUES('{}', {});"
+    cursor.execute(sql.format('admin', 1))
+
+
+
+

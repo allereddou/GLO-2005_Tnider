@@ -122,8 +122,7 @@ def contact_us():
 def account_preferences():
     if request.method == "GET" and request.args.to_dict().get('Save') == "Save":
         current_user.preferences = updatePreferences(current_user, request.args.to_dict())
-    print(current_user.preferences)
-    return render_template("account-preferences.html", pref=current_user.preferences.keys())
+    return render_template("account-preferences.html", pref=current_user.preferencesCat.keys())
 
 
 @app.route('/account/transactions')
@@ -274,11 +273,15 @@ def get_profile(email):
 # cette fonction doit être modifiée pour trouver un animal
 def get_possible_match():
     cursor = get_db()
-    print(current_user.preferences)
     sql = "SELECT A.id FROM animal A WHERE A.id not in (SELECT D.id FROM desire D WHERE D.username = '{}') and A.id not in (SELECT D.id FROM notdesired D WHERE D.username = '{}') and A.id not in (SELECT T.id FROM transactions T);".format(
         current_user.username, current_user.username)
     cursor.execute(sql)
     possible_id = cursor.fetchall()
+
+    print(possible_id)
+
+    filterIds(possible_id)
+
     IDs = list()
     for i in possible_id:
         IDs.append(i['id'])
@@ -287,6 +290,30 @@ def get_possible_match():
         IDs.pop())
     cursor.execute(sql)
     return cursor.fetchall()[0]
+
+
+def filterIds(possible_id):
+    cursor = get_db()
+    goodIds = []
+    for i in range(len(possible_id)):
+        id = possible_id[i]['id']
+        sql = "SELECT * from animal WHERE id = '{}';"
+        cursor.execute(sql.format(id))
+        animal = cursor.fetchall()[0]
+
+
+        # filtre chien
+        sql = "SELECT * FROM preferencesDog WHERE username='{}';"
+        cursor.execute(sql.format(current_user.username))
+        sqlresults = cursor.fetchall()[0]
+
+        #filtre sexe
+        if sqlresults['']
+
+
+
+
+
 
 
 if __name__ == '__main__':
