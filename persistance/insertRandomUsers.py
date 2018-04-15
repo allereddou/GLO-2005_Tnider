@@ -29,7 +29,7 @@ def insertUsers(cursor, number):
         prenom = "admin"
         email = "admin@hotmail.com"
         telephone = random.randint(1000000000, 10000000000)
-        solde = 0.0
+        solde = random.randint(0, 999)
 
         if i == 0:
             sql = "INSERT INTO user(username, pass, nom, prenom, email, telephone, solde, profileImage) VALUES ('{}', '{}', '{}', '{}', '{}', {}, {}, '{}')"

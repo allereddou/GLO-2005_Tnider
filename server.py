@@ -274,10 +274,17 @@ def get_animals_desired():
     wishlist = []
     for current_id in id_wishlist:
         cursor.execute(
-            "SELECT DISTINCT A.id, P.link, A.nom, A.race, A.location, V.username, V.prix FROM pic P, animal A, vend V WHERE A.id = V.id_animal and A.id = P.id and A.id = {};".format(
+            "SELECT DISTINCT A.id, P.link, A.sexe, A.age, A.poids, A.description, A.nom, A.race, A.location, V.username, V.prix FROM pic P, animal A, vend V WHERE A.id = V.id_animal and A.id = P.id and A.id = {};".format(
                 current_id['id']))
-        animal = cursor.fetchall()
-        wishlist.append(animal[0])
+        animal = cursor.fetchall()[0]
+        if animal['race'] == 'Kitteh':
+            cursor.execute("SELECT pelage, castre, degriffe FROM cat WHERE id = {}".format(animal['id']))
+        elif animal['race'] == 'Doggo':
+            cursor.execute("SELECT pelage, castre, degriffe FROM dog WHERE id = {}".format(animal['id']))
+        elif animal['race'] == 'Birb':
+            cursor.execute("SELECT plumage FROM bird WHERE id = {}".format(animal['id']))
+        race = cursor.fetchall()[0]
+        wishlist.append({**animal, **race})
     return wishlist
 
 
@@ -307,7 +314,15 @@ def get_possible_match():
     sql = "SELECT DISTINCT A.id, P.link, A.nom, A.race, A.location, A.sexe, A.age, A.poids, A.description FROM pic P, animal A WHERE A.id = P.id and A.id = {}".format(
         IDs.pop())
     cursor.execute(sql)
-    return cursor.fetchall()[0]
+    animal = cursor.fetchall()[0]
+    if animal['race'] == 'Kitteh':
+        cursor.execute("SELECT pelage, castre, degriffe FROM cat WHERE id = {}".format(animal['id']))
+    elif animal['race'] == 'Doggo':
+        cursor.execute("SELECT pelage, castre, degriffe FROM dog WHERE id = {}".format(animal['id']))
+    elif animal['race'] == 'Birb':
+        cursor.execute("SELECT plumage FROM bird WHERE id = {}".format(animal['id']))
+    race = cursor.fetchall()[0]
+    return {**animal, **race}
 
 
 if __name__ == '__main__':
