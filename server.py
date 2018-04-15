@@ -346,10 +346,8 @@ def get_possible_match():
     cursor.execute(sql)
     possible_id = cursor.fetchall()
 
-    print(possible_id)
-
+    #filter based on personal preferences
     possible_id = filterIds(possible_id)
-    print(possible_id)
 
     IDs = list()
     for i in possible_id:
@@ -379,7 +377,6 @@ def filterIds(possible_id):
     sql = "SELECT * FROM preferencesDog WHERE username='{}';"
     cursor.execute(sql.format(current_user.username))
     prefsDog = cursor.fetchall()[0]
-    print(prefsDog)
 
     # filtre chat
     sql = "SELECT * FROM preferencesCat WHERE username='{}';"
@@ -397,21 +394,15 @@ def filterIds(possible_id):
         animal = cursor.fetchall()[0]
 
         if animal['race'] == 'Doggo':
-            print(1)
             if prefsDog['maleGenderDoggo'] and animal['sexe'] == 'm' or prefsDog['femaleGenderDoggo'] and animal['sexe'] == 'f':
-                print(2)
                 if prefsDog['0_20WeightDoggo'] and animal['poids'] <= 20 or prefsDog['20_40WeightDoggo'] and 20 < animal['poids'] <= 40 or prefsDog['40WeightPlusDoggo'] and animal['poids'] > 40:
-                    print(3)
                     if prefsDog['0_5AgeDoggo'] and animal['age'] <= 5 or prefsDog['5_10AgeDoggo'] and 5 < animal['age'] <= 10 or prefsDog['10AgePlusDoggo'] and animal['age'] > 10:
                         sql = "SELECT * FROM dog WHERE id={}"
                         cursor.execute(sql.format(animalId['id']))
                         dog = cursor.fetchall()[0]
 
                         if prefsDog['declawedDoggo'] == dog['degriffe'] and prefsDog['castratedDoggo'] == dog['castre']:
-                            print(4)
-                            print(dog['pelage'])
                             if prefsDog['gingerDoggo'] and dog['pelage'] == 'ginger' or prefsDog['whiteDoggo'] and dog['pelage'] == 'white' or prefsDog['blackDoggo'] and dog['pelage'] == 'black' or prefsDog['brownDoggo'] and dog['pelage'] == 'brown' or prefsDog['greyDoggo'] and dog['pelage'] == 'grey':
-                                print(5)
                                 goodIds.append({'id': animalId['id']})
 
         elif animal['race'] == 'Kitteh':
