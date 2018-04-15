@@ -163,9 +163,28 @@ def account_info():
     return render_template('account-info.html')
 
 
-@app.route('/addAnimal')
+@app.route('/addAnimal', methods=["GET", "POST"])
 @login_required
 def add_Animal():
+    if request.method == "POST":
+        cursor = get_db()
+        sqlAnimal = "INSERT INTO animal (id, nom, sexe, age, poids, location, race, description) VALUES ({}, '{}', '{}', {}, {}, '{}', '{}', '{}').format"
+        sqlpic = ""
+        sqlvend = ""
+
+        if request.form['btn'] == "addDog":
+            sqlDog = "INSERT INTO dog (id, pelage, castre, degriffe) VALUES({}, '{}', {}, {})"
+
+
+        elif request.form['btn'] == "addCat":
+            sqlCat = "INSERT INTO cat(id, pelage, castre, degriffe) VALUES({}, '{}', {}, {})"
+
+
+        elif request.form['btn'] == "addBird":
+            sqlBird = "INSERT INTO bird(id, plumage) VALUES ({},'{}')"
+
+        return redirect(url_for('browse'))
+
     return render_template('addAnimals.html')
 
 
