@@ -42,6 +42,7 @@ def setupDatabase():
         insertRandomDesired(cursor)
 
 
+
 with app.app_context():
 
     setupDatabase()
@@ -50,3 +51,8 @@ with app.app_context():
     cursor = get_db()
 
     cursor.execute(sql)
+
+    sql = "INSERT INTO preferences (username, blackDoggo) VALUES('{}', {});"
+    cursor.execute(sql.format('admin', 1))
+
+
