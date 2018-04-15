@@ -400,7 +400,7 @@ def filterIds(possible_id):
                     cursor.execute(sql.format(animalId))
                     bird = cursor.fetchall()[0]
 
-                    if prefsBirb['yellowBirb'] == 1 and bird['plumage'] == 'jaune' or prefsBirb['blackBirb'] == 1 and bird['plumage'] == 'noir' or prefsBirb['whiteBirb'] and bird['plumage'] == 'blanc' or prefsBirb['brownCat'] == 1 and bird['plumage'] == 'brun' or prefsBirb['greyCat'] == 1 and bird['plumage'] == 'gris':
+                    if prefsBirb['yellowBirb'] == 1 and bird['plumage'] == 'yellow' or prefsBirb['blackBirb'] == 1 and bird['plumage'] == 'black' or prefsBirb['whiteBirb'] and bird['plumage'] == 'white' or prefsBirb['brownCat'] == 1 and bird['plumage'] == 'brun' or prefsBirb['greyCat'] == 1 and bird['plumage'] == 'gris':
                         goodIds.append(animalId)
 
 
