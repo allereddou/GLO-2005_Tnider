@@ -1,16 +1,6 @@
 {% extends "account.html" %}
 {% block head %}
     {{ super() }}
-    <script type="text/javascript">
-
-        {# PLEAZE DEBUG ME pref is alwats empty #}
-        {#        console.log({{pref[0]}});#}
-        {#        for (let i = 0, n = {{ pref|length }}; i < n; i++) {#}
-        {#            let checkbox = document.getElementsByName({{ pref[i] }});#}
-        {#            console.log(checkbox);#}
-        {#        }#}
-
-    </script>
     <script>
         //https://stackoverflow.com/questions/386281/how-to-implement-select-all-check-box-in-html
         function toggleKitteh(source) {
@@ -106,13 +96,15 @@
             }
         }
     </script>
+
 {% endblock %}
 {% block prefaction %}active{% endblock %}
 {% block account %}
     <div class="col s12 m9">
         <form id="preferences">
             <ul class="collection with-header col s12 m4">
-                <li class="collection-header"><input type="checkbox" id="kitteh" name="kitteh" onclick="toggleKitteh(this)"/><label
+                <li class="collection-header"><input type="checkbox" id="kitteh" name="kitteh"
+                                                     onclick="toggleKitteh(this)"/><label
                         style="color: black" for="kitteh">Kitteh</label>
                 </li>
 
@@ -191,7 +183,8 @@
             </ul>
 
             <ul class="collection with-header col s12 m4">
-                <li class="collection-header"><input type="checkbox" id="doggo" name="doggo" onclick="toggleDoggo(this)"/><label
+                <li class="collection-header"><input type="checkbox" id="doggo" name="doggo"
+                                                     onclick="toggleDoggo(this)"/><label
                         style="color: black" for="doggo">Doggo</label>
                 </li>
                 <li class="collection-item"><input class="doggo" type="checkbox" name="declawedDoggo" id="declawedDoggo"
@@ -279,7 +272,8 @@
 
 
             <ul class="collection with-header col s12 m4">
-                <li class="collection-header"><input type="checkbox" id="birb" name="birb" onclick="toggleBirb(this)"/><label
+                <li class="collection-header"><input type="checkbox" id="birb" name="birb"
+                                                     onclick="toggleBirb(this)"/><label
                         style="color: black" for="birb">Birb</label>
                 </li>
                 <li class="collection-item">Color</li>
@@ -359,6 +353,46 @@
             <button type="submit" class="btn red waves-effect waves-light" name="Save" value="Save">Save</button>
         </form>
     </div>
+
+    <script type="text/javascript">
+        {
+            let checkboxesBirb = {{ prefBirb|safe }};
+            if (checkboxesBirb.length > 1) {
+                document.getElementsByName('birb')[0].checked = 'checked';
+            }
+            for (let i = 0, n = checkboxesBirb.length; i < n; i++) {
+                console.log(String(checkboxesBirb[i]));
+                document.getElementsByName(String(checkboxesBirb[i]))[0].checked = 'checked';
+                document.getElementsByName(String(checkboxesBirb[i]))[0].disabled = false
+            }
+
+            let checkboxesCat = {{ prefCat|safe }};
+            if (checkboxesCat.length > 1) {
+                document.getElementsByName('birb')[0].checked = 'checked';
+            }
+            for (let i = 0, n = checkboxesCat.length; i < n; i++) {
+                console.log(String(checkboxesCat[i]));
+                document.getElementsByName(String(checkboxesCat[i]))[0].checked = 'checked';
+                document.getElementsByName(String(checkboxesCat[i]))[0].disabled = false
+            }
+
+            let checkboxesDog = {{ prefBirb|safe }};
+            if (checkboxesDog.length > 1) {
+                document.getElementsByName('birb')[0].checked = 'checked';
+            }
+            for (let i = 0, n = checkboxesDog.length; i < n; i++) {
+                console.log(String(checkboxesDog[i]));
+                document.getElementsByName(String(checkboxesDog[i]))[0].checked = 'checked';
+                document.getElementsByName(String(checkboxesDog[i]))[0].disabled = false
+            }
+        }
+    </script>
+
+
+
+
 {% endblock %}
+
+
 
 
