@@ -81,10 +81,10 @@ def createTables(cursor):
     sql = "CREATE TABLE IF NOT EXISTS pic (id INT NOT NULL , caption VARCHAR(45) NOT NULL, link VARCHAR(200) NOT NULL, PRIMARY KEY(id));"
     cursor.execute(sql)
 
-    sql = "CREATE TABLE IF NOT EXISTS desire(username VARCHAR(20), id INT, PRIMARY KEY (username, id), FOREIGN KEY(username) REFERENCES user(username) ON UPDATE CASCADE , FOREIGN KEY(id) REFERENCES animal(id));"
+    sql = "CREATE TABLE IF NOT EXISTS desire(username VARCHAR(20), id INT, PRIMARY KEY (username, id), FOREIGN KEY(username) REFERENCES user(username) ON UPDATE CASCADE , FOREIGN KEY(id) REFERENCES animal(id) ON DELETE CASCADE );"
     cursor.execute(sql)
 
-    sql = "CREATE TABLE IF NOT EXISTS notdesired(username VARCHAR(20), id INT, PRIMARY KEY (username, id), FOREIGN KEY(username) REFERENCES user(username) ON UPDATE CASCADE , FOREIGN KEY(id) REFERENCES animal(id));"
+    sql = "CREATE TABLE IF NOT EXISTS notdesired(username VARCHAR(20), id INT, PRIMARY KEY (username, id), FOREIGN KEY(username) REFERENCES user(username) ON UPDATE CASCADE , FOREIGN KEY(id) REFERENCES animal(id) ON DELETE CASCADE );"
     cursor.execute(sql)
 
     #sql = "CREATE TABLE IF NOT EXISTS preferences(username VARCHAR(20), declawedCat TINYINT, whiteCat TINYINT, blackCat TINYINT, gingerCat TINYINT, greyCat TINYINT, brownCat TINYINT, castratedCat TINYINT,femaleGenderCat TINYINT, maleGenderCat TINYINT, 0_10CatWeight TINYINT, 10_20CatWeight TINYINT, 20PlusCatWeight TINYINT, 0_5CatAge TINYINT, 5_10CatAge TINYINT, 10PlusCatAge TINYINT, whiteDoggo TINYINT, blackDoggo TINYINT, gingerDoggo TINYINT, brownDoggo TINYINT, greyDoggo TINYINT, declawedDoggo TINYINT, castratedDoggo TINYINT, femaleGenderDoggo TINYINT, maleGenderDoggo TINYINT, 0_20WeightDoggo TINYINT, 20_40WeightDoggo TINYINT, 40WeightPlusDoggo TINYINT, 0_5AgeDoggo TINYINT, 5_10AgeDoggo TINYINT, 10AgePlusDoggo TINYINT, blackBirb TINYINT, whiteBirb TINYINT, blueBirb TINYINT, beigeBirb TINYINT, greyBirb TINYINT, greenBirb TINYINT, yellowBirb TINYINT, 0_5AgeBirb TINYINT, 5_10AgeBirb TINYINT, 10AgePlusBirb TINYINT, 0_1WeightBirb TINYINT, 1_2WeightBirb TINYINT, 2PlusWeightBirb TINYINT, femaleBirb TINYINT, maleBirb TINYINT, FOREIGN KEY(username) REFERENCES user(username) ON DELETE CASCADE, PRIMARY KEY(username));"
@@ -99,5 +99,5 @@ def createTables(cursor):
     sql = "CREATE TABLE IF NOT EXISTS preferencesDog(username VARCHAR(20),  whiteDoggo TINYINT, blackDoggo TINYINT, gingerDoggo TINYINT, brownDoggo TINYINT, greyDoggo TINYINT, declawedDoggo TINYINT, castratedDoggo TINYINT, femaleGenderDoggo TINYINT, maleGenderDoggo TINYINT, 0_20WeightDoggo TINYINT, 20_40WeightDoggo TINYINT, 40WeightPlusDoggo TINYINT, 0_5AgeDoggo TINYINT, 5_10AgeDoggo TINYINT, 10AgePlusDoggo TINYINT, FOREIGN KEY(username) REFERENCES user(username) ON DELETE CASCADE, PRIMARY KEY(username));"
     cursor.execute(sql)
 
-    sql = "CREATE TABLE IF NOT EXISTS transactions(seller VARCHAR(20), id INT, buyer VARCHAR(20), prix DECIMAL(5,2), PRIMARY KEY (seller, id, buyer), FOREIGN KEY(seller) REFERENCES user(username), FOREIGN KEY(buyer) REFERENCES user(username), FOREIGN KEY(id) REFERENCES animal(id));"
+    sql = "CREATE TABLE IF NOT EXISTS transactions(seller VARCHAR(20), id INT, buyer VARCHAR(20), prix DECIMAL(5,2), PRIMARY KEY (seller, id, buyer), FOREIGN KEY(seller) REFERENCES user(username), FOREIGN KEY(buyer) REFERENCES user(username), FOREIGN KEY(id) REFERENCES animal(id) ON DELETE CASCADE );"
     cursor.execute(sql)
