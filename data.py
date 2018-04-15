@@ -42,9 +42,7 @@ def setupDatabase():
         insertRandomDesired(cursor)
 
 
-
 with app.app_context():
-
     setupDatabase()
 
     sql = "SELECT * FROM user"
@@ -54,5 +52,3 @@ with app.app_context():
 
     sql = "INSERT INTO preferences (username, blackDoggo) VALUES('{}', {});"
     cursor.execute(sql.format('admin', 1))
-
-

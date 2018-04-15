@@ -99,7 +99,6 @@ def buy():
         "INSERT transactions(seller, id, buyer, prix) VALUES('{}',{},'{}',{})".format(vend['username'], num,
                                                                                       current_user.username,
                                                                                       vend['prix']))
-
     cursor.execute("DELETE FROM desire WHERE id = {}".format(num))
     cursor.execute("DELETE FROM notdesired WHERE id = {}".format(num))
     cursor.execute("DELETE FROM vend WHERE id_animal = {}".format(num))
@@ -114,6 +113,7 @@ def sign_in():
 
 @app.route('/contact_us')
 def contact_us():
+    print(current_user.preferences)
     return render_template('contact_us.html')
 
 
@@ -122,7 +122,7 @@ def contact_us():
 def account_preferences():
     if request.method == "GET" and request.args.to_dict().get('Save') == "Save":
         current_user.preferences = updatePreferences(current_user, request.args.to_dict())
-        print(current_user.preferences)
+    print(current_user.preferences)
     return render_template("account-preferences.html", pref=current_user.preferences.keys())
 
 
