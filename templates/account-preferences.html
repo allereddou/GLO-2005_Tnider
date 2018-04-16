@@ -1,16 +1,6 @@
 {% extends "account.html" %}
 {% block head %}
     {{ super() }}
-    <script type="text/javascript">
-
-        {# PLEAZE DEBUG ME pref is alwats empty #}
-        {#        console.log({{pref[0]}});#}
-        {#        for (let i = 0, n = {{ pref|length }}; i < n; i++) {#}
-        {#            let checkbox = document.getElementsByName({{ pref[i] }});#}
-        {#            console.log(checkbox);#}
-        {#        }#}
-
-    </script>
     <script>
         //https://stackoverflow.com/questions/386281/how-to-implement-select-all-check-box-in-html
         function toggleKitteh(source) {
@@ -47,7 +37,7 @@
         }
 
         function toggleDoggo(source) {
-            let checkboxes = document.getElementsByClassName('doggo');
+            let checkboxes = document.getElementsByClassName('dog');
             for (let i = 0, n = checkboxes.length; i < n; i++) {
                 checkboxes[i].checked = source.checked;
                 checkboxes[i].disabled = (source.checked) ? '' : 'disabled';
@@ -106,13 +96,15 @@
             }
         }
     </script>
+
 {% endblock %}
 {% block prefaction %}active{% endblock %}
 {% block account %}
     <div class="col s12 m9">
         <form id="preferences">
             <ul class="collection with-header col s12 m4">
-                <li class="collection-header"><input type="checkbox" id="kitteh" onclick="toggleKitteh(this)"/><label
+                <li class="collection-header"><input type="checkbox" id="kitteh" name="kitteh"
+                                                     onclick="toggleKitteh(this)"/><label
                         style="color: black" for="kitteh">Kitteh</label>
                 </li>
 
@@ -126,63 +118,63 @@
 
                 <li class="collection-item">Color</li>
 
-                <li class="collection-item"><input type="checkbox" class="grpColorCat" name="gingerCat" id="gingerCat"
+                <li class="collection-item"><input type="checkbox" class="grpColorCat cat" name="gingerCat" id="gingerCat"
                                                    disabled="disabled"/><label for="gingerCat">Ginger </label></li>
 
-                <li class="collection-item"><input type="checkbox" class="grpColorCat" name="greyCat" id="greyCat"
+                <li class="collection-item"><input type="checkbox" class="grpColorCat cat" name="greyCat" id="greyCat"
                                                    disabled="disabled"/><label for="greyCat">Grey </label></li>
 
-                <li class="collection-item"><input type="checkbox" class="grpColorCat" name="brownCat" id="brownCat"
+                <li class="collection-item"><input type="checkbox" class="grpColorCat cat" name="brownCat" id="brownCat"
                                                    disabled="disabled"/><label for="brownCat">Brown </label></li>
 
-                <li class="collection-item"><input type="checkbox" class="grpColorCat" name="whiteCat" id="whiteCat"
+                <li class="collection-item"><input type="checkbox" class="grpColorCat cat" name="whiteCat" id="whiteCat"
                                                    disabled="disabled"/><label for="whiteCat">White </label></li>
 
-                <li class="collection-item"><input type="checkbox" class="grpColorCat" name="blackCat" id="blackCat"
+                <li class="collection-item"><input type="checkbox" class="grpColorCat cat" name="blackCat" id="blackCat"
                                                    disabled="disabled"/><label for="blackCat">Black </label></li>
 
 
                 <li class="collection-item">Weight (lbs)</li>
-                <li class="collection-item"><input type="checkbox" class="grpWeightCat" name="0_10CatWeight"
-                                                   id="0_10CatWeight"
-                                                   disabled="disabled"/><label for="0_10CatWeight">0 - 10 </label>
+                <li class="collection-item"><input type="checkbox" class="grpWeightCat cat" name="0_10WeightCat"
+                                                   id="0_10WeightCat"
+                                                   disabled="disabled"/><label for="0_10WeightCat">0 - 10 </label>
                 </li>
 
-                <li class="collection-item"><input type="checkbox" class="grpWeightCat" name="10_20CatWeight"
-                                                   id="10_20CatWeight"
-                                                   disabled="disabled"/><label for="10_20CatWeight">10 - 20 </label>
+                <li class="collection-item"><input type="checkbox" class="grpWeightCat cat" name="10_20WeightCat"
+                                                   id="10_20WeightCat"
+                                                   disabled="disabled"/><label for="10_20WeightCat">10 - 20 </label>
                 </li>
 
-                <li class="collection-item"><input type="checkbox" class="grpWeightCat" name="20PlusCatWeight"
-                                                   id="20PlusCatWeight"
-                                                   disabled="disabled"/><label for="20PlusCatWeight">20+ </label>
+                <li class="collection-item"><input type="checkbox" class="grpWeightCat cat" name="20PlusWeightCat"
+                                                   id="20PlusWeightCat"
+                                                   disabled="disabled"/><label for="20PlusWeightCat">20+ </label>
                 </li>
 
 
                 <li class="collection-item">Age</li>
-                <li class="collection-item"><input type="checkbox" class="grpAgeCat" name="0_5CatAge" id="0_5CatAge"
-                                                   disabled="disabled"/><label for="0_5CatAge">0 - 5 </label>
+                <li class="collection-item"><input type="checkbox" class="grpAgeCat cat" name="0_5AgeCat" id="0_5AgeCat"
+                                                   disabled="disabled"/><label for="0_5AgeCat">0 - 5 </label>
                 </li>
 
-                <li class="collection-item"><input type="checkbox" class="grpAgeCat" name="5_10CatAge" id="5_10CatAge"
-                                                   disabled="disabled"/><label for="5_10CatAge">5 - 10 </label>
+                <li class="collection-item"><input type="checkbox" class="grpAgeCat cat" name="5_10AgeCat" id="5_10AgeCat"
+                                                   disabled="disabled"/><label for="5_10AgeCat">5 - 10 </label>
                 </li>
 
-                <li class="collection-item"><input type="checkbox" class="grpAgeCat" name="10PlusCatAge"
-                                                   id="10PlusCatAge"
-                                                   disabled="disabled"/><label for="10PlusCatAge">10+ </label>
+                <li class="collection-item"><input type="checkbox" class="grpAgeCat cat" name="10PlusAgeCat"
+                                                   id="10PlusAgeCat"
+                                                   disabled="disabled"/><label for="10PlusAgeCat">10+ </label>
                 </li>
 
 
                 <li class="collection-item">Gender</li>
 
 
-                <li class="collection-item"><input type="checkbox" class="grpGenderCat" name="maleGenderCat"
+                <li class="collection-item"><input type="checkbox" class="grpGenderCat cat" name="maleGenderCat"
                                                    id="maleGenderCat"
                                                    disabled="disabled"/><label for="maleGenderCat">Male </label>
                 </li>
 
-                <li class="collection-item"><input type="checkbox" class="grpGenderCat" name="femaleGenderCat"
+                <li class="collection-item"><input type="checkbox" class="grpGenderCat cat" name="femaleGenderCat"
                                                    id="femaleGenderCat"
                                                    disabled="disabled"/><label for="femaleGenderCat">Female </label>
                 </li>
@@ -191,73 +183,74 @@
             </ul>
 
             <ul class="collection with-header col s12 m4">
-                <li class="collection-header"><input type="checkbox" id="doggo" onclick="toggleDoggo(this)"/><label
+                <li class="collection-header"><input type="checkbox" id="doggo" name="doggo"
+                                                     onclick="toggleDoggo(this)"/><label
                         style="color: black" for="doggo">Doggo</label>
                 </li>
-                <li class="collection-item"><input class="doggo" type="checkbox" name="declawedDoggo" id="declawedDoggo"
+                <li class="collection-item"><input class="dog" type="checkbox" name="declawedDoggo" id="declawedDoggo"
                                                    disabled="disabled"><label
                         for="declawedDoggo">Declawed</label></li>
-                <li class="collection-item"><input type="checkbox" class="doggo" name="castratedDoggo"
+                <li class="collection-item"><input type="checkbox" class="dog" name="castratedDoggo"
                                                    id="castratedDoggo"
                                                    disabled="disabled"><label
                         for="castratedDoggo">Castrated</label></li>
 
 
                 <li class="collection-item">Color</li>
-                <li class="collection-item"><input type="checkbox" class="grpColorDoggo" name="gingerDoggo"
+                <li class="collection-item"><input type="checkbox" class="grpColorDoggo dog" name="gingerDoggo"
                                                    id="gingerDoggo"
                                                    disabled="disabled"/><label for="gingerDoggo">Ginger </label>
                 </li>
 
-                <li class="collection-item"><input type="checkbox" class="grpColorDoggo" name="greyDoggo" id="greyDoggo"
+                <li class="collection-item"><input type="checkbox" class="grpColorDoggo dog" name="greyDoggo" id="greyDoggo"
                                                    disabled="disabled"/><label for="greyDoggo">Grey </label>
                 </li>
 
-                <li class="collection-item"><input type="checkbox" class="grpColorDoggo" name="brownDoggo"
+                <li class="collection-item"><input type="checkbox" class="grpColorDoggo dog" name="brownDoggo"
                                                    id="brownDoggo"
                                                    disabled="disabled"/><label for="brownDoggo">Brown </label>
                 </li>
 
-                <li class="collection-item"><input type="checkbox" class="grpColorDoggo" name="whiteDoggo"
+                <li class="collection-item"><input type="checkbox" class="grpColorDoggo dog" name="whiteDoggo"
                                                    id="whiteDoggo"
                                                    disabled="disabled"/><label for="whiteDoggo">White </label>
                 </li>
 
-                <li class="collection-item"><input type="checkbox" class="grpColorDoggo" name="blackDoggo"
+                <li class="collection-item"><input type="checkbox" class="grpColorDoggo dog" name="blackDoggo"
                                                    id="blackDoggo"
                                                    disabled="disabled"/><label for="blackDoggo">Black </label>
                 </li>
 
 
                 <li class="collection-item">Weight (lbs)</li>
-                <li class="collection-item"><input type="checkbox" class="grpWeightDoggo" name="0_20WeightDoggo"
+                <li class="collection-item"><input type="checkbox" class="grpWeightDoggo dog" name="0_20WeightDoggo"
                                                    id="0_20WeightDoggo"
                                                    disabled="disabled"/><label for="0_20WeightDoggo">0 - 20 </label>
                 </li>
 
-                <li class="collection-item"><input type="checkbox" class="grpWeightDoggo" name="20_40WeightDoggo"
+                <li class="collection-item"><input type="checkbox" class="grpWeightDoggo dog" name="20_40WeightDoggo"
                                                    id="20_40WeightDoggo"
                                                    disabled="disabled"/><label for="20_40WeightDoggo">20 - 40 </label>
                 </li>
 
-                <li class="collection-item"><input type="checkbox" class="grpWeightDoggo" name="40WeightPlusDoggo"
+                <li class="collection-item"><input type="checkbox" class="grpWeightDoggo dog" name="40WeightPlusDoggo"
                                                    id="40WeightPlusDoggo"
                                                    disabled="disabled"/><label for="40WeightPlusDoggo">40+ </label>
                 </li>
 
 
                 <li class="collection-item">Age</li>
-                <li class="collection-item"><input type="checkbox" class="grpAgeDoggo" name="0_5AgeDoggo"
+                <li class="collection-item"><input type="checkbox" class="grpAgeDoggo dog" name="0_5AgeDoggo"
                                                    id="0_5AgeDoggo"
                                                    disabled="disabled"/><label for="0_5AgeDoggo">0 - 5 </label>
                 </li>
 
-                <li class="collection-item"><input type="checkbox" class="grpAgeDoggo" name="5_10AgeDoggo"
+                <li class="collection-item"><input type="checkbox" class="grpAgeDoggo dog" name="5_10AgeDoggo"
                                                    id="5_10AgeDoggo"
                                                    disabled="disabled"/><label for="5_10AgeDoggo">5 - 10 </label>
                 </li>
 
-                <li class="collection-item"><input type="checkbox" class="grpAgeDoggo" name="10AgePlusDoggo"
+                <li class="collection-item"><input type="checkbox" class="grpAgeDoggo dog" name="10AgePlusDoggo"
                                                    id="10AgePlusDoggo"
                                                    disabled="disabled"/><label for="10AgePlusDoggo">10+ </label>
                 </li>
@@ -265,11 +258,11 @@
 
                 <li class="collection-item">Gender</li>
 
-                <li class="collection-item"><input type="checkbox" class="grpGenderDoggo" name="maleGenderDoggo"
+                <li class="collection-item"><input type="checkbox" class="grpGenderDoggo dog" name="maleGenderDoggo"
                                                    id="maleGenderDoggo" disabled="disabled"/><label
                         for="maleGenderDoggo">Male </label></li>
 
-                <li class="collection-item"><input type="checkbox" class="grpGenderDoggo" name="femaleGenderDoggo"
+                <li class="collection-item"><input type="checkbox" class="grpGenderDoggo dog" name="femaleGenderDoggo"
                                                    id="femaleGenderDoggo"
                                                    disabled="disabled"/><label
                         for="femaleGenderDoggo">Female </label></li>
@@ -279,78 +272,79 @@
 
 
             <ul class="collection with-header col s12 m4">
-                <li class="collection-header"><input type="checkbox" id="birb" onclick="toggleBirb(this)"/><label
+                <li class="collection-header"><input type="checkbox" id="birb" name="birb"
+                                                     onclick="toggleBirb(this)"/><label
                         style="color: black" for="birb">Birb</label>
                 </li>
                 <li class="collection-item">Color</li>
 
-                <li class="collection-item"><input type="checkbox" class="grpColorBirb" name="yellowBirb"
+                <li class="collection-item"><input type="checkbox" class="grpColorBirb bird" name="yellowBirb"
                                                    id="yellowBirb"
                                                    disabled="disabled"/><label for="yellowBirb">Yellow </label>
                 </li>
 
-                <li class="collection-item"><input type="checkbox" class="grpColorBirb" name="greenBirb" id="greenBirb"
+                <li class="collection-item"><input type="checkbox" class="grpColorBirb bird" name="greenBirb" id="greenBirb"
                                                    disabled="disabled"/><label for="greenBirb">Green </label>
                 </li>
 
-                <li class="collection-item"><input type="checkbox" class="grpColorBirb" name="whiteBirb" id="whiteBirb"
+                <li class="collection-item"><input type="checkbox" class="grpColorBirb bird" name="whiteBirb" id="whiteBirb"
                                                    disabled="disabled"/><label for="whiteBirb">White </label>
                 </li>
 
-                <li class="collection-item"><input type="checkbox" class="grpColorBirb" name="blueBirb" id="blueBirb"
-                                                   disabled="disabled"/><label for="whiteDoggo">Blue </label>
+                <li class="collection-item"><input type="checkbox" class="grpColorBirb bird" name="blueBirb" id="blueBirb"
+                                                   disabled="disabled"/><label for="blueBirb">Blue </label>
                 </li>
 
-                <li class="collection-item"><input type="checkbox" class="grpColorBirb" name="blackBirb" id="blackBirb"
+                <li class="collection-item"><input type="checkbox" class="grpColorBirb bird" name="blackBirb" id="blackBirb"
                                                    disabled="disabled"/><label for="blackBirb">Black </label>
                 </li>
 
-                <li class="collection-item"><input type="checkbox" class="grpColorBirb" name="beigeBirb" id="beigeBirb"
+                <li class="collection-item"><input type="checkbox" class="grpColorBirb bird" name="beigeBirb" id="beigeBirb"
                                                    disabled="disabled"/><label for="beigeBirb">Beige </label>
                 </li>
 
-                <li class="collection-item"><input type="checkbox" class="grpColorBirb" name="greyBirb" id="greyBirb"
+                <li class="collection-item"><input type="checkbox" class="grpColorBirb bird" name="greyBirb" id="greyBirb"
                                                    disabled="disabled"/><label for="greyBirb">Grey </label></li>
 
 
                 <li class="collection-item">Weight (lbs)</li>
-                <li class="collection-item"><input type="checkbox" class="grpWeightBirb" name="0_1WeightBirb"
+                <li class="collection-item"><input type="checkbox" class="grpWeightBirb bird" name="0_1WeightBirb"
                                                    id="0_1WeightBirb"
                                                    disabled="disabled"/><label for="0_1WeightBirb">0 - 1 </label>
                 </li>
 
-                <li class="collection-item"><input type="checkbox" class="grpWeightBirb" name="1_2WeightBirb"
+                <li class="collection-item"><input type="checkbox" class="grpWeightBirb bird" name="1_2WeightBirb"
                                                    id="1_2WeightBirb"
                                                    disabled="disabled"/><label for="1_2WeightBirb">1 - 2 </label>
                 </li>
 
-                <li class="collection-item"><input type="checkbox" class="grpWeightBirb" name="2PlusWeightBirb"
+                <li class="collection-item"><input type="checkbox" class="grpWeightBirb bird" name="2PlusWeightBirb"
                                                    id="2PlusWeightBirb"
                                                    disabled="disabled"/><label for="2PlusWeightBirb">2+ </label>
                 </li>
 
 
                 <li class="collection-item">Age</li>
-                <li class="collection-item"><input type="checkbox" class="grpAgeBirb" name="0_5AgeBirb" id="0_5AgeBirb"
+                <li class="collection-item"><input type="checkbox" class="grpAgeBirb bird" name="0_5AgeBirb" id="0_5AgeBirb"
                                                    disabled="disabled"/><label for="0_5AgeBirb">0 - 5 </label>
                 </li>
 
-                <li class="collection-item"><input type="checkbox" class="grpAgeBirb" name="5_10AgeBirb"
+                <li class="collection-item"><input type="checkbox" class="grpAgeBirb bird" name="5_10AgeBirb"
                                                    id="5_10AgeBirb"
                                                    disabled="disabled"/><label for="5_10AgeBirb">5 - 10 </label>
                 </li>
 
-                <li class="collection-item"><input type="checkbox" class="grpAgeBirb" name="10AgePlusBirb"
+                <li class="collection-item"><input type="checkbox" class="grpAgeBirb bird" name="10AgePlusBirb"
                                                    id="10AgePlusBirb"
                                                    disabled="disabled"/><label for="10AgePlusBirb">10+ </label>
                 </li>
 
 
                 <li class="collection-item">Gender</li>
-                <li class="collection-item"><input type="checkbox" class="grpGenderBirb" name="maleBirb" id="maleBirb"
+                <li class="collection-item"><input type="checkbox" class="grpGenderBirb bird" name="maleBirb" id="maleBirb"
                                                    disabled="disabled"/><label for="maleBirb">Male </label></li>
 
-                <li class="collection-item"><input type="checkbox" class="grpGenderBirb" name="femaleBirb"
+                <li class="collection-item"><input type="checkbox" class="grpGenderBirb bird" name="femaleBirb"
                                                    id="femaleBirb"
                                                    disabled="disabled"/><label for="femaleBirb">Female </label>
                 </li>
@@ -359,6 +353,59 @@
             <button type="submit" class="btn red waves-effect waves-light" name="Save" value="Save">Save</button>
         </form>
     </div>
+
+    <script type="text/javascript">
+        {
+            let checkboxesBirb = {{ prefBirb|safe }};
+            if (checkboxesBirb.length > 1) {
+                document.getElementsByName('birb')[0].checked = 'checked';
+                let allboxBirb = document.getElementsByClassName('bird');
+
+                for (let i = 0, n = allboxBirb.length; i < n; i++) {
+                    allboxBirb[i].disabled = false;
+                }
+
+
+            }
+            for (let i = 0, n = checkboxesBirb.length; i < n; i++) {
+                console.log(String(checkboxesBirb[i]));
+                document.getElementsByName(String(checkboxesBirb[i]))[0].checked = 'checked';
+            }
+
+
+            let checkboxesCat = {{ prefCat|safe }};
+            if (checkboxesCat.length > 1) {
+                document.getElementsByName('kitteh')[0].checked = 'checked';
+
+                let allboxCat = document.getElementsByClassName('cat');
+                for (let i = 0, n = allboxCat.length; i < n; i++) {
+                    allboxCat[i].disabled = false;
+                }
+            }
+            for (let j = 0, n = checkboxesCat.length; j < n; j++) {
+                console.log(String(checkboxesCat[j]));
+                document.getElementsByName(String(checkboxesCat[j]))[0].checked = 'checked';
+            }
+
+
+            let checkboxesDog = {{ prefDog|safe }};
+            if (checkboxesDog.length > 1) {
+                document.getElementsByName('doggo')[0].checked = 'checked';
+
+                let allboxDog = document.getElementsByClassName('dog');
+                for (let i = 0, n = allboxDog.length; i < n; i++) {
+                    allboxDog[i].disabled = false;
+                }
+            }
+            for (let k = 0, n = checkboxesDog.length; k < n; k++) {
+                console.log(String(checkboxesDog[k]));
+                document.getElementsByName(String(checkboxesDog[k]))[0].checked = 'checked';
+            }
+        }
+    </script>
+
 {% endblock %}
+
+
 
 
