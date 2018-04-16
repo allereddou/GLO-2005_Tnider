@@ -2,7 +2,7 @@ import random
 import names
 
 races = ['Birb', 'Doggo', 'Kitteh']
-plumages = ['white', 'black', 'yellow', 'grey', 'beige', 'green']
+plumages = ['White', 'black', 'yellow', 'grey', 'beige', 'green']
 pelages = ['white', 'black', 'brown', 'grey', 'ginger']
 binaryChoice = [0, 1]
 genders = 'mf'
