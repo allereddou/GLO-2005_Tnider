@@ -50,7 +50,7 @@ flask run --port={port}
 * Ph.D Richard Khoury
 
 ## Ont été utilisés
-htt
-* [MaterializeCSS](www.materializecss.com)
+
+* [MaterializeCSS](http://www.materializecss.com)
 * [fontAwesome](https://fontawesome.com)
 * [StackOverflow](https://stackoverflow.com)
