@@ -9,7 +9,12 @@ genders = 'mf'
 cities = ['Montreal', 'Quebec', 'Rouyn-Noranda', 'Levis', 'St-Hyacinthe', 'Riviere-Du-Loup', 'London',
           'Mongolie Orientale']
 descriptions = ['reeeeeeeeeeeee', 'aaaaaaaaaaa', 'Hello there', 'Boop', 'l ll ll l_', 's+e', 'o+e', 'Hello doug',
-                'No this is patrick', 'Shreck is love, Shreck is life', 'boop boop', 'bork bork', 'plz boop me', 'floof', 'zoooop']
+                'No this is patrick', 'Shreck is love, Shreck is life', 'boop boop', 'bork bork', 'plz boop me',
+                'floof', 'zoooop']
+
+sousraceChat = ['minou', 'beuglant', 'gros']
+sousraceChien = ['bulldog', 'groschien', 'grrr']
+sousraceBirb = ['cute', 'wow']
 
 
 def insertAnimal(cursor, number):
@@ -38,17 +43,20 @@ def insertAnimal(cursor, number):
         # insert in the animal in corresponding database
         if race == 'Birb':
             plumage = random.choice(plumages)
-            sql = "INSERT INTO bird(id, plumage) VALUES ({},'{}')"
-            cursor.execute(sql.format(j, plumage))
+            sousrace = random.choice(sousraceBirb)
+            sql = "INSERT INTO bird(id, plumage, sousrace) VALUES ({},'{}', '{}')"
+            cursor.execute(sql.format(j, plumage, sousrace))
         elif race == 'Doggo':
             pelage = random.choice(pelages)
             castre = random.choice(binaryChoice)
             degriffe = random.choice(binaryChoice)
-            sql = "INSERT INTO dog(id, pelage, castre, degriffe) VALUES({}, '{}', {}, {})"
-            cursor.execute(sql.format(j, pelage, castre, degriffe))
+            sousrace = random.choice(sousraceChien)
+            sql = "INSERT INTO dog(id, pelage, castre, degriffe, sousrace) VALUES({}, '{}', {}, {}, '{}')"
+            cursor.execute(sql.format(j, pelage, castre, degriffe, sousrace))
         else:
             pelage = random.choice(pelages)
             castre = random.choice(binaryChoice)
             degriffe = random.choice(binaryChoice)
-            sql = "INSERT INTO cat(id, pelage, castre, degriffe) VALUES({}, '{}', {}, {})"
-            cursor.execute(sql.format(j, pelage, castre, degriffe))
+            sousrace = random.choice(sousraceChat)
+            sql = "INSERT INTO cat(id, pelage, castre, degriffe, sousrace) VALUES({}, '{}', {}, {},'{}')"
+            cursor.execute(sql.format(j, pelage, castre, degriffe, sousrace))
