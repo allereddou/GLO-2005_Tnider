@@ -32,90 +32,101 @@
                                         <span class="title"><b>{{ animal['nom'] }}</b> - {{ animal['race'] }}</span>
                                         <p>
                                             Location: {{ animal['location'] }} <br>
-                                            Age: {{ animal['age'] }} ans<br>
-                                            Sex: {% if animal['sexe'] == 'f' %}&#9792;{% else %}&#9794;{% endif %}<br>
-                                            Poids: {{ animal['poids'] }} kg<br>
+                                            Age: {{ animal['age'] }} y/o<br>
+                                            Race: {{ animal['sousrace'] }}<br>
+                                            Gender: {% if animal['sexe'] == 'f' %}&#9792;{% else %}&#9794;{% endif %}
+                                            <br>
+                                            Weight: {{ animal['poids'] }} lbs<br>
                                             Color: {{ animal['pelage'] }}{{ animal['plumage'] }}<br>
                                             {% if animal['race'] == 'Doggo' or animal['race'] == 'Kitteh' %}
                                                 Other: {% if animal['castre'] == 1 %}Castrated, {% endif %}
                                                 {% if animal['degriffe'] == 1 %}Declawed{% endif %}<br>
                                             {% endif %}
                                             <br> {{ animal['description'] }}<br><br>
+                                            <div class="row">
+                                                <div class="col s4">
+                                        <p class="center-align">
                                             Contact Owner: <a class="center waves-effect waves-light btn pink"
                                                               href="/user/{{ animal['username'] }}">{{ animal['username'] }}</a><br>
-                                            Price: {{ animal['prix'] }}$<br>
                                         </p>
                                     </div>
+                                    <div class="col s2"><p class="center-align">
+                                        Price: {{ animal['prix'] }}$</p>
+                                    </div>
                                 </div>
+                                </p>
                             </div>
-                            <div class="modal-footer">{% if current_user.solde >= animal['prix'] %}
-                                <div class="col s6">
-                                    <a class="waves-effect waves-light btn modal-trigger center-align pink"
-                                       href="/browse/buy?num={{ animal['id'] }}">Buy</a>
-                                </div>
-                            {% else %}
-                                <div class="col s6 right">
-                                    <a class="waves-effect waves-light btn modal-trigger center-align pink"
-                                       href="#">Not enough funds</a>
-                                </div>
-                            {% endif %}
-                                <div class="col s6">
-                                    <a class="center waves-effect waves-light btn modal-trigger center-align pink"
-                                       href="/browse/delete?num={{ animal['id'] }}">Delete</a>
-                                </div>
+                        </div>
+                        </div>
+                        <div class="modal-footer">{% if current_user.solde >= animal['prix'] %}
+                            <div class="col s6 right">
+                                <a class="waves-effect waves-light btn modal-trigger center-align pink"
+                                   href="/browse/buy?num={{ animal['id'] }}">Buy</a>
                             </div>
+                        {% else %}
+                            <div class="col s6 right">
+                                <a class="waves-effect waves-light btn modal-trigger center-align pink"
+                                   href="#">Not enough funds</a>
+                            </div>
+                        {% endif %}
+                            <div class="col s6">
+                                <a class="center waves-effect waves-light btn modal-trigger center-align pink"
+                                   href="/browse/delete?num={{ animal['id'] }}">Delete</a>
+                            </div>
+                        </div>
                         </div>
                     {% endfor %}
-                </ul>
-            </div>
-            <div style="margin: 10px; max-height: 70vh; padding-top: 30px;" class="center-align">
-                <a class="waves-effect waves-light btn pink center-align" href="/addAnimal">Sell yours!</a>
-            </div>
-        </div>
+        </ul>
+    </div>
+    <div style="margin: 10px; max-height: 70vh; padding-top: 30px;" class="center-align">
+        <a class="waves-effect waves-light btn pink center-align" href="/addAnimal">Sell yours!</a>
+    </div>
+    </div>
 
-        <div class="col s12 m6 l9">
-            <div class="card" id="animalCard{{ animal['id'] }}" style="display: none">
-                <div class="card-image" id="card-image-random">
-                    <img src="{{ animal['link'] }}" style="max-height: 60vh" class="activator clickable">
-                    <span class="card-title">{{ animal['nom'] }}</span>
-                </div>
-                <div class="card-content">
-                    <p>{{ animal['description'] }}</p>
-                </div>
-                <div class="card-action">
-                    <div class="row valign-wrapper" id="card-button">
-                        <div class="row s12 valign-wrapper" id="card-button">
-                            <div class="col s4 center-align"><a href="/browse/dislike"
-                                                                class="fas fa-times-circle fa-5x"
-                                                                style="color: red"></a></div>
-                            <div class="col s4 center-align"><a href="#!" class="fas fa-info-circle fa-4x activator"
-                                                                style="color:blue"></a>
-                            </div>
-                            <div class="col s4 center-align"><a href="/browse/like"
-                                                                class="fab fa-gratipay fa-5x"
-                                                                style="color:#42c682"></a>
-                            </div>
-
+    <div class="col s12 m6 l9">
+        <div class="card" id="animalCard{{ animal['id'] }}" style="display: none">
+            <div class="card-image" id="card-image-random">
+                <img src="{{ animal['link'] }}" style="max-height: 60vh" class="activator clickable">
+                <span class="card-title">{{ animal['nom'] }}</span>
+            </div>
+            <div class="card-content">
+                <p>{{ animal['description'] }}</p>
+            </div>
+            <div class="card-action">
+                <div class="row valign-wrapper" id="card-button">
+                    <div class="row s12 valign-wrapper" id="card-button">
+                        <div class="col s4 center-align"><a href="/browse/dislike"
+                                                            class="fas fa-times-circle fa-5x"
+                                                            style="color: red"></a></div>
+                        <div class="col s4 center-align"><a href="#!" class="fas fa-info-circle fa-4x activator"
+                                                            style="color:blue"></a>
                         </div>
+                        <div class="col s4 center-align"><a href="/browse/like"
+                                                            class="fab fa-gratipay fa-5x"
+                                                            style="color:#42c682"></a>
+                        </div>
+
                     </div>
                 </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4"><b>{{ animal['nom'] }}</b> - {{ animal['race'] }}<i
+            </div>
+            <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4"><b>{{ animal['nom'] }}</b> - {{ animal['race'] }} - {{ animal['prix'] }}$<i
                             class="fas fa-times right"></i></span>
-                    Location: {{ animal['location'] }} <br>
-                    Age: {{ animal['age'] }} ans<br>
-                    Sex: {% if animal['sexe'] == 'f' %}&#9792;{% else %}&#9794;{% endif %}<br>
-                    Poids: {{ animal['poids'] }} kg<br>
-                    Color: {{ animal['pelage'] }}{{ animal['plumage'] }}<br>
-                    {% if animal['race'] == 'Doggo' or animal['race'] == 'Kitteh' %}
-                        Other: {% if animal['castre'] == 1 %}Castrated, {% endif %}
-                        {% if animal['degriffe'] == 1 %}Declawed{% endif %}<br>
-                    {% endif %}
-                    <br> {{ animal['description'] }}<br>
-                </div>
+                Location: {{ animal['location'] }} <br>
+                Age: {{ animal['age'] }} y/o<br>
+                Race: {{ animal['sousrace'] }}<br>
+                Gender: {% if animal['sexe'] == 'f' %}&#9792;{% else %}&#9794;{% endif %}<br>
+                Weight: {{ animal['poids'] }} lbs<br>
+                Color: {{ animal['pelage'] }}{{ animal['plumage'] }}<br>
+                {% if animal['race'] == 'Doggo' or animal['race'] == 'Kitteh' %}
+                    Other: {% if animal['castre'] == 1 %}Castrated, {% endif %}
+                    {% if animal['degriffe'] == 1 %}Declawed{% endif %}<br>
+                {% endif %}
+                <br> {{ animal['description'] }}<br>
             </div>
         </div>
-        <script>document.getElementById('animalCard{{ first }}').style.display = 'block';</script>
+    </div>
+    <script>document.getElementById('animalCard{{ first }}').style.display = 'block';</script>
     </div>
 {% endblock %}
 
