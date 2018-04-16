@@ -143,7 +143,9 @@ def contact_us():
 def account_preferences():
     if request.method == "GET" and request.args.to_dict().get('Save') == "Save":
         updatePreferences(current_user, request.args.to_dict())
-
+        print(current_user.preferencesCat)
+        print(current_user.preferencesDog)
+        print(current_user.preferencesBird)
     return render_template("account-preferences.html", prefCat=list(current_user.preferencesCat.keys()), prefDog=list(current_user.preferencesDog.keys()), prefBirb=list(current_user.preferencesBird.keys()))
 
 

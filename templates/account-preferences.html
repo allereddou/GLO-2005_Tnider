@@ -292,7 +292,7 @@
                 </li>
 
                 <li class="collection-item"><input type="checkbox" class="grpColorBirb" name="blueBirb" id="blueBirb"
-                                                   disabled="disabled"/><label for="whiteDoggo">Blue </label>
+                                                   disabled="disabled"/><label for="blueBirb">Blue </label>
                 </li>
 
                 <li class="collection-item"><input type="checkbox" class="grpColorBirb" name="blackBirb" id="blackBirb"
@@ -359,31 +359,47 @@
             let checkboxesBirb = {{ prefBirb|safe }};
             if (checkboxesBirb.length > 1) {
                 document.getElementsByName('birb')[0].checked = 'checked';
+                let allboxBirb = document.getElementsByClassName('birb');
+
+                for (let i = 0, n = allboxBirb.length; i < n; i++) {
+                    allboxBirb[i].disabled = false;
+                }
+                
+
             }
             for (let i = 0, n = checkboxesBirb.length; i < n; i++) {
                 console.log(String(checkboxesBirb[i]));
                 document.getElementsByName(String(checkboxesBirb[i]))[0].checked = 'checked';
-                document.getElementsByName(String(checkboxesBirb[i]))[0].disabled = false
             }
+
 
             let checkboxesCat = {{ prefCat|safe }};
             if (checkboxesCat.length > 1) {
-                document.getElementsByName('birb')[0].checked = 'checked';
+                document.getElementsByName('kitteh')[0].checked = 'checked';
+
+                let allboxCat = document.getElementsByClassName('cat');
+                for (let i = 0, n = allboxCat.length; i < n; i++) {
+                    allboxCat[i].disabled = false;
+                }
             }
-            for (let i = 0, n = checkboxesCat.length; i < n; i++) {
-                console.log(String(checkboxesCat[i]));
-                document.getElementsByName(String(checkboxesCat[i]))[0].checked = 'checked';
-                document.getElementsByName(String(checkboxesCat[i]))[0].disabled = false
+            for (let j = 0, n = checkboxesCat.length; j < n; j++) {
+                console.log(String(checkboxesCat[j]));
+                document.getElementsByName(String(checkboxesCat[j]))[0].checked = 'checked';
             }
 
-            let checkboxesDog = {{ prefBirb|safe }};
+
+            let checkboxesDog = {{ prefDog|safe }};
             if (checkboxesDog.length > 1) {
-                document.getElementsByName('birb')[0].checked = 'checked';
+                document.getElementsByName('doggo')[0].checked = 'checked';
+
+                let allboxDog = document.getElementsByClassName('doggo');
+                for (let i = 0, n = allboxDog.length; i < n; i++) {
+                    allboxDog[i].disabled = false;
+                }
             }
-            for (let i = 0, n = checkboxesDog.length; i < n; i++) {
-                console.log(String(checkboxesDog[i]));
-                document.getElementsByName(String(checkboxesDog[i]))[0].checked = 'checked';
-                document.getElementsByName(String(checkboxesDog[i]))[0].disabled = false
+            for (let k = 0, n = checkboxesDog.length; k < n; k++) {
+                console.log(String(checkboxesDog[k]));
+                document.getElementsByName(String(checkboxesDog[k]))[0].checked = 'checked';
             }
         }
     </script>

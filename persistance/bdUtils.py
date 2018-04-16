@@ -97,7 +97,9 @@ def updatePreferences(user, preferences):
     from server import get_db
 
     cursor = get_db()
-    user.preferences = {}
+    user.preferencesCat = {}
+    user.preferencesDog = {}
+    user.preferencesBird = {}
 
     preferences.pop('birb', None)
     preferences.pop('Save', None)

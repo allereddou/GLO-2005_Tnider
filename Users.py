@@ -7,9 +7,9 @@ defaultProfileImage = "https://accrualnet.cancer.gov/sites/accrualnet.cancer.gov
 defaultPrefBird = {'blackBirb': 1, 'greenBirb': 1, '1_2WeightBirb': 1, 'maleBirb': 1, 'greyBirb': 1, '10AgePlusBirb': 1,
                    'whiteBirb': 1, 'blueBirb': 1, '0_1WeightBirb': 1, '2PlusWeightBirb': 1, 'yellowBirb': 1,
                    '5_10AgeBirb': 1, 'femaleBirb': 1, 'beigeBirb': 1, '0_5AgeBirb': 1}
-defaultPrefCat = {'declawedCat': 1, 'brownCat': 1, 'whiteCat': 1, '0_10CatWeight': 1, 'blackCat': 1, 'gingerCat': 1,
-                  '0_5CatAge': 1, '10_20CatWeight': 1, '10PlusCatAge': 1, 'castratedCat': 1, '20PlusCatWeight': 1,
-                  '5_10CatAge': 1, 'maleGenderCat': 1, 'femaleGenderCat': 1, 'greyCat': 1}
+defaultPrefCat = {'declawedCat': 1, 'brownCat': 1, 'whiteCat': 1, '0_10WeightCat': 1, 'blackCat': 1, 'gingerCat': 1,
+                  '0_5AgeCat': 1, '10_20WeightCat': 1, '10PlusAgeCat': 1, 'castratedCat': 1, '20PlusWeightCat': 1,
+                  '5_10AgeCat': 1, 'maleGenderCat': 1, 'femaleGenderCat': 1, 'greyCat': 1}
 defaultPrefDog = {'0_20WeightDoggo': 1, '20_40WeightDoggo': 1, '5_10AgeDoggo': 1, 'whiteDoggo': 1,
                   'femaleGenderDoggo': 1, 'declawedDoggo': 1, '40WeightPlusDoggo': 1, '0_5AgeDoggo': 1,
                   'maleGenderDoggo': 1, 'brownDoggo': 1, 'castratedDoggo': 1, '10AgePlusDoggo': 1, 'gingerDoggo': 1,
