@@ -18,14 +18,24 @@ def getUserFromEmail(email):
     from server import app, get_db
     with app.app_context():
         cursor = get_db()
-
         sql = "SELECT * FROM user WHERE email='{}';"
         cursor.execute(sql.format(email))
-        result = cursor.fetchall()
-
-        if len(result) != 1:
+        user = cursor.fetchall()
+        sql = "SELECT * FROM preferencesCat WHERE username = '{}'"
+        cursor.execute(sql.format(user[0]['username']))
+        prefCat = cursor.fetchall()[0]
+        prefCat.pop('username', None)
+        sql = "SELECT * FROM preferencesDog WHERE username = '{}'"
+        cursor.execute(sql.format(user[0]['username']))
+        prefDog = cursor.fetchall()[0]
+        prefDog.pop('username', None)
+        sql = "SELECT * FROM preferencesBird WHERE username = '{}'"
+        cursor.execute(sql.format(user[0]['username']))
+        prefBird = cursor.fetchall()[0]
+        prefBird.pop('username', None)
+        if len(user) != 1:
             return None
-        return result[0]
+        return {**user[0], 'preferencesCat': prefCat, 'preferencesDog': prefDog, 'preferencesBird': prefBird}
 
 
 def createUser(user):
@@ -142,4 +152,3 @@ def updatePreferences(user, preferences):
             user.preferencesDog[key] = 1
         else:
             print("key error")
-

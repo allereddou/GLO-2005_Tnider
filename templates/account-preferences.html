@@ -4,13 +4,14 @@
     <script>
         $(function () {
             {% for pref in prefDog %}
-                document.getElementById('{{ pref }}').checked = true;
+                console.log('{{ prefDog[pref] }}');
+                document.getElementById('{{ pref }}').checked = 0;
             {% endfor %}
             {% for pref in prefCat %}
-                document.getElementById('{{ pref }}').checked = true;
+                document.getElementById('{{ pref }}').checked = 1;
             {% endfor %}
             {% for pref in prefBird %}
-                document.getElementById('{{ pref }}').checked = true;
+                document.getElementById('{{ pref }}').checked = 1;
             {% endfor %}
         });
 
@@ -20,7 +21,6 @@
             for (let i = 0, n = checkboxes.length; i < n; i++) {
                 checkboxes[i].checked = source.checked;
                 checkboxes[i].disabled = (source.checked) ? '' : 'disabled';
-
             }
         }
 
@@ -30,8 +30,6 @@
                 checkboxes[i].checked = source.checked;
                 checkboxes[i].disabled = (source.checked) ? '' : 'disabled';
             }
-
-
         }
 
         function toggleBirb(source) {
@@ -40,7 +38,6 @@
                 checkBoxColor[i].checked = source.checked;
                 checkBoxColor[i].disabled = (source.checked) ? '' : 'disabled';
             }
-
         }
     </script>
 
