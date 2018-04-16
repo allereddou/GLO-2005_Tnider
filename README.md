@@ -51,6 +51,6 @@ flask run --port={port}
 
 ## Ont été utilisés
 htt
-* [MaterializeCSS](https://www.materializecss.com)
+* [MaterializeCSS](www.materializecss.com)
 * [fontAwesome](https://fontawesome.com)
 * [StackOverflow](https://stackoverflow.com)
