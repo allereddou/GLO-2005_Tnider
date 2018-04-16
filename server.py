@@ -215,6 +215,8 @@ def changeuserimg(field, new):
 @app.route("/animal/change/<ID>/<field>=<new>")
 @login_required
 def changeanimal(ID, field, new):
+    if not isYourAnimal(ID):
+        return redirect('/')
     cursor = get_db()
     cursor.execute("SELECT race FROM animal WHERE id = {}".format(ID))
     race = cursor.fetchall()[0]['race']
@@ -242,6 +244,8 @@ def changeanimal(ID, field, new):
 @app.route('/animal/change/<ID>/castre=<castre>&degriffe=<degriffe>')
 @login_required
 def changeanimalother(ID, castre, degriffe):
+    if not isYourAnimal(ID):
+        return redirect('/')
     cursor = get_db()
     cursor.execute("SELECT race FROM animal WHERE id = {}".format(ID))
     race = cursor.fetchall()[0]['race']
@@ -271,6 +275,8 @@ def changeanimalother(ID, castre, degriffe):
 @app.route('/animal/change/<ID>/image=<path:new>')
 @login_required
 def changeanimalimg(ID, new):
+    if not isYourAnimal(ID):
+        return redirect('/')
     cursor = get_db()
     cursor.execute("UPDATE pic SET link = '{}' WHERE id = {}".format(new, ID))
     return redirect('account/myanimals/' + ID)
@@ -599,6 +605,17 @@ def filterIds(possible_id):
                             goodIds.append({'id': animalId['id']})
 
     return goodIds
+
+
+def isYourAnimal(ID):
+    cursor = get_db()
+    cursor.execute("SELECT * FROM vend WHERE username = '{}'".format(current_user.username))
+    animals = cursor.fetchall()
+    for animal in animals:
+        if str(animal['id_animal']) == str(ID):
+            return True
+    print('AINT YOURS')
+    return False
 
 
 if __name__ == '__main__':
