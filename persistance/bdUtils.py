@@ -45,10 +45,10 @@ def createUser(user):
     with app.app_context():
         cursor = get_db()
 
-        sql = "INSERT INTO user(username, pass, nom, prenom, email, telephone, solde) VALUES ('{}', '{}', '{}', '{}', '{}', {}, {})"
+        sql = "INSERT INTO user(username, pass, nom, prenom, email, telephone, solde, profileImage) VALUES ('{}', '{}', '{}', '{}', '{}', {}, {}, '{}')"
         hashedPass = hash_password(user.password)
         cursor.execute(
-            sql.format(user.username, hashedPass, user.nom, user.prenom, user.email, user.telephone, user.solde))
+            sql.format(user.username, hashedPass, user.nom, user.prenom, user.email, user.telephone, user.solde, user.profileImage))
 
         sql = "INSERT INTO  preferencesDog(username, dog, whiteDoggo, blackDoggo, gingerDoggo, brownDoggo, greyDoggo, declawedDoggo, castratedDoggo, femaleGenderDoggo, maleGenderDoggo, 0_20WeightDoggo, 20_40WeightDoggo, 40WeightPlusDoggo, 0_5AgeDoggo, 5_10AgeDoggo, 10AgePlusDoggo) VALUES ('{}', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);"
         cursor.execute(sql.format(user.username))
@@ -132,7 +132,7 @@ def updatePreferences(user, preferences):
 
     # set prefs
     for key, value in preferences.items():
-        print(key)
+
         matchObjDog = match(r'.{0,}Doggo', key, I)
         matchObjCat = match(r'.{0,}Cat', key, I)
         matchObjBird = match(r'.{0,}Bird', key, I)
