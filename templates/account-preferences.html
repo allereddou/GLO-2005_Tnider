@@ -4,14 +4,13 @@
     <script>
         $(function () {
             {% for pref in prefDog %}
-                console.log('{{ prefDog[pref] }}');
-                document.getElementById('{{ pref }}').checked = 0;
+                document.getElementById('{{ pref }}').checked = {{ prefDog[pref] }};
             {% endfor %}
             {% for pref in prefCat %}
-                document.getElementById('{{ pref }}').checked = 1;
+                document.getElementById('{{ pref }}').checked = {{ prefCat[pref] }};
             {% endfor %}
             {% for pref in prefBird %}
-                document.getElementById('{{ pref }}').checked = 1;
+                document.getElementById('{{ pref }}').checked = {{ prefBird[pref] }};
             {% endfor %}
         });
 
