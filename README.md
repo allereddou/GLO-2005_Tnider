@@ -28,17 +28,17 @@ avec ces étapes si mySQL fonctionne.
 
 ```
 python3 data.py
-export FLASK_APP={YOUR_PATH_TO_THE_server.py}  
-flask run --port={port}  
+python3 server.py
 ```
 
 ### Linux
 
 ```
 python3 data.py
-export FLASK_APP={YOUR_PATH_TO_THE_server.py}  
-flask run --port={port}
+python3 server.py
 ```
+
+Ensuite, on peut accéder à la page via ```localhost:5000```
 
 ## Contributeurs
 
