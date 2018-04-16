@@ -117,6 +117,14 @@
                            class="btn red waves-effect waves-light">UPDATE</a>
                     </div>
                 </div>
+                <div id="change_name{{ animal['id'] }}" class="modal">
+                    <div class="modal-content">
+                        <input type="text" id="nom{{ animal['id'] }}"/><label
+                            for="nom{{ animal['id'] }}">Name</label>
+                        <a onclick="update('nom', {{ animal['id'] }})"
+                           class="btn red waves-effect waves-light">UPDATE</a>
+                    </div>
+                </div>
                 <div id="change_price{{ animal['id'] }}" class="modal">
                     <div class="modal-content">
                         <input type="number" id="prix{{ animal['id'] }}"/><label
@@ -136,20 +144,22 @@
                     </div>
                 </div>
                 <li>
-                    <div id="li-{{ animal['id'] }}" class="collapsible-header">{{ animal['nom'] }}</div>
+                    <div id="li-{{ animal['id'] }}" class="collapsible-header">{{ animal['race'] }}: {{ animal['nom'] }}</div>
                     <div class="collapsible-body">
                         <a href="#change_img{{ animal['id'] }}" class="modal-trigger"><img class="details_image"
                                                                                            src="{{ animal['link'] }}"
                                                                                            height="100 px"/></a>
                         <a class="waves-effect waves-light btn secondary-content red"
                            href="trash/{{ animal['id'] }}">Delete</a>
-                        <p><a href="#change_location{{ animal['id'] }}"
+                        <p><a href="#change_name{{ animal['id'] }}"
+                              class="details modal-trigger">Change name</a> <br>
+                            <a href="#change_location{{ animal['id'] }}"
                               class="details modal-trigger">Location: {{ animal['location'] }}</a> <br>
                             <a href="#change_age{{ animal['id'] }}"
                                class="details modal-trigger">Age: {{ animal['age'] }}
                                 y/o</a><br>
                         <a href="#change_race{{ animal['id'] }}"
-                               class="details modal-trigger">Race: {{ animal['sousrace'] }}
+                               class="details modal-trigger">Breed: {{ animal['sousrace'] }}
                                 </a><br>
                             <a href="#change_gender{{ animal['id'] }}" class="details modal-trigger">Gender:
                                 {% if animal['sexe'] == 'f' %}&#9792;{% else %}&#9794;{% endif %}</a><br>

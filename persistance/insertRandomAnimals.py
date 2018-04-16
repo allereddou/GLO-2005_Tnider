@@ -10,7 +10,7 @@ cities = ['Montreal', 'Quebec', 'Rouyn-Noranda', 'Levis', 'St-Hyacinthe', 'Rivie
           'Mongolie Orientale']
 descriptions = ['reeeeeeeeeeeee', 'aaaaaaaaaaa', 'Hello there', 'Boop', 'l ll ll l_', 's+e', 'o+e', 'Hello doug',
                 'No this is patrick', 'Shrek is love, Shrek is life', 'boop boop', 'bork bork', 'plz boop me',
-                'floof', 'zoooop']
+                'floof', 'zoooop', 'zuuuuuucked', 'miaou miaou miaou miaou miaou miaou']
 
 sousraceChat = ['minou', 'beuglant', 'gros']
 sousraceChien = ['bulldog', 'groschien', 'grrr']
