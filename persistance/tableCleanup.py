@@ -98,3 +98,13 @@ def createTables(cursor):
 
     sql = "CREATE TABLE IF NOT EXISTS transactions(seller VARCHAR(20), id INT, buyer VARCHAR(20), prix DECIMAL(5,2), PRIMARY KEY (seller, id, buyer), FOREIGN KEY(seller) REFERENCES user(username) ON UPDATE CASCADE , FOREIGN KEY(buyer) REFERENCES user(username) ON UPDATE CASCADE , FOREIGN KEY(id) REFERENCES animal(id) ON DELETE CASCADE ON UPDATE CASCADE );"
     cursor.execute(sql)
+
+
+def createTableIndex(cursor):
+    sql = "USE PROJET_BD"
+    cursor.execute(sql)
+
+    sql = "CREATE FULLTEXT INDEX userEmail on user(email)"
+    cursor.execute(sql)
+
+
