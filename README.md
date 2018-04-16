@@ -17,7 +17,6 @@ démarrer l'application.
 
 ```
 pip install -r requirements.txt
-python3 data.py
 ```
 
 ## Démarrage
@@ -28,6 +27,7 @@ avec ces étapes si mySQL fonctionne.
 ### Mac
 
 ```
+python3 data.py
 export FLASK_APP={YOUR_PATH_TO_THE_server.py}  
 flask run --port={port}  
 ```
@@ -35,6 +35,7 @@ flask run --port={port}  
 ### Linux
 
 ```
+python3 data.py
 export FLASK_APP={YOUR_PATH_TO_THE_server.py}  
 flask run --port={port}
 ```
