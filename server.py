@@ -304,9 +304,10 @@ def add_Animal():
         prix = request.form['prix']
 
         if request.form['btn'] == "addDog":
-            sqlDog = "INSERT INTO dog (id, pelage, castre, degriffe) VALUES({}, '{}', {}, {})"
+            sqlDog = "INSERT INTO dog (id, pelage, castre, degriffe, sousrace) VALUES({}, '{}', {}, {}, '{}')"
 
             race = "Doggo"
+            sousrace = request.form['sousrace']
             pelage = request.form['pelage']
             castre = request.form['castre']
             degriffe = request.form['degriffe']
@@ -320,14 +321,15 @@ def add_Animal():
                 degriffe = 0
 
             cursor.execute(sqlAnimal.format(animalID, nom, sex, age, poids, location, race, description))
-            cursor.execute(sqlDog.format(animalID, pelage, castre, degriffe))
+            cursor.execute(sqlDog.format(animalID, pelage, castre, degriffe, sousrace))
             cursor.execute(sqlvend.format(user_name, animalID, prix, venteID))
             cursor.execute(sqlpic.format(animalID, caption, picLink))
 
         elif request.form['btn'] == "addCat":
-            sqlCat = "INSERT INTO cat(id, pelage, castre, degriffe) VALUES({}, '{}', {}, {})"
+            sqlCat = "INSERT INTO cat(id, pelage, castre, degriffe, sousrace) VALUES({}, '{}', {}, {}, '{}')"
 
             race = "Kitteh"
+            sousrace = request.form['sousrace']
             pelage = request.form['pelage']
             castre = request.form['castre']
             degriffe = request.form['degriffe']
@@ -341,18 +343,19 @@ def add_Animal():
                 degriffe = 0
 
             cursor.execute(sqlAnimal.format(animalID, nom, sex, age, poids, location, race, description))
-            cursor.execute(sqlCat.format(animalID, pelage, castre, degriffe))
+            cursor.execute(sqlCat.format(animalID, pelage, castre, degriffe, sousrace))
             cursor.execute(sqlvend.format(user_name, animalID, prix, venteID))
             cursor.execute(sqlpic.format(animalID, caption, picLink))
 
         elif request.form['btn'] == "addBird":
-            sqlBird = "INSERT INTO bird(id, plumage) VALUES ({},'{}')"
+            sqlBird = "INSERT INTO bird(id, plumage, sousrace) VALUES ({},'{}', '{}')"
 
             race = "Birb"
+            sousrace = request.form['sousrace']
             plumage = request.form['plumage']
 
             cursor.execute(sqlAnimal.format(animalID, nom, sex, age, poids, location, race, description))
-            cursor.execute(sqlBird.format(animalID, plumage))
+            cursor.execute(sqlBird.format(animalID, plumage, sousrace))
             cursor.execute(sqlvend.format(user_name, animalID, prix, venteID))
             cursor.execute(sqlpic.format(animalID, caption, picLink))
 
