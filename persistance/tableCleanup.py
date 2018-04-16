@@ -99,5 +99,5 @@ def createTables(cursor):
     sql = "CREATE TABLE IF NOT EXISTS preferencesDog(username VARCHAR(20), dog TINYINT, whiteDoggo TINYINT, blackDoggo TINYINT, gingerDoggo TINYINT, brownDoggo TINYINT, greyDoggo TINYINT, declawedDoggo TINYINT, castratedDoggo TINYINT, femaleGenderDoggo TINYINT, maleGenderDoggo TINYINT, 0_20WeightDoggo TINYINT, 20_40WeightDoggo TINYINT, 40WeightPlusDoggo TINYINT, 0_5AgeDoggo TINYINT, 5_10AgeDoggo TINYINT, 10AgePlusDoggo TINYINT, FOREIGN KEY(username) REFERENCES user(username) ON DELETE CASCADE ON UPDATE CASCADE, PRIMARY KEY(username));"
     cursor.execute(sql)
 
-    sql = "CREATE TABLE IF NOT EXISTS transactions(seller VARCHAR(20), id INT, buyer VARCHAR(20), prix DECIMAL(5,2), PRIMARY KEY (seller, id, buyer), FOREIGN KEY(seller) REFERENCES user(username), FOREIGN KEY(buyer) REFERENCES user(username), FOREIGN KEY(id) REFERENCES animal(id) ON DELETE CASCADE ON UPDATE CASCADE );"
+    sql = "CREATE TABLE IF NOT EXISTS transactions(seller VARCHAR(20), id INT, buyer VARCHAR(20), prix DECIMAL(5,2), PRIMARY KEY (seller, id, buyer), FOREIGN KEY(seller) REFERENCES user(username) ON UPDATE CASCADE , FOREIGN KEY(buyer) REFERENCES user(username) ON UPDATE CASCADE , FOREIGN KEY(id) REFERENCES animal(id) ON DELETE CASCADE ON UPDATE CASCADE );"
     cursor.execute(sql)

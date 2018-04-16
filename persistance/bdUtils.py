@@ -1,4 +1,3 @@
-from Users import *
 from persistance.passwordUtil import check_password, hash_password
 from re import I, match
 
