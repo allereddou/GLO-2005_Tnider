@@ -18,6 +18,18 @@
                     checkboxes[i].disabled = '';
                 }
             }
+            if (document.getElementById('cat').checked){
+                let checkboxes = document.getElementsByClassName('cat');
+                for (let i = 0, n = checkboxes.length; i < n; i++) {
+                    checkboxes[i].disabled = '';
+                }
+            }
+            if (document.getElementById('bird').checked){
+                let checkboxes = document.getElementsByClassName('bird');
+                for (let i = 0, n = checkboxes.length; i < n; i++) {
+                    checkboxes[i].disabled = '';
+                }
+            }
         });
 
         //https://stackoverflow.com/questions/386281/how-to-implement-select-all-check-box-in-html

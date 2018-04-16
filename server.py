@@ -272,7 +272,6 @@ def changeanimalother(ID, castre, degriffe):
 @login_required
 def changeanimalimg(ID, new):
     cursor = get_db()
-    print(new)
     cursor.execute("UPDATE pic SET link = '{}' WHERE id = {}".format(new, ID))
     return redirect('account/myanimals/' + ID)
 

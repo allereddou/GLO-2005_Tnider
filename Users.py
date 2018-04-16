@@ -33,7 +33,6 @@ class User(UserMixin):
                 return None
             else:
                 password = (result['pass'])
-            print(result['preferencesBird'])
             return User(email, password, result['username'], result['nom'], result['prenom'], result['telephone'],
                         result['solde'], result['profileImage'], result['preferencesBird'], result['preferencesCat'], result['preferencesDog'])
 

@@ -92,11 +92,8 @@ def validatePassword(email, password):
     sql = "SELECT pass FROM user WHERE email='{}'"
     cursor.execute(sql.format(email))
     result = cursor.fetchall()
-
-    print(result)
     if result is None:
         return None
-
     if check_password(result[0]['pass'], password):
         print("right pass")
         return True
@@ -135,9 +132,9 @@ def updatePreferences(user, preferences):
 
         matchObjDog = match(r'.{0,}Doggo', key, I)
         matchObjCat = match(r'.{0,}Cat', key, I)
-        matchObjBird = match(r'.{0,}Bird', key, I)
+        matchObjBird = match(r'.{0,}Birb', key, I)
 
-        if matchObjBird is not None:
+        if matchObjBird is not None or key == 'bird':
             sql = "UPDATE preferencesBird SET {} = 1 WHERE username='{}';"
             cursor.execute(sql.format(key, user.username))
             user.preferencesBird[key] = 1
@@ -145,7 +142,7 @@ def updatePreferences(user, preferences):
             sql = "UPDATE preferencesCat SET {} = 1 WHERE username='{}';"
             cursor.execute(sql.format(key, user.username))
             user.preferencesCat[key] = 1
-        elif matchObjDog is not None:
+        elif matchObjDog is not None or key == 'dog':
             sql = "UPDATE preferencesDog SET {} = 1 WHERE username='{}';"
             cursor.execute(sql.format(key, user.username))
             user.preferencesDog[key] = 1
