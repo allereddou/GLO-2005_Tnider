@@ -64,14 +64,14 @@ def browse():
 @app.route('/browse/like')
 @login_required
 def like():
-    likeAnimal(dispo['id'])
+    likeAnimal(dispo['id'], current_user)
     return redirect(request.referrer)
 
 
 @app.route('/browse/dislike')
 @login_required
 def dislike():
-    dislikeAnimal(dispo['id'])
+    dislikeAnimal(dispo['id'], current_user)
     return redirect(request.referrer)
 
 

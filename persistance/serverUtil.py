@@ -67,12 +67,12 @@ def deleteAnimalFromBD(num):
     return True
 
 
-def likeAnimal(ID):
+def likeAnimal(ID, user):
     cursor = get_db()
     cursor.execute("INSERT desire(username, id) VALUES ('{}', {})".format(user.username, ID))
 
 
-def dislikeAnimal(ID):
+def dislikeAnimal(ID, user):
     cursor = get_db()
     cursor.execute("INSERT notdesired(username, id) VALUES ('{}', {})".format(user.username, ID))
 
