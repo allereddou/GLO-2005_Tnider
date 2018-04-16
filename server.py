@@ -40,11 +40,11 @@ def myanimals(active):
     myanimals = []
     for animal in tosell:
         if animal['race'] == 'Kitteh':
-            cursor.execute("SELECT pelage, castre, degriffe FROM cat WHERE id = {}".format(animal['id']))
+            cursor.execute("SELECT pelage, castre, degriffe, sousrace FROM cat WHERE id = {}".format(animal['id']))
         elif animal['race'] == 'Doggo':
-            cursor.execute("SELECT pelage, castre, degriffe FROM dog WHERE id = {}".format(animal['id']))
+            cursor.execute("SELECT pelage, castre, degriffe, sousrace FROM dog WHERE id = {}".format(animal['id']))
         elif animal['race'] == 'Birb':
-            cursor.execute("SELECT plumage FROM bird WHERE id = {}".format(animal['id']))
+            cursor.execute("SELECT plumage, sousrace FROM bird WHERE id = {}".format(animal['id']))
         race = cursor.fetchall()[0]
         myanimals.append({**animal, **race, 'activeID': str(animal['id'])})
     return render_template('account-my-animals.html', tosell=myanimals, active=active)
@@ -208,6 +208,13 @@ def changeanimal(ID, field, new):
             cursor.execute("UPDATE bird SET plumage = '{}' WHERE id = {}".format(new, ID))
     elif field == 'prix':
         cursor.execute("UPDATE vend SET prix = {} WHERE id_animal = {}".format(new, ID))
+    elif field == 'sousrace':
+        if race == 'Doggo':
+            cursor.execute("UPDATE dog SET sousrace = '{}' WHERE id = {}".format(new, ID))
+        elif race == 'Kitteh':
+            cursor.execute("UPDATE cat SET sousrace = '{}' WHERE id = {}".format(new, ID))
+        elif race == 'Birb':
+            cursor.execute("UPDATE bird SET sousrace = '{}' WHERE id = {}".format(new, ID))
     else:
         cursor.execute("UPDATE animal SET {} = '{}' WHERE id = {}".format(field, new, ID))
     return redirect('account/myanimals/' + ID)
@@ -219,7 +226,6 @@ def changeanimalother(ID, castre, degriffe):
     cursor = get_db()
     cursor.execute("SELECT race FROM animal WHERE id = {}".format(ID))
     race = cursor.fetchall()[0]['race']
-    print(castre, '         ', degriffe)
     if castre == 'true':
         if race == 'Doggo':
             cursor.execute("UPDATE dog SET castre = 1 WHERE id = {}".format(ID))
@@ -358,11 +364,11 @@ def get_animals_desired():
                 current_id['id']))
         animal = cursor.fetchall()[0]
         if animal['race'] == 'Kitteh':
-            cursor.execute("SELECT pelage, castre, degriffe FROM cat WHERE id = {}".format(animal['id']))
+            cursor.execute("SELECT pelage, castre, degriffe, sousrace FROM cat WHERE id = {}".format(animal['id']))
         elif animal['race'] == 'Doggo':
-            cursor.execute("SELECT pelage, castre, degriffe FROM dog WHERE id = {}".format(animal['id']))
+            cursor.execute("SELECT pelage, castre, degriffe, sousrace FROM dog WHERE id = {}".format(animal['id']))
         elif animal['race'] == 'Birb':
-            cursor.execute("SELECT plumage FROM bird WHERE id = {}".format(animal['id']))
+            cursor.execute("SELECT plumage, sousrace FROM bird WHERE id = {}".format(animal['id']))
         race = cursor.fetchall()[0]
         wishlist.append({**animal, **race})
     return wishlist
@@ -396,11 +402,11 @@ def get_possible_match():
     cursor.execute(sql)
     animal = cursor.fetchall()[0]
     if animal['race'] == 'Kitteh':
-        cursor.execute("SELECT pelage, castre, degriffe FROM cat WHERE id = {}".format(animal['id']))
+        cursor.execute("SELECT pelage, castre, degriffe, sousrace FROM cat WHERE id = {}".format(animal['id']))
     elif animal['race'] == 'Doggo':
-        cursor.execute("SELECT pelage, castre, degriffe FROM dog WHERE id = {}".format(animal['id']))
+        cursor.execute("SELECT pelage, castre, degriffe, sousrace FROM dog WHERE id = {}".format(animal['id']))
     elif animal['race'] == 'Birb':
-        cursor.execute("SELECT plumage FROM bird WHERE id = {}".format(animal['id']))
+        cursor.execute("SELECT plumage, sousrace FROM bird WHERE id = {}".format(animal['id']))
     race = cursor.fetchall()[0]
     cursor.execute("SELECT prix FROM vend WHERE id_animal = {}".format(animal['id']))
     prix = cursor.fetchall()[0]

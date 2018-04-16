@@ -57,13 +57,13 @@ def createTables(cursor):
     sql = "CREATE TABLE IF NOT EXISTS animal (id INT PRIMARY KEY , nom VARCHAR(20), sexe CHAR(1), age INT, poids INT, location VARCHAR(20), race VARCHAR(20), description VARCHAR(1000));"
     cursor.execute(sql)
 
-    sql = "CREATE TABLE IF NOT EXISTS bird(id INT, PRIMARY KEY (id), plumage VARCHAR(20), FOREIGN KEY (id) REFERENCES animal(id) ON DELETE CASCADE ON UPDATE CASCADE );"
+    sql = "CREATE TABLE IF NOT EXISTS bird(id INT, PRIMARY KEY (id), plumage VARCHAR(20), sousrace VARCHAR(20), FOREIGN KEY (id) REFERENCES animal(id) ON DELETE CASCADE ON UPDATE CASCADE );"
     cursor.execute(sql)
 
-    sql = "CREATE TABLE IF NOT EXISTS dog(id INT, PRIMARY KEY (id), pelage VARCHAR(20), castre BOOLEAN, degriffe BOOLEAN, FOREIGN KEY (id) REFERENCES animal(id) ON DELETE CASCADE ON UPDATE CASCADE );"
+    sql = "CREATE TABLE IF NOT EXISTS dog(id INT, PRIMARY KEY (id), pelage VARCHAR(20), castre BOOLEAN, degriffe BOOLEAN, sousrace VARCHAR(20),  FOREIGN KEY (id) REFERENCES animal(id) ON DELETE CASCADE ON UPDATE CASCADE );"
     cursor.execute(sql)
 
-    sql = "CREATE TABLE IF NOT EXISTS cat(id INT, PRIMARY KEY (id), pelage VARCHAR(20), castre BOOLEAN, degriffe BOOLEAN, FOREIGN KEY (id) REFERENCES animal(id) ON DELETE CASCADE ON UPDATE CASCADE );"
+    sql = "CREATE TABLE IF NOT EXISTS cat(id INT, PRIMARY KEY (id), pelage VARCHAR(20), castre BOOLEAN, degriffe BOOLEAN, sousrace VARCHAR(20), FOREIGN KEY (id) REFERENCES animal(id) ON DELETE CASCADE ON UPDATE CASCADE );"
     cursor.execute(sql)
 
     sql = "CREATE TABLE IF NOT EXISTS vend(username VARCHAR(20), id_animal INT, prix DECIMAL(5,2), id_vente INT AUTO_INCREMENT, PRIMARY KEY(id_vente), FOREIGN KEY (username) REFERENCES user(username) ON UPDATE CASCADE, FOREIGN KEY (id_animal) REFERENCES animal(id) ON DELETE CASCADE ON UPDATE CASCADE );"

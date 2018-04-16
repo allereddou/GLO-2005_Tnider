@@ -63,6 +63,12 @@
                         <a onclick="updateImage('link', {{ animal['id'] }})" class="btn red waves-effect waves-light">UPDATE</a>
                     </div>
                 </div>
+                <div id="change_race{{ animal['id'] }}" class="modal">
+                    <div class="modal-content">
+                        <input type="text" id="sousrace{{ animal['id'] }}"/><label for="sousrace{{ animal['id'] }}">Race</label>
+                        <a onclick="update('sousrace', {{ animal['id'] }})" class="btn red waves-effect waves-light">UPDATE</a>
+                    </div>
+                </div>
                 <div id="change_location{{ animal['id'] }}" class="modal">
                     <div class="modal-content">
                         <input type="text" id="location{{ animal['id'] }}"/><label for="location{{ animal['id'] }}">Location</label>
@@ -142,6 +148,9 @@
                             <a href="#change_age{{ animal['id'] }}"
                                class="details modal-trigger">Age: {{ animal['age'] }}
                                 y/o</a><br>
+                        <a href="#change_race{{ animal['id'] }}"
+                               class="details modal-trigger">Race: {{ animal['sousrace'] }}
+                                </a><br>
                             <a href="#change_gender{{ animal['id'] }}" class="details modal-trigger">Gender:
                                 {% if animal['sexe'] == 'f' %}&#9792;{% else %}&#9794;{% endif %}</a><br>
                             <a href="#change_weight{{ animal['id'] }}"
