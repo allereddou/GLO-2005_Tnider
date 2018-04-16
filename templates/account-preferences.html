@@ -12,6 +12,12 @@
             {% for pref in prefBird %}
                 document.getElementById('{{ pref }}').checked = {{ prefBird[pref] }};
             {% endfor %}
+            if (document.getElementById('dog').checked){
+                let checkboxes = document.getElementsByClassName('dog');
+                for (let i = 0, n = checkboxes.length; i < n; i++) {
+                    checkboxes[i].disabled = '';
+                }
+            }
         });
 
         //https://stackoverflow.com/questions/386281/how-to-implement-select-all-check-box-in-html
@@ -46,9 +52,9 @@
     <div class="col s12 m9">
         <form id="preferences">
             <ul class="collection with-header col s12 m4">
-                <li class="collection-header"><input type="checkbox" id="kitteh" name="kitteh"
+                <li class="collection-header"><input type="checkbox" id="cat" name="cat"
                                                      onclick="toggleKitteh(this)"/><label
-                        style="color: black" for="kitteh">Kitteh</label>
+                        style="color: black" for="cat">Kitteh</label>
                 </li>
 
                 <li class="collection-item"><input class="cat" type="checkbox" name="declawedCat" id="declawedCat"
@@ -218,9 +224,9 @@
 
 
             <ul class="collection with-header col s12 m4">
-                <li class="collection-header"><input type="checkbox" id="birb" name="birb"
+                <li class="collection-header"><input type="checkbox" id="bird" name="bird"
                                                      onclick="toggleBirb(this)"/><label
-                        style="color: black" for="birb">Birb</label>
+                        style="color: black" for="bird">Birb</label>
                 </li>
                 <li class="collection-item">Color</li>
 

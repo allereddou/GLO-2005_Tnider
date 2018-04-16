@@ -9,7 +9,7 @@ genders = 'mf'
 cities = ['Montreal', 'Quebec', 'Rouyn-Noranda', 'Levis', 'St-Hyacinthe', 'Riviere-Du-Loup', 'London',
           'Mongolie Orientale']
 descriptions = ['reeeeeeeeeeeee', 'aaaaaaaaaaa', 'Hello there', 'Boop', 'l ll ll l_', 's+e', 'o+e', 'Hello doug',
-                'No this is patrick', 'Shreck is love, Shreck is life', 'boop boop', 'bork bork', 'plz boop me',
+                'No this is patrick', 'Shrek is love, Shrek is life', 'boop boop', 'bork bork', 'plz boop me',
                 'floof', 'zoooop']
 
 sousraceChat = ['minou', 'beuglant', 'gros']

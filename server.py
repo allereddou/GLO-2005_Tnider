@@ -68,11 +68,14 @@ def about():
 def browse():
     global dispo
     wishlist = get_animals_desired()
-    dispo = get_possible_match()
+    try:
+        dispo = get_possible_match()
+    except:
+        dispo = {'id': 'none'}
     if request.method == 'GET':
         return render_template('browse.html', wishlist=wishlist, animal=dispo, first=dispo['id'])
     if request.method == 'POST':
-        return render_template('browse.html', wishlist=wishlist, dispo=wishlist, first=first)
+        return render_template('browse.html', wishlist=wishlist, animal=dispo, first=dispo['id'])
 
 
 @app.route('/browse/like')

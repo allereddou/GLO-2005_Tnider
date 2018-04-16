@@ -135,7 +135,7 @@ def updatePreferences(user, preferences):
         print(key)
         matchObjDog = match(r'.{0,}Doggo', key, I)
         matchObjCat = match(r'.{0,}Cat', key, I)
-        matchObjBird = match(r'.{0,}Birb', key, I)
+        matchObjBird = match(r'.{0,}Bird', key, I)
 
         if matchObjBird is not None and key is not 'birb':
             sql = "UPDATE preferencesBird SET {} = 1 WHERE username='{}';"

@@ -4,11 +4,11 @@ from persistance.bdUtils import getUserFromEmail
 
 defaultProfileImage = "https://accrualnet.cancer.gov/sites/accrualnet.cancer.gov/themes/accrualnet/accrualnet-internals/images/avatars/male/Red.png"
 
-defaultPrefBird = {'birb': 1, 'blackBirb': 1, 'greenBirb': 1, '1_2WeightBirb': 1, 'maleBirb': 1, 'greyBirb': 1,
+defaultPrefBird = {'bird': 1, 'blackBirb': 1, 'greenBirb': 1, '1_2WeightBirb': 1, 'maleBirb': 1, 'greyBirb': 1,
                    '10AgePlusBirb': 1,
                    'whiteBirb': 1, 'blueBirb': 1, '0_1WeightBirb': 1, '2PlusWeightBirb': 1, 'yellowBirb': 1,
                    '5_10AgeBirb': 1, 'femaleBirb': 1, 'beigeBirb': 1, '0_5AgeBirb': 1}
-defaultPrefCat = {'kitteh': 1, 'declawedCat': 1, 'brownCat': 1, 'whiteCat': 1, '0_10WeightCat': 1, 'blackCat': 1,
+defaultPrefCat = {'cat': 1, 'declawedCat': 1, 'brownCat': 1, 'whiteCat': 1, '0_10WeightCat': 1, 'blackCat': 1,
                   'gingerCat': 1,
                   '0_5AgeCat': 1, '10_20WeightCat': 1, '10PlusAgeCat': 1, 'castratedCat': 1, '20PlusWeightCat': 1,
                   '5_10AgeCat': 1, 'maleGenderCat': 1, 'femaleGenderCat': 1, 'greyCat': 1}

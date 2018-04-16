@@ -84,6 +84,9 @@
     </div>
 
     <div class="col s12 m6 l9">
+    {% if animal['id'] == 'none' %}
+        <p>No more cute animals to swipe, maybe you should try to change your search criterion...</p>
+    {% else %}
         <div class="card" id="animalCard{{ animal['id'] }}" style="display: none">
             <div class="card-image" id="card-image-random">
                 <img src="{{ animal['link'] }}" style="max-height: 60vh" class="activator clickable">
@@ -128,6 +131,7 @@
     </div>
     <script>document.getElementById('animalCard{{ first }}').style.display = 'block';</script>
     </div>
+    {% endif %}
 {% endblock %}
 
 
