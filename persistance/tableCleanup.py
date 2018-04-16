@@ -96,5 +96,5 @@ def createTables(cursor):
     sql = "CREATE TABLE IF NOT EXISTS preferencesDog(username VARCHAR(20), dog TINYINT(1), whiteDoggo TINYINT(1), blackDoggo TINYINT(1), gingerDoggo TINYINT(1), brownDoggo TINYINT(1), greyDoggo TINYINT(1), declawedDoggo TINYINT(1), castratedDoggo TINYINT(1), femaleGenderDoggo TINYINT(1), maleGenderDoggo TINYINT(1), 0_20WeightDoggo TINYINT(1), 20_40WeightDoggo TINYINT(1), 40WeightPlusDoggo TINYINT(1), 0_5AgeDoggo TINYINT(1), 5_10AgeDoggo TINYINT(1), 10AgePlusDoggo TINYINT(1), FOREIGN KEY(username) REFERENCES user(username) ON DELETE CASCADE ON UPDATE CASCADE, PRIMARY KEY(username));"
     cursor.execute(sql)
 
-    sql = "CREATE TABLE IF NOT EXISTS transactions(seller VARCHAR(20), id INT, buyer VARCHAR(20), prix DECIMAL(5,2), PRIMARY KEY (seller, id, buyer), FOREIGN KEY(seller) REFERENCES user(username), FOREIGN KEY(buyer) REFERENCES user(username), FOREIGN KEY(id) REFERENCES animal(id) ON DELETE CASCADE ON UPDATE CASCADE );"
+    sql = "CREATE TABLE IF NOT EXISTS transactions(seller VARCHAR(20), id INT, buyer VARCHAR(20), prix DECIMAL(5,2), PRIMARY KEY (seller, id, buyer), FOREIGN KEY(seller) REFERENCES user(username) ON UPDATE CASCADE , FOREIGN KEY(buyer) REFERENCES user(username) ON UPDATE CASCADE , FOREIGN KEY(id) REFERENCES animal(id) ON DELETE CASCADE ON UPDATE CASCADE );"
     cursor.execute(sql)
