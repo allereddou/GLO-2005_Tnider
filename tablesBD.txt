@@ -2,15 +2,15 @@ Modèle entité relation
 
 Base de données : PROJET_BD
 
-Utilisateur
-username : VARCHAR(20)
- PRIMARY KEY(username)
+User(username : VARCHAR(20),
 nom : VARCHAR(20)
-prenom: VARCHAR(20)
-password : CHAR(97)
-solde : Decimal(5,2)
-email : VARCHAR(20)
-telephone : INTEGER
+prenom: VARCHAR(20),
+password : CHAR(97),
+solde : DECIMAL(5,2)
+email : VARCAHR(20),
+telephone : INTEGER,
+profileImage VARCHAR(150))
+    
 
 
 Vend
@@ -21,21 +21,24 @@ prix : Decimal(5,2)
 FOREIGN KEY(user.username)
 
 
-Animaux
-id : INTEGER AUTO INCREMENT PRIMARY KEY
-nom : VARCHAR(20)
-race : VARCHAR(20)
-couleur : VARCHAR(20)
-poids : Decimal (5,2)
-age : INTEGER
-sexe : TINYINT
+animal(id : INTEGER PRIMARY KEY,
+nom : VARCHAR(20),
+race : VARCHAR(20),
+couleur : VARCHAR(20),
+poids : Decimal (5,2),
+age : INTEGER,
+sexe : CHAR(1),
+poids : INTEGER,
+location VARCHAR(20),
+description : VARCHAR(1000))
 
-Oiseau
+
+bird(id : INTEGER, 
 plumage : VARCHAR(20)
-FOREIGN KEY(animaux.id)
+PRIMARY KEY id, FOREIGN KEY(id) REFERENCES animal(id))
 
-Chat
-FOREIGN KEY(animaux.id)
+
+cat(FOREIGN KEY(animaux.id)
 pelage : VARCHAR(20)
 castre : TINYINT
 degriffe : TINYINT
