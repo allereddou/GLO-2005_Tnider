@@ -95,10 +95,8 @@ def validatePassword(email, password):
     if result is None:
         return None
     if check_password(result[0]['pass'], password):
-        print("right pass")
         return True
     else:
-        print("wrong pass")
         return False
 
 
