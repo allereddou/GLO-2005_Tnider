@@ -2,7 +2,7 @@ from Users import *
 from persistance.passwordUtil import check_password, hash_password
 from re import I, match
 
-defaultPrefBird = {'birb': 1, 'blackBirb': 1, 'greenBirb': 1, '1_2WeightBirb': 1, 'maleBirb': 1, 'greyBirb': 1,
+defaultPrefBird = {'bird': 1, 'blackBirb': 1, 'greenBirb': 1, '1_2WeightBirb': 1, 'maleBirb': 1, 'greyBirb': 1,
                    '10AgePlusBirb': 1,
                    'whiteBirb': 1, 'blueBirb': 1, '0_1WeightBirb': 1, '2PlusWeightBirb': 1, 'yellowBirb': 1,
                    '5_10AgeBirb': 1, 'femaleBirb': 1, 'beigeBirb': 1, '0_5AgeBirb': 1}
@@ -53,7 +53,7 @@ def createUser(user):
         sql = "INSERT INTO  preferencesDog(username, dog, whiteDoggo, blackDoggo, gingerDoggo, brownDoggo, greyDoggo, declawedDoggo, castratedDoggo, femaleGenderDoggo, maleGenderDoggo, 0_20WeightDoggo, 20_40WeightDoggo, 40WeightPlusDoggo, 0_5AgeDoggo, 5_10AgeDoggo, 10AgePlusDoggo) VALUES ('{}', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);"
         cursor.execute(sql.format(user.username))
 
-        sql = "INSERT INTO preferencesBird(username, birb, blackBirb, whiteBirb, blueBirb, beigeBirb, greyBirb, greenBirb, yellowBirb, 0_5AgeBirb, 5_10AgeBirb, 10AgePlusBirb, 0_1WeightBirb, 1_2WeightBirb, 2PlusWeightBirb, femaleBirb, maleBirb) VALUES ('{}', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);"
+        sql = "INSERT INTO preferencesBird(username, bird, blackBirb, whiteBirb, blueBirb, beigeBirb, greyBirb, greenBirb, yellowBirb, 0_5AgeBirb, 5_10AgeBirb, 10AgePlusBirb, 0_1WeightBirb, 1_2WeightBirb, 2PlusWeightBirb, femaleBirb, maleBirb) VALUES ('{}', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);"
         cursor.execute(sql.format(user.username))
 
         sql = "INSERT INTO preferencesCat(username, cat,declawedCat, whiteCat, blackCat, gingerCat, greyCat, brownCat, castratedCat,femaleGenderCat, maleGenderCat, 0_10WeightCat, 10_20WeightCat, 20PlusWeightCat, 0_5AgeCat, 5_10AgeCat, 10PlusAgeCat) VALUES ('{}', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);"
@@ -137,7 +137,7 @@ def updatePreferences(user, preferences):
         matchObjCat = match(r'.{0,}Cat', key, I)
         matchObjBird = match(r'.{0,}Bird', key, I)
 
-        if matchObjBird is not None and key is not 'birb':
+        if matchObjBird is not None:
             sql = "UPDATE preferencesBird SET {} = 1 WHERE username='{}';"
             cursor.execute(sql.format(key, user.username))
             user.preferencesBird[key] = 1
