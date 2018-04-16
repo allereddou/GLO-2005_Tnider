@@ -19,7 +19,7 @@ defaultPrefDog = {'dog': 1, '0_20WeightDoggo': 1, '20_40WeightDoggo': 1, '5_10Ag
 
 
 class User(UserMixin):
-    def __init__(self, email, password, username, nom, prenom, telephone, solde, profileImage):
+    def __init__(self, email, password, username, nom, prenom, telephone, solde, profileImage, preferencesBird, preferencesCat, preferencesDog):
         self.email = email
         self.password = password
         self.username = username
@@ -28,9 +28,9 @@ class User(UserMixin):
         self.telephone = telephone
         self.solde = solde
         self.profileImage = profileImage
-        self.preferencesDog = defaultPrefDog
-        self.preferencesCat = defaultPrefCat
-        self.preferencesBird = defaultPrefBird
+        self.preferencesDog = preferencesDog
+        self.preferencesCat = preferencesCat
+        self.preferencesBird = preferencesBird
 
     def get_auth_token(self):
         from server import app
@@ -48,9 +48,9 @@ class User(UserMixin):
                 return None
             else:
                 password = (result['pass'])
-
+            print(result['preferencesBird'])
             return User(email, password, result['username'], result['nom'], result['prenom'], result['telephone'],
-                        result['solde'], result['profileImage'])
+                        result['solde'], result['profileImage'], result['preferencesBird'], result['preferencesCat'], result['preferencesDog'])
 
     def is_authenticated(self):
         return True
