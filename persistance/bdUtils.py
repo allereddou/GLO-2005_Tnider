@@ -22,6 +22,10 @@ def getUserFromEmail(email):
         sql = "SELECT * FROM user WHERE email='{}';"
         cursor.execute(sql.format(email))
         user = cursor.fetchall()
+
+        if len(user) == 0:
+            return None
+
         sql = "SELECT * FROM preferencesCat WHERE username = '{}'"
         cursor.execute(sql.format(user[0]['username']))
         prefCat = cursor.fetchall()[0]
