@@ -192,9 +192,93 @@ def username(username):
     return render_template('user.html', user=user)
 
 
-@app.route('/addAnimal')
+@app.route('/addAnimal', methods=["GET","POST"])
 @login_required
 def add_Animal():
+    if request.method == "POST":
+        cursor = get_db()
+        sqlAnimal = "INSERT INTO animal (id, nom, sexe, age, poids, location, race, description) VALUES ({}, '{}', '{}', {}, {}, '{}', '{}', '{}')"
+        sqlpic = "INSERT INTO pic (id, caption, link) VALUES ({}, '{}', '{}')"
+        sqlvend = "INSERT INTO vend (username, id_animal, prix, id_vente) VALUES ('{}', {}, {}, {})"
+        sqlID = "SELECT * FROM animal"
+
+        cursor.execute(sqlID)
+        ID = cursor.rowcount
+        animalID = int(ID)
+        venteID = animalID + 1
+        user_name = current_user.username
+        caption = "This is a test caption"
+
+        nom = request.form['Name']
+        Age = request.form['Age']
+        age = int(Age)
+        sex = request.form['Sex']
+        if sex == "1":
+            sex = "m"
+        elif sex == "2":
+            sex = "f"
+        poid = request.form['poids']
+        poids = int(poid)
+        location = request.form['location']
+        description = request.form['description']
+        picLink = request.form['picture']
+        prix = request.form['prix']
+
+        if request.form['btn'] == "addDog":
+            sqlDog = "INSERT INTO dog (id, pelage, castre, degriffe) VALUES({}, '{}', {}, {})"
+
+            race = "Doggo"
+            pelage = request.form['pelage']
+            castre = request.form['castre']
+            degriffe = request.form['degriffe']
+            if castre == "1":
+                castre = 1
+            elif castre == "2":
+                castre = 0
+            if degriffe == "1":
+                degriffe = 1
+            elif degriffe == "2":
+                degriffe = 0
+
+            cursor.execute(sqlAnimal.format(animalID, nom, sex, age, poids, location, race, description))
+            cursor.execute(sqlDog.format(animalID, pelage, castre, degriffe))
+            cursor.execute(sqlvend.format(user_name, animalID, prix, venteID))
+            cursor.execute(sqlpic.format(animalID, caption, picLink))
+
+        elif request.form['btn'] == "addCat":
+            sqlCat = "INSERT INTO cat(id, pelage, castre, degriffe) VALUES({}, '{}', {}, {})"
+
+            race = "Kitteh"
+            pelage = request.form['pelage']
+            castre = request.form['castre']
+            degriffe = request.form['degriffe']
+            if castre == "1":
+                castre = 1
+            elif castre == "2":
+                castre = 0
+            if degriffe == "1":
+                degriffe = 1
+            elif degriffe == "2":
+                degriffe = 0
+
+            cursor.execute(sqlAnimal.format(animalID, nom, sex, age, poids, location, race, description))
+            cursor.execute(sqlCat.format(animalID, pelage, castre, degriffe))
+            cursor.execute(sqlvend.format(user_name, animalID, prix, venteID))
+            cursor.execute(sqlpic.format(animalID, caption, picLink))
+
+        elif request.form['btn'] == "addBird":
+            sqlBird = "INSERT INTO bird(id, plumage) VALUES ({},'{}')"
+
+            race = "Birb"
+            plumage = request.form['plumage']
+
+            cursor.execute(sqlAnimal.format(animalID, nom, sex, age, poids, location, race, description))
+            cursor.execute(sqlBird.format(animalID, plumage))
+            cursor.execute(sqlvend.format(user_name, animalID, prix, venteID))
+            cursor.execute(sqlpic.format(animalID, caption, picLink))
+
+        return redirect(url_for('browse'))
+
     return render_template('addAnimals.html')
 
 
