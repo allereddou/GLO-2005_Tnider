@@ -28,7 +28,6 @@ class User(UserMixin):
         from server import app
         with app.app_context():
             result = getUserFromEmail(email)
-
             if not result:
                 return None
             else:

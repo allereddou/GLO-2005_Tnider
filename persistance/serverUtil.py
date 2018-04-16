@@ -225,8 +225,7 @@ def get_possible_match(user):
     cursor.execute(sql)
     possible_id = cursor.fetchall()
 
-    # filter based on personal preferences
-    possible_id = filterIds(possible_id)
+    possible_id = filterIds(possible_id, user)
 
     IDs = list()
     for i in possible_id:
@@ -248,7 +247,7 @@ def get_possible_match(user):
     return {**animal, **race, **prix}
 
 
-def filterIds(possible_id):
+def filterIds(possible_id, user):
     cursor = get_db()
     goodIds = []
 
@@ -347,3 +346,46 @@ def get_profile(email):
         return False
     else:
         return result[0]
+
+
+def getAvailableID():
+    cursor = get_db()
+    sqlID = "SELECT * FROM animal"
+    cursor.execute(sqlID)
+    return int(cursor.rowcount)
+
+
+def addAnimalinVend(user_name, animalID, prix):
+    cursor = get_db()
+    sqlvend = "INSERT INTO vend (username, id_animal, prix) VALUES ('{}', {}, {})"
+    cursor.execute(sqlvend.format(user_name, animalID, prix))
+
+
+def addAnimalinPic(animalID, caption, picLink):
+    cursor = get_db()
+    sqlpic = "INSERT INTO pic (id, caption, link) VALUES ({}, '{}', '{}')"
+    cursor.execute(sqlpic.format(animalID, caption, picLink))
+
+
+def addDog(animalID, nom, sex, age, poids, location, race, description, pelage, castre, degriffe, sousrace):
+    cursor = get_db()
+    sqlAnimal = "INSERT INTO animal (id, nom, sexe, age, poids, location, race, description) VALUES ({}, '{}', '{}', {}, {}, '{}', '{}', '{}')"
+    sqlDog = "INSERT INTO dog (id, pelage, castre, degriffe, sousrace) VALUES({}, '{}', {}, {}, '{}')"
+    cursor.execute(sqlAnimal.format(animalID, nom, sex, age, poids, location, race, description))
+    cursor.execute(sqlDog.format(animalID, pelage, castre, degriffe, sousrace))
+
+
+def addCat(animalID, nom, sex, age, poids, location, race, description, pelage, castre, degriffe, sousrace):
+    cursor = get_db()
+    sqlAnimal = "INSERT INTO animal (id, nom, sexe, age, poids, location, race, description) VALUES ({}, '{}', '{}', {}, {}, '{}', '{}', '{}')"
+    sqlCat = "INSERT INTO cat(id, pelage, castre, degriffe, sousrace) VALUES({}, '{}', {}, {}, '{}')"
+    cursor.execute(sqlAnimal.format(animalID, nom, sex, age, poids, location, race, description))
+    cursor.execute(sqlCat.format(animalID, pelage, castre, degriffe, sousrace))
+
+
+def addBird(animalID, nom, sex, age, poids, location, race, description, plumage, sousrace):
+    cursor = get_db()
+    sqlAnimal = "INSERT INTO animal (id, nom, sexe, age, poids, location, race, description) VALUES ({}, '{}', '{}', {}, {}, '{}', '{}', '{}')"
+    sqlBird = "INSERT INTO bird(id, plumage, sousrace) VALUES ({},'{}', '{}')"
+    cursor.execute(sqlAnimal.format(animalID, nom, sex, age, poids, location, race, description))
+    cursor.execute(sqlBird.format(animalID, plumage, sousrace))
