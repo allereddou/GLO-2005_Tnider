@@ -1,5 +1,5 @@
 from server import app, get_db
-from persistance.tableCleanup import createTables, deleteAllTables
+from persistance.tableCleanup import createTables, deleteAllTables, createTableIndex
 from persistance.insertRandomUsers import insertUsers
 from persistance.insertRandomAnimals import insertAnimal
 from persistance.imageLinks import insertBirbPics, insertDoggoPics, insertKittehPics
@@ -16,6 +16,7 @@ def setupDatabase():
         # supprimer les tables
         deleteAllTables(cursor)
         createTables(cursor)
+        createTableIndex(cursor)
 
         # insérer des users
         insertUsers(cursor, 100)
