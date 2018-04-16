@@ -92,11 +92,8 @@ def validatePassword(email, password):
     sql = "SELECT pass FROM user WHERE email='{}'"
     cursor.execute(sql.format(email))
     result = cursor.fetchall()
-
-    print(result)
     if result is None:
         return None
-
     if check_password(result[0]['pass'], password):
         print("right pass")
         return True
