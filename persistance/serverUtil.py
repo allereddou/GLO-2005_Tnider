@@ -270,8 +270,8 @@ def filterIds(possible_id, user):
         sql = "SELECT * from animal WHERE id = '{}';"
         cursor.execute(sql.format(animalId['id']))
         animal = cursor.fetchall()[0]
-
-        if animal['race'] == 'Doggo':
+        seed = random.randint(1, 3)
+        if animal['race'] == 'Doggo' and seed == 1:
             if prefsDog['maleGenderDoggo'] and animal['sexe'] == 'm' or prefsDog['femaleGenderDoggo'] and animal[
                 'sexe'] == 'f':
                 if prefsDog['0_20WeightDoggo'] and animal['poids'] <= 20 or prefsDog['20_40WeightDoggo'] and 20 < \
@@ -289,7 +289,7 @@ def filterIds(possible_id, user):
                                 'pelage'] == 'grey':
                                 goodIds.append({'id': animalId['id']})
 
-        elif animal['race'] == 'Kitteh':
+        elif animal['race'] == 'Kitteh' and seed == 2:
             if prefsCat['maleGenderCat'] and animal['sexe'] == 'm' or prefsCat['femaleGenderCat'] and animal[
                 'sexe'] == 'f':
                 if prefsCat['0_10WeightCat'] and animal['poids'] <= 10 or prefsCat['10_20WeightCat'] and 10 < animal[
@@ -307,7 +307,7 @@ def filterIds(possible_id, user):
                                 'pelage'] == 'grey':
                                 goodIds.append({'id': animalId['id']})
 
-        elif animal['race'] == 'Birb':
+        elif animal['race'] == 'Birb' and seed == 3:
             if prefsBirb['maleBirb'] and animal['sexe'] == 'm' or prefsBirb['femaleBirb'] and animal['sexe'] == 'f':
                 if prefsBirb['0_1WeightBirb'] and animal['poids'] <= 1 or prefsBirb['1_2WeightBirb'] and 1 < animal[
                     'poids'] <= 2 or prefsBirb['2PlusWeightBirb'] and animal['poids'] > 3:
@@ -322,7 +322,8 @@ def filterIds(possible_id, user):
                             'greyBirb'] and bird['plumage'] == 'grey' or prefsBirb['greenBirb'] and bird[
                             'plumage'] == 'green' or prefsBirb['beigeBirb'] and bird['plumage'] == 'beige':
                             goodIds.append({'id': animalId['id']})
-
+        if len(goodIds) > 3:
+            break
     return goodIds
 
 
