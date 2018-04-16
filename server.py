@@ -583,6 +583,7 @@ def filterIds(possible_id):
                             'greyBirb'] and bird['plumage'] == 'grey' or prefsBirb['greenBirb'] and bird[
                             'plumage'] == 'green' or prefsBirb['beigeBirb'] and bird['plumage'] == 'beige':
                             goodIds.append({'id': animalId['id']})
+
     return goodIds
 
 
