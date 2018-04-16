@@ -22,6 +22,18 @@ login_manager = LoginManager()
 login_serializer = URLSafeTimedSerializer(app.secret_key)
 
 defaultProfileImage = "https://accrualnet.cancer.gov/sites/accrualnet.cancer.gov/themes/accrualnet/accrualnet-internals/images/avatars/male/Red.png"
+defaultPrefBird = {'birb': 1, 'blackBirb': 1, 'greenBirb': 1, '1_2WeightBirb': 1, 'maleBirb': 1, 'greyBirb': 1,
+                   '10AgePlusBirb': 1,
+                   'whiteBirb': 1, 'blueBirb': 1, '0_1WeightBirb': 1, '2PlusWeightBirb': 1, 'yellowBirb': 1,
+                   '5_10AgeBirb': 1, 'femaleBirb': 1, 'beigeBirb': 1, '0_5AgeBirb': 1}
+defaultPrefCat = {'kitteh': 1, 'declawedCat': 1, 'brownCat': 1, 'whiteCat': 1, '0_10WeightCat': 1, 'blackCat': 1,
+                  'gingerCat': 1,
+                  '0_5AgeCat': 1, '10_20WeightCat': 1, '10PlusAgeCat': 1, 'castratedCat': 1, '20PlusWeightCat': 1,
+                  '5_10AgeCat': 1, 'maleGenderCat': 1, 'femaleGenderCat': 1, 'greyCat': 1}
+defaultPrefDog = {'dog': 1, '0_20WeightDoggo': 1, '20_40WeightDoggo': 1, '5_10AgeDoggo': 1, 'whiteDoggo': 1,
+                  'femaleGenderDoggo': 1, 'declawedDoggo': 1, '40WeightPlusDoggo': 1, '0_5AgeDoggo': 1,
+                  'maleGenderDoggo': 1, 'brownDoggo': 1, 'castratedDoggo': 1, '10AgePlusDoggo': 1, 'gingerDoggo': 1,
+                  'blackDoggo': 1, 'greyDoggo': 1}
 
 
 @app.route('/home')
@@ -396,7 +408,7 @@ def login_page():
 
             user = User(register_form.email.data, register_form.password2.data, register_form.username.data,
                         register_form.last_name.data, register_form.first_name.data, register_form.phone_number.data, 0,
-                        defaultProfileImage)
+                        defaultProfileImage, defaultPrefBird, defaultPrefCat, defaultPrefDog)
 
             createUser(user)
             login_user(user, remember=True)
