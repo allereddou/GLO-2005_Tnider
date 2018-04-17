@@ -1,11 +1,11 @@
 from server import app, get_db
-from persistance.tableCleanup import createTables, deleteAllTables, createTableIndex
-from persistance.insertRandomUsers import insertUsers
-from persistance.insertRandomAnimals import insertAnimal
-from persistance.imageLinks import insertBirbPics, insertDoggoPics, insertKittehPics
-from persistance.insertRandomDesired import insertRandomDesired
-from persistance.insertRandomTransactions import insertRandomTransactions
-from persistance.insertRandomOwners import insertRandomOwners
+from data.tableCleanup import createTables, deleteAllTables, createTableIndex
+from data.insertRandomUsers import insertUsers
+from data.insertRandomAnimals import insertAnimal
+from data.imageLinks import insertBirbPics, insertDoggoPics, insertKittehPics
+from data.insertRandomDesired import insertRandomDesired
+from data.insertRandomTransactions import insertRandomTransactions
+from data.insertRandomOwners import insertRandomOwners
 
 
 def setupDatabase():
