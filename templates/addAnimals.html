@@ -25,21 +25,21 @@
             </div>
 
             <div class="card-content">
-
+                <p class="input-field col s12">All fields must be answered!</p>
                 <div id="Dog">
                     <form method="post">
 
                         <div class="input-field col s12">
                             <label for="Name">Name</label>
-                            <input type="text" class="validate" name="Name" id="Name"/>
+                            <input type="text" class="validate" name="Name" id="Name" required/>
                         </div>
                         <div class="input-field col s6">
                             <label for="Age">Age</label>
-                            <input type="number" class="validate" name="Age" id="Age"/>
+                            <input type="number" class="validate" name="Age" id="Age" required/>
                         </div>
 
                         <div class="input-field col s6">
-                            <select name="Sex">
+                            <select name="Sex" required>
                                 <option value="" disabled selected>Select the gender</option>
                                 <option value="m">Male</option>
                                 <option value="f">Female</option>
@@ -48,21 +48,21 @@
 
                         <div class="input-field col s6">
                             <label for="poids">Weight (lbs)</label>
-                            <input type="number" class="validate" name="poids" id="poids">
+                            <input type="number" class="validate" name="poids" id="poids" required>
                         </div>
 
                         <div class="input-field col s6">
                             <label for="sousrace">Breed</label>
-                            <input type="text" class="validate" name="sousrace" id="sousrace">
+                            <input type="text" class="validate" name="sousrace" id="sousrace" required>
                         </div>
 
                         <div class="input-field col s12">
                             <label for="location">Location</label>
-                            <input type="text" class="validate" name="location" id="location">
+                            <input type="text" class="validate" name="location" id="location" required>
                         </div>
 
                         <div class="input-field col s6">
-                            <select name="pelage">
+                            <select name="pelage" required>
                                 <option value="" disabled selected>Select fur color</option>
                                 <option value="brown">Brown</option>
                                 <option value="white">White</option>
@@ -73,7 +73,7 @@
                         </div>
 
                         <div class="input-field col s6">
-                            <select name="castre">
+                            <select name="castre" required>
                                 <option value="" disabled selected>Castrated?</option>
                                 <option value="1">Castrated</option>
                                 <option value="2">Not castrated</option>
@@ -81,7 +81,7 @@
                         </div>
 
                         <div class="input-field col s6">
-                            <select name="degriffe">
+                            <select name="degriffe" required>
                                 <option value="" disabled selected>Declawed?</option>
                                 <option value="1">Declawed</option>
                                 <option value="2">Not declawed</option>
@@ -89,17 +89,17 @@
                         </div>
 
                         <div class="input-field col s6">
-                            <input type="number" step="0.01" class="validate" name="prix" id="prix">
+                            <input type="number" step="0.01" class="validate" name="prix" id="prix" required>
                             <label for="prix">Price</label>
                         </div>
 
                         <div class="input-field col s12">
-                            <input type="url" class="validate" name="picture" id="picture">
+                            <input type="url" class="validate" name="picture" id="picture" required>
                             <label for="picture">Picture URL</label>
                         </div>
 
                         <div class="input-field col s12">
-                            <textarea name="description" id="description" class="materialize-textarea"></textarea>
+                            <textarea name="description" id="description" class="materialize-textarea" required></textarea>
                             <label for="description">Description</label>
                         </div>
 
@@ -122,15 +122,15 @@
 
                         <div class="input-field col s12">
                             <label for="Name">Name</label>
-                            <input type="text" class="validate" name="Name" id="Name"/>
+                            <input type="text" class="validate" name="Name" id="Name" required/>
                         </div>
                         <div class="input-field col s6">
                             <label for="Age">Age</label>
-                            <input type="number" class="validate" name="Age" id="Age"/>
+                            <input type="number" class="validate" name="Age" id="Age" required/>
                         </div>
 
                         <div class="input-field col s6">
-                            <select name="Sex">
+                            <select name="Sex" required>
                                 <option value="" disabled selected>Select the gender</option>
                                 <option value="m">Male</option>
                                 <option value="f">Female</option>
@@ -139,21 +139,21 @@
 
                         <div class="input-field col s6">
                             <label for="poids">Weight (lbs)</label>
-                            <input type="number" class="validate" name="poids" id="poids">
+                            <input type="number" class="validate" name="poids" id="poids" required>
                         </div>
 
                         <div class="input-field col s6">
                             <label for="sousrace">Breed</label>
-                            <input type="text" class="validate" name="sousrace" id="sousrace">
+                            <input type="text" class="validate" name="sousrace" id="sousrace" required>
                         </div>
 
                         <div class="input-field col s12">
                             <label for="location">Location</label>
-                            <input type="text" class="validate" name="location" id="location">
+                            <input type="text" class="validate" name="location" id="location" required>
                         </div>
 
                         <div class="input-field col s6">
-                            <select name="pelage">
+                            <select name="pelage" required>
                                 <option value="" disabled selected>Select fur color</option>
                                 <option value="brown">Brown</option>
                                 <option value="white">White</option>
@@ -164,7 +164,7 @@
                         </div>
 
                         <div class="input-field col s6">
-                            <select name="castre">
+                            <select name="castre" required>
                                 <option value="" disabled selected>Castrated?</option>
                                 <option value="1">Castrated</option>
                                 <option value="2">Not castrated</option>
@@ -172,7 +172,7 @@
                         </div>
 
                         <div class="input-field col s6">
-                            <select name="degriffe">
+                            <select name="degriffe" required>
                                 <option value="" disabled selected>Declawed?</option>
                                 <option value="1">Declawed</option>
                                 <option value="2">Not declawed</option>
@@ -180,17 +180,17 @@
                         </div>
 
                         <div class="input-field col s6">
-                            <input type="number" step="0.01" class="validate" name="prix" id="prix">
+                            <input type="number" step="0.01" class="validate" name="prix" id="prix" required>
                             <label for="prix">Price</label>
                         </div>
 
                         <div class="input-field col s12">
-                            <input type="url" class="validate" name="picture" id="picture">
+                            <input type="url" class="validate" name="picture" id="picture" required>
                             <label for="picture">Picture URL</label>
                         </div>
 
                         <div class="input-field col s12">
-                            <textarea name="description" id="description" class="materialize-textarea"></textarea>
+                            <textarea name="description" id="description" class="materialize-textarea" required></textarea>
                             <label for="description">Description</label>
                         </div>
 
@@ -213,15 +213,15 @@
 
                         <div class="input-field col s12">
                             <label for="Name">Name</label>
-                            <input type="text" class="validate" name="Name" id="Name"/>
+                            <input type="text" class="validate" name="Name" id="Name" required/>
                         </div>
                         <div class="input-field col s6">
                             <label for="Age">Age</label>
-                            <input type="number" class="validate" name="Age" id="Age"/>
+                            <input type="number" class="validate" name="Age" id="Age" required/>
                         </div>
 
                         <div class="input-field col s6">
-                            <select name="Sex">
+                            <select name="Sex" required>
                                 <option value="" disabled selected>Select the gender</option>
                                 <option value="m">Male</option>
                                 <option value="f">Female</option>
@@ -230,21 +230,21 @@
 
                         <div class="input-field col s6">
                             <label for="poids">Weight (lbs)</label>
-                            <input type="number" class="validate" name="poids" id="poids">
+                            <input type="number" class="validate" name="poids" id="poids" required>
                         </div>
 
                         <div class="input-field col s6">
                             <label for="sousrace">Breed</label>
-                            <input type="text" class="validate" name="sousrace" id="sousrace">
+                            <input type="text" class="validate" name="sousrace" id="sousrace" required>
                         </div>
 
                         <div class="input-field col s12">
                             <label for="location">Location</label>
-                            <input type="text" class="validate" name="location" id="location">
+                            <input type="text" class="validate" name="location" id="location" required>
                         </div>
 
                         <div class="input-field col s6">
-                            <select name="plumage">
+                            <select name="plumage" required>
                                 <option value="" disabled selected>Select color</option>
                                 <option value="white">White</option>
                                 <option value="black">Black</option>
@@ -258,16 +258,16 @@
 
                         <div class="input-field col s6">
                             <label for="prix">Price</label>
-                            <input type="number" step="0.01" class="validate" name="prix" id="prix">
+                            <input type="number" step="0.01" class="validate" name="prix" id="prix" required>
                         </div>
 
                         <div class="input-field col s12">
-                            <input type="url" class="validate" name="picture" id="picture">
+                            <input type="url" class="validate" name="picture" id="picture" required>
                             <label for="picture">Picture URL</label>
                         </div>
 
                         <div class="input-field col s12">
-                            <textarea name="description" id="description" class="materialize-textarea"></textarea>
+                            <textarea name="description" id="description" class="materialize-textarea" required></textarea>
                             <label for="description">Description</label>
                         </div>
 
