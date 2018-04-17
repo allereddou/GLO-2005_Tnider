@@ -34,19 +34,21 @@ user='root',
 autocommit=True
 ```
 
-## Générer de l'information
+### Générer de l'information
 Par défaut, 1000 animaux et 102 users sont générés. Pour les générer, il faut rouler le fichier ```data.py```.
 ```
 python3 data.py
 ```
 
-### Mac
+## Rouler l'application
+
+#### Mac
 
 ```
 python3 server.py
 ```
 
-### Linux
+#### Linux
 
 ```
 python3 server.py
