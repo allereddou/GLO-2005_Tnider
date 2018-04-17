@@ -2,7 +2,7 @@
 
 Dans le cadre du cours GLO-2005: Modèles et langages des bases de données pour ingénieurs, ce TP met en oeuvre les
 apprentissages des étudiants de l'équipe. Il consiste en un site Web sur la thématique de notre choix. Vous trouverez
-dans le repo tout le rapport et le code nécessaire à la remise.
+dans le repo tout le rapport et le code nécessaire à la remise. Vous verrez que c'est un ripoff de Tinder, aucuns droits ne sont réservés et tout a été fait dans un but d'apprentissage dans le cadre du cours qui recommendait de s'inspirer de sites connus. 
 
 ## Prérequis
 
