@@ -60,8 +60,8 @@ Un utilisateur admin est offert pour tester avec comme email ```admin@hotmail.co
 
 ## Contributeurs
 
-* Olivier Gamache
-* Édouard Carré
+* [Olivier Gamache](https://github.com/olgam4)
+* [Édouard Carré](https://github.com/allereddou)
 * Sébastien Paquet
 
 ### Remerciements
