@@ -24,6 +24,15 @@ pip install -r requirements.txt
 Il faut tout d'abord s'assurer que mySQL est en opération sur le système avant toute chose, puis l'on peut continuer
 avec ces étapes si mySQL fonctionne.
 
+### MySQL informations par défault
+```
+host='localhost',
+port=3306,
+user='root',
+autocommit=True
+```
+
+
 ### Mac
 
 ```
@@ -38,7 +47,9 @@ python3 data.py
 python3 server.py
 ```
 
-Ensuite, on peut accéder à la page via ```localhost:5000```
+Ensuite, on peut accéder à la page via ```localhost:5000```.
+
+Un utilisateur admin est offert pour tester avec comme email ```admin@hotmail.com``` et comme mot de passe, ```admin```.
 
 ## Contributeurs
 
