@@ -22,7 +22,7 @@ pip install -r requirements.txt
 ## Démarrage
 
 Il faut tout d'abord s'assurer que mySQL est en opération sur le système avant toute chose, puis l'on peut continuer
-avec ces étapes si mySQL fonctionne.
+avec ces étapes si mySQL fonctionne. Aussi, certaines fonctionnalités doivent communiquer avec Internet, pour que jQuery fonctionne entre autres, donc une connexion Internet fonctionnele est requise.
 
 ### MySQL informations par défault
 ```
