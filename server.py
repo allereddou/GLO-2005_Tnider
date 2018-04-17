@@ -186,6 +186,7 @@ def user(username):
 @login_required
 def add_Animal():
     if request.method == "POST":
+        # On va chercher les arguments de l'URL pour les passer à la BD
         animalID = getAvailableID()
         user_name = current_user.username
         caption = "This is a test caption"

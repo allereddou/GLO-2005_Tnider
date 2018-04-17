@@ -25,7 +25,7 @@ def getUserFromEmail(email):
 
         if len(user) == 0:
             return None
-
+        # On va chercher les informations d'un user, soit ses préférences et cetera
         sql = "SELECT * FROM preferencesCat WHERE username = '{}'"
         cursor.execute(sql.format(user[0]['username']))
         prefCat = cursor.fetchall()[0]
@@ -70,6 +70,7 @@ def checkIfUsernameAlreadyUsed(username):
     cursor.execute(sql)
     results = cursor.fetchall()
 
+    # Si le username est trouvé, ce sera False, sinon on peut l'utiliser
     for i in results:
         if i['username'] == username:
             return False
@@ -83,6 +84,7 @@ def checkIfEmailAlreadyUsed(email):
     cursor.execute(sql)
     results = cursor.fetchall()
 
+    # Si le email est trouvé, ce sera False, sinon on peut l'utiliser
     for i in results:
         if i['email'] == email:
             return False
@@ -95,6 +97,7 @@ def validatePassword(email, password):
     sql = "SELECT pass FROM user WHERE email='{}'"
     cursor.execute(sql.format(email))
     result = cursor.fetchall()
+    # On compare le password s'il est hashé
     if result is None:
         return None
     if check_password(result[0]['pass'], password):

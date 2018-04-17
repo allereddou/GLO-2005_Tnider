@@ -19,26 +19,24 @@ defaultPrefDog = {'dog': 1, '0_20WeightDoggo': 1, '20_40WeightDoggo': 1, '5_10Ag
 
 
 def get_db():
+    # Cet fonction sert à aller se connecter à la BD et est souvent utilisée dans le code
     sql = "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'PROJET_BD';"
-
     if not hasattr(g, 'cursor'):
         db = pymysql.connect(host='localhost',
                              port=3306,
                              user='root',
                              autocommit=True)
-
         g.cursor = db.cursor(pymysql.cursors.DictCursor)
         schemaExists = g.cursor.execute(sql)
-
         if not schemaExists:
             sql = "CREATE DATABASE IF NOT EXISTS PROJET_BD"
             g.cursor.execute(sql)
-
         g.cursor.execute("USE PROJET_BD")
     return g.cursor
 
 
 def findMyAnimals(user):
+    # Cette fonction sert à trouver les animaux qui sont à vendre pour utilisateur
     cursor = get_db()
     cursor.execute(
         "SELECT P.link, A.nom, A.id, A.race, A.sexe, A.poids, A.age, V.prix, A.location, A.description FROM vend V, animal A, pic P WHERE V.username = '{}' and V.id_animal = A.id and P.id = A.id".format(
@@ -89,6 +87,9 @@ def deleteDesiredinBD(num, user):
 
 
 def buyAnimalAndCleanBD(num, user):
+    # Cette fonction va chercher un animal dans la table vendre pour trouver ensuite ses infromations
+    # Et aussi modifier les informations du vendeur et de l'acheteur.
+    # On supprime aussi l'animal des animaux disponibles
     cursor = get_db()
     cursor.execute("SELECT * FROM vend WHERE id_animal = {}".format(num))
     vend = cursor.fetchall()[0]
@@ -202,6 +203,7 @@ def getUser(username):
 
 
 def get_animals_desired(user):
+    # Cette fonction va chercher la wishlist d'un user et retourne chaque animal dedans
     cursor = get_db()
     cursor.execute("SELECT D.id FROM desire D WHERE D.username = '{}'".format(user.username))
     id_wishlist = cursor.fetchall()
@@ -223,6 +225,9 @@ def get_animals_desired(user):
 
 
 def get_possible_match(user):
+    # Cette fonction va chercher les IDs possibles des animaux qu'un user pourrait aimer, puis les filtres selon
+    # ses préférences
+    # Ensuite, la fonction va chercher les informations de l'animal et de la relation vendre
     cursor = get_db()
     sql = "SELECT A.id FROM animal A WHERE A.id not in (SELECT D.id FROM desire D WHERE D.username = '{}') and A.id not in (SELECT D.id FROM notdesired D WHERE D.username = '{}') and A.id not in (SELECT T.id FROM transactions T) and A.id not in (SELECT V.id_animal FROM vend V WHERE V.username = '{}');".format(
         user.username, user.username, user.username)
@@ -270,6 +275,9 @@ def filterIds(possible_id, user):
     cursor.execute(sql.format(user.username))
     prefsBirb = cursor.fetchall()[0]
 
+
+    # On boucle sur tous les IDs, puis on va chercher l'animal dans la BD  selon le ID et on le compare avec les
+    # préférences de l'utilisateur
     for animalId in possible_id:
         sql = "SELECT * from animal WHERE id = '{}';"
         cursor.execute(sql.format(animalId['id']))
@@ -332,6 +340,7 @@ def filterIds(possible_id, user):
 
 
 def isYourAnimal(ID, user):
+    # Cette fonction vérifie que l'animal est celui du user passé
     cursor = get_db()
     cursor.execute("SELECT * FROM vend WHERE username = '{}'".format(user.username))
     animals = cursor.fetchall()
