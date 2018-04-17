@@ -21,9 +21,6 @@ def deleteAllTables(cursor):
         sql = "DROP TABLE IF EXISTS desire"
         cursor.execute(sql)
 
-        #sql = "DROP TABLE IF EXISTS preferences"
-        #cursor.execute(sql)
-
         sql = "DROP TABLE IF EXISTS preferencesDog"
         cursor.execute(sql)
 
