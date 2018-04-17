@@ -18,12 +18,6 @@ démarrer l'application.
 ```
 pip install -r requirements.txt
 ```
-## Générer de l'information
-Par défaut, 1000 animaux et 102 users sont générés. Pour les générer, il faut rouler le fichier ```data.py```.
-```
-python3 data.py
-```
-
 
 ## Démarrage
 
@@ -32,6 +26,7 @@ avec ces étapes si mySQL fonctionne. Aussi, certaines fonctionnalités doivent 
 jQuery fonctionne entre autres, donc une connexion Internet fonctionnelle est requise.
 
 ### MySQL informations par défault
+
 ```
 host='localhost',
 port=3306,
@@ -39,14 +34,21 @@ user='root',
 autocommit=True
 ```
 
+### Générer de l'information
+Par défaut, 1000 animaux et 102 users sont générés. Pour les générer, il faut rouler le fichier ```data.py```.
+```
+python3 data.py
+```
 
-### Mac
+## Rouler l'application
+
+#### Mac
 
 ```
 python3 server.py
 ```
 
-### Linux
+#### Linux
 
 ```
 python3 server.py
