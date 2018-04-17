@@ -93,6 +93,10 @@ def buyAnimalAndCleanBD(num, user):
     cursor.execute("SELECT * FROM vend WHERE id_animal = {}".format(num))
     vend = cursor.fetchall()[0]
     user.solde -= vend['prix']
+    cursor.execute("SELECT solde FROM user WHERE username = '{}'".format(vend['username']))
+    soldeVendeur = cursor.fetchall()[0]['solde']
+    soldeVendeur += vend['prix']
+    cursor.execute("UPDATE user SET solde = {} WHERE username = '{}'".format(soldeVendeur, vend['username']))
     cursor.execute("UPDATE user SET solde = {} WHERE username = '{}'".format(user.solde, user.username))
     cursor.execute(
         "INSERT transactions(seller, id, buyer, prix) VALUES('{}',{},'{}',{})".format(vend['username'], num,
